@@ -282,7 +282,13 @@
     transition: all 0.2s;
   }
   .btn-outline:hover { border-color: #C0392B; }
-
+ .btn-outline-w {
+    background: transparent; color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 13px 28px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; cursor: pointer; border-radius: 3px; transition: all .2s;
+  }
+  .btn-outline-w:hover { color: white; border-color: rgba(255,255,255,0.5); }
   .hero-stats {
     display: flex; gap: 36px; margin-top: 40px;
     padding-top: 36px;
@@ -750,7 +756,7 @@
     <p class="hero-sub">Más de 25.000 referencias de instrumental odontológico profesional. Entrega en 24/48h, catálogo sincronizado con nuestro sistema de gestión en tiempo real.</p>
     <div class="hero-ctas">
       <button class="btn-primary">Explorar catálogo</button>
-      <button class="btn-outline">Ver novedades →</button>
+      <button class="btn-outline-w">Ver novedades →</button>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
