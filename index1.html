@@ -74,7 +74,7 @@
     z-index: 100;
     box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   }
-
+/*
   .logo-area { display: flex; align-items: center; gap: 14px; }
   .logo-icon {
     width: 44px; height: 44px;
@@ -105,7 +105,39 @@
     text-transform: uppercase;
     display: block;
     margin-top: -2px;
+  }*/
+   /* SVG logo recreado fielmente */
+  .logo-emblem {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
   }
+
+  .logo-text-block { display: flex; flex-direction: column; }
+  .logo-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--ink);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .logo-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 4px 0;
+  }
+  .logo-line { height: 1px; background: var(--ink); width: 100%; }
+  .logo-line:first-child { height: 1.5px; }
+  .logo-sub {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    text-align: right;
+  }
+
 
   .search-bar {
     flex: 1;
@@ -131,6 +163,31 @@
   }
   .search-bar button:hover { background: #C0392B; }
 
+   /* ── BUSCADOR ─────────────────────────────────── */
+  .search-wrap { flex: 1; max-width: 500px; margin: 0 48px; }
+  .search-bar {
+    display: flex;
+    border: 1.5px solid var(--gray-border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: border-color .2s;
+    background: var(--white);
+  }
+  .search-bar:focus-within { border-color: var(--gray-accent); }
+  .search-bar input {
+    flex: 1; border: none; background: transparent;
+    padding: 11px 16px; font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px; outline: none; color: var(--charcoal);
+  }
+  .search-bar input::placeholder { color: var(--gray-light); }
+  .search-bar button {
+    background: var(--gray-accent); border: none;
+    padding: 0 20px; color: white; cursor: pointer;
+    font-size: 15px; transition: background .2s;
+  }
+  .search-bar button:hover { background: var(--red); }
+
+  
   .header-actions { display: flex; align-items: center; gap: 28px; }
   .header-icon {
     display: flex; flex-direction: column; align-items: center;
@@ -154,6 +211,24 @@
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-weight: 600;
+  }
+   /* ── ICONOS HEADER ────────────────────────────── */
+  .header-icons { display: flex; gap: 30px; align-items: center; }
+  .hicon {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    cursor: pointer; color: var(--gray-mid);
+    font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase;
+    transition: color .2s; text-decoration: none;
+  }
+  .hicon:hover { color: var(--charcoal); }
+  .hicon svg { width: 20px; height: 20px; stroke-width: 1.5; }
+  .hicon-cart { position: relative; }
+  .cart-n {
+    position: absolute; top: -6px; right: -8px;
+    background: var(--red); color: white;
+    font-size: 9px; width: 17px; height: 17px;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-weight: 700;
   }
 
   /* NAV */
@@ -700,24 +775,29 @@
       <span class="logo-sub">Productos dentales, S.L.</span>
     </div>
   </div>
-  <div class="search-bar">
-    <input type="text" placeholder="Buscar instrumental, material clínico, referencias...">
-    <button>🔍</button>
+  <div class="search-wrap">
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar por nombre, referencia o marca...">
+      <button>🔍</button>
+    </div>
   </div>
-  <div class="header-actions">
-    <a class="header-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+
+  <div class="header-icons">
+    <a class="hicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       Mi cuenta
     </a>
-    <a class="header-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+    <a class="hicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
       Pedidos
     </a>
-    <a class="header-icon cart-badge">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    <a class="hicon hicon-cart">
+      <div class="cart-n">2</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       Cesta
     </a>
   </div>
+ 
 </header>
 
 <!-- NAV -->
