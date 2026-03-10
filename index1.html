@@ -119,6 +119,30 @@
 
   /* ── BUSCADOR ─────────────────────────────────── */
   .search-wrap { flex: 1; max-width: 500px; margin: 0 48px; }
+ .search-bar {
+    flex: 1;
+    max-width: 460px;
+    margin: 0 40px;
+    display: flex;
+    background: var(--gray-light);
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .search-bar:focus-within { border-color: var(--navy); }
+  .search-bar input {
+    flex: 1; border: none; background: transparent;
+    padding: 12px 16px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; outline: none; color: var(--navy);
+  }
+  .search-bar button {
+    background: var(--navy); border: none; padding: 0 20px;
+    color: white; cursor: pointer; font-size: 16px;
+    transition: background 0.2s;
+  }
+  .search-bar button:hover { background: var(--red); }
+  /*
   .search-bar {
     display: flex;
     border: 1.5px solid var(--gray-border);
@@ -140,7 +164,7 @@
     font-size: 15px; transition: background .2s;
   }
   .search-bar button:hover { background: var(--red); }
-
+*/
   /* ── ICONOS HEADER ────────────────────────────── */
   .header-icons { display: flex; gap: 30px; align-items: center; }
   .hicon {
