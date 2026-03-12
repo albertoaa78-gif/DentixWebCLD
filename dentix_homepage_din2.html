@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dentix — Instrumental Odontológico Profesional B2B</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════════════════════════════
+   VARIABLES — Sistema de diseño Dentix (paleta oficial)
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  --ink:         #1A1A1A;
+  --dark-main:   #2D2D2D;
+  --dark-soft:   #3A3A3A;
+  --gray-logo:   #9A9898;
+  --gray-mid:    #6B6868;
+  --gray-light:  #F2F2F2;
+  --bg-soft:     #F0EEED;
+  --panel:       #F7F6F5;
+  --cream:       #F8F6F1;
+  --border:      #E8E4DC;
+  --white:       #FFFFFF;
+  --red:         #C0392B;
+  --red-hover:   #D44333;
+  --on-dark:     #C8C6C4;
+  --on-dark-mid: #AEACAA;
+  --on-dark-low: #9A9898;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESET
+   ══════════════════════════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark-main);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* ══════════════════════════════════════════════════════════════
+   TOP BAR
+   ══════════════════════════════════════════════════════════════ */
+.topbar{
+  background:var(--ink);
+  color:var(--on-dark-mid);
+  font-size:13px;
+  padding:11px 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  letter-spacing:0.1px;
+}
+.topbar a{color:var(--red);font-weight:600}
+.topbar-right{display:flex;gap:24px;align-items:center}
+.topbar-pill{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(200,198,196,0.08);
+  padding:3px 10px;border-radius:20px;
+}
+.topbar-pill .dot{width:7px;height:7px;background:#4CAF50;border-radius:50%;flex-shrink:0;}
+
+/* ══════════════════════════════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════════════════════════════ */
+header{
+  background:var(--white);
+  padding:0 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:100px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:400;
+  box-shadow:0 2px 20px rgba(0,0,0,0.05);
+}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:18px;cursor:pointer;}
+.logo-svg{flex-shrink:0}
+.logo-text{display:flex;flex-direction:column}
+.logo-name{
+  font-family:'DM Sans',sans-serif;
+  font-size:34px;font-weight:300;
+  color:var(--ink);letter-spacing:3px;line-height:1;
+}
+.logo-rule{height:1.5px;background:var(--ink);margin:4px 0 3px;opacity:0.9}
+.logo-rule2{height:1px;background:var(--ink);margin-bottom:4px;opacity:0.4}
+.logo-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gray-logo);}
+
+/* Search */
+.search-block{flex:1;max-width:500px;margin:0 44px;position:relative}
+.search-outer{
+  display:flex;
+  background:var(--gray-light);
+  border:1.5px solid var(--border);
+  border-radius:8px;overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.search-outer:focus-within{border-color:var(--dark-main);box-shadow:0 0 0 3px rgba(45,45,45,0.07)}
+.search-outer input{
+  flex:1;border:none;background:transparent;
+  padding:11px 16px;font-family:'DM Sans',sans-serif;
+  font-size:13.5px;outline:none;color:var(--dark-main);
+}
+.search-outer input::placeholder{color:var(--gray-mid)}
+.search-btn{
+  background:var(--dark-main);border:none;
+  padding:0 20px;color:white;cursor:pointer;
+  display:flex;align-items:center;gap:6px;
+  font-family:'DM Sans',sans-serif;font-size:12px;
+  font-weight:500;letter-spacing:0.3px;transition:background .2s;
+}
+.search-btn:hover{background:var(--red)}
+/* Hints: dropdown absoluto bajo el buscador — no afecta altura del header */
+.search-hint{
+  position:absolute;top:calc(100% + 8px);left:0;right:0;
+  display:none;
+  flex-wrap:wrap;gap:6px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 16px;
+  box-shadow:0 10px 28px rgba(0,0,0,0.1);
+  z-index:500;
+}
+.search-hint.open{display:flex}
+.search-hint-label{
+  font-size:9.5px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gray-logo);
+  width:100%;margin-bottom:4px;
+}
+.search-tag{
+  font-size:11px;color:var(--gray-mid);cursor:pointer;
+  background:var(--gray-light);border:1px solid var(--border);
+  border-radius:20px;padding:4px 12px;transition:all .15s;
+  white-space:nowrap;
+}
+.search-tag:hover{background:var(--dark-main);color:white;border-color:var(--dark-main)}
+
+/* Header icons */
+.hicons{display:flex;gap:24px;align-items:center}
+.hicon{
+  display:flex;flex-direction:column;align-items:center;
+  gap:3px;cursor:pointer;color:var(--gray-mid);
+  font-size:9.5px;letter-spacing:0.6px;text-transform:uppercase;
+  transition:color .2s;position:relative;
+}
+.hicon:hover{color:var(--dark-main)}
+.hicon svg{width:22px;height:22px;stroke-width:1.5}
+.badge{
+  position:absolute;top:-5px;right:-7px;
+  background:var(--red);color:white;
+  font-size:9px;width:16px;height:16px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:700;
+}
+.header-divider{width:1px;height:36px;background:var(--border)}
+.btn-access{
+  background:var(--dark-main);color:white;border:none;
+  padding:10px 20px;border-radius:6px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:600;
+  letter-spacing:0.3px;transition:all .2s;white-space:nowrap;
+}
+.btn-access:hover{background:var(--red)}
+
+/* ══════════════════════════════════════════════════════════════
+   NAVEGACIÓN PRINCIPAL
+   ══════════════════════════════════════════════════════════════ */
+nav{
+  background:var(--dark-main);
+  padding:0 60px;
+  display:flex;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.nav-item{
+  color:var(--on-dark);
+  padding:14px 18px;font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .2s;
+  border-bottom:3px solid transparent;
+  letter-spacing:0.2px;white-space:nowrap;
+  display:flex;align-items:center;gap:5px;
+}
+.nav-item:hover,.nav-item.on{color:white;border-bottom-color:var(--red)}
+.nav-sep{width:1px;height:16px;background:rgba(255,255,255,0.08);margin:0 4px}
+.nav-end{margin-left:auto;display:flex;align-items:center;gap:0}
+.nav-special{
+  background:var(--red);color:white;
+  padding:14px 22px;font-size:13px;font-weight:600;
+  cursor:pointer;letter-spacing:0.4px;
+  border-bottom:3px solid transparent;
+  transition:background .2s;display:flex;align-items:center;gap:6px;
+}
+.nav-special:hover{background:var(--red-hover)}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO — Fullwidth editorial oscuro
+   ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   HERO — Carrusel CSS con 5 escenas del sector dental
+   ══════════════════════════════════════════════════════════════ */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:620px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ── Carrusel de fondo ─────────────────────────────────────── */
+/* ── Carrusel: cada slide es una fotografía real de Unsplash ── */
+.hero-carousel{
+  position:absolute;inset:0;
+  z-index:0;
+}
+.hero-slide{
+  position:absolute;inset:0;
+  opacity:0;
+  transition:opacity 1.6s ease-in-out;
+  background-size:cover;
+  background-position:center;
+}
+.hero-slide.active{opacity:1}
+
+/* Slide 1 — Clínica dental moderna (luz blanca, sillón, equipo) */
+.hs1{
+  background-image:
+    url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80&fit=crop');
+  background-color:#1A2030;
+}
+/* Slide 2 — Instrumental quirúrgico sobre superficie de acero */
+.hs2{
+  background-image:
+    url('https://images.unsplash.com/photo-1588776814546-1ffbb072bcd3?w=1600&q=80&fit=crop');
+  background-color:#1A1612;
+  background-position:center 40%;
+}
+/* Slide 3 — Implantes dentales, primer plano macro */
+.hs3{
+  background-image:
+    url('https://images.unsplash.com/photo-1606811841689-23dfddce3e66?w=1600&q=80&fit=crop');
+  background-color:#0E1A12;
+  background-position:center 60%;
+}
+/* Slide 4 — Laboratorio dental, microscopio y equipamiento */
+.hs4{
+  background-image:
+    url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&fit=crop');
+  background-color:#12121A;
+  background-position:center top;
+}
+/* Slide 5 — Ortodoncia, brackets y alambres */
+.hs5{
+  background-image:
+    url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=1600&q=80&fit=crop');
+  background-color:#1A1208;
+  background-position:center 35%;
+}
+
+/* Overlay: degradado lateral — más transparente para que se vean las fotos */
+.hero-carousel-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to right,
+      rgba(15,12,10,0.82) 0%,
+      rgba(15,12,10,0.60) 45%,
+      rgba(15,12,10,0.40) 100%);
+}
+
+/* Círculo rojo decorativo (fiel al index1) — encima del carrusel */
+.hero-circle-red{
+  position:absolute;
+  top:-80px;right:-80px;
+  width:420px;height:420px;
+  border-radius:50%;
+  background:rgba(192,57,43,0.13);
+  pointer-events:none;z-index:2;
+}
+/* Círculo blanco difuminado inferior (fiel al index1) */
+.hero-circle-white{
+  position:absolute;
+  bottom:-60px;left:30%;
+  width:300px;height:300px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  pointer-events:none;z-index:2;
+}
+
+/* Indicadores del carrusel */
+.carousel-dots{
+  position:absolute;bottom:28px;left:60px;
+  display:flex;gap:8px;z-index:10;
+}
+.cdot{
+  width:28px;height:3px;border-radius:2px;
+  background:rgba(255,255,255,0.3);
+  cursor:pointer;transition:all .3s;
+}
+.cdot.active{background:var(--red);width:44px;}
+.cdot:hover:not(.active){background:rgba(255,255,255,0.55)}
+
+/* Animación keyframes — crossfade automático */
+@keyframes slideIn{from{opacity:0}to{opacity:1}}
+@keyframes slideOut{from{opacity:1}to{opacity:0}}
+
+/* Columna izquierda */
+.hero-left{
+  padding:80px 56px 80px 60px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:5;
+  transition:opacity 0.5s ease;
+}
+
+.hero-eyebrow{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:30px;
+}
+.hero-eline{width:36px;height:2px;background:var(--red);flex-shrink:0}
+.hero-etag{
+  font-size:10.5px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--red);
+}
+
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:55px;line-height:1.07;font-weight:700;
+  color:var(--white);
+  letter-spacing:-0.5px;
+  margin-bottom:8px;
+}
+.hero-h1 em{
+  font-style:italic;color:var(--red);
+  font-weight:600;
+}
+.hero-h1-line2{
+  font-family:'Playfair Display',serif;
+  font-size:55px;line-height:1.07;font-weight:400;
+  color:var(--on-dark);letter-spacing:-0.5px;
+  margin-bottom:30px;
+  font-style:italic;
+}
+
+.hero-desc{
+  color:var(--on-dark-mid);
+  font-size:15px;line-height:1.8;
+  max-width:420px;margin-bottom:40px;
+  font-weight:300;
+}
+.hero-desc strong{color:var(--on-dark);font-weight:500}
+
+.hero-ctas{display:flex;gap:12px;margin-bottom:54px}
+.btn-red{
+  background:var(--red);color:white;border:none;
+  padding:15px 32px;border-radius:6px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .2s;letter-spacing:0.3px;
+  display:flex;align-items:center;gap:8px;
+}
+.btn-red:hover{background:var(--red-hover);transform:translateY(-1px);box-shadow:0 6px 22px rgba(192,57,43,0.38)}
+.btn-outline-d{
+  background:transparent;color:var(--on-dark);
+  border:1.5px solid rgba(200,198,196,0.25);
+  padding:14px 28px;border-radius:6px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;
+  cursor:pointer;transition:all .2s;
+}
+.btn-outline-d:hover{color:white;border-color:rgba(200,198,196,0.55)}
+
+/* Stats */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(200,198,196,0.1);
+  padding-top:36px;gap:0;
+}
+.stat{padding:0 24px}
+.stat:first-child{padding-left:0}
+.stat+.stat{border-left:1px solid rgba(200,198,196,0.1)}
+.stat-n{
+  font-family:'Playfair Display',serif;
+  font-size:36px;font-weight:700;color:white;line-height:1;
+}
+.stat-n sup{font-size:20px;color:var(--red);margin-left:1px}
+.stat-l{font-size:11.5px;color:var(--on-dark-low);margin-top:5px;line-height:1.4}
+
+/* Columna derecha — showcase visual */
+.hero-right{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 56px 48px 40px;
+  position:relative;z-index:5;
+  gap:14px;
+}
+
+/* Grid visual de productos en hero */
+.hero-showcase{
+  width:100%;max-width:460px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:14px;
+}
+
+/* Tarjeta producto hero */
+.hsc{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:14px;padding:20px;
+  cursor:pointer;transition:all .28s;
+  position:relative;overflow:hidden;
+}
+.hsc::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity:0;transition:opacity .3s;
+}
+.hsc:hover{
+  background:rgba(255,255,255,0.09);
+  transform:translateY(-4px);
+  border-color:rgba(255,255,255,0.18);
+  box-shadow:0 12px 40px rgba(0,0,0,0.25);
+}
+.hsc:hover::after{opacity:1}
+
+/* Featured card ocupa todo el ancho */
+.hsc-featured{
+  grid-column:span 2;
+  display:flex;align-items:center;gap:20px;
+  background:rgba(192,57,43,0.12);
+  border-color:rgba(192,57,43,0.3);
+}
+.hsc-featured:hover{background:rgba(192,57,43,0.2)}
+
+/* Imagen de producto SVG */
+.hsc-img{
+  width:56px;height:56px;flex-shrink:0;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.hsc-featured .hsc-img{margin-bottom:0;width:64px;height:64px}
+
+.hsc-badge{
+  font-size:9px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;padding:3px 8px;
+  border-radius:4px;display:inline-block;margin-bottom:7px;
+}
+.badge-best{background:rgba(76,175,80,0.2);color:#81C784}
+.badge-new{background:rgba(33,150,243,0.2);color:#64B5F6}
+.badge-sale{background:rgba(255,138,122,0.18);color:#FF8A7A}
+
+.hsc-name{
+  font-size:12.5px;font-weight:500;color:white;
+  line-height:1.35;margin-bottom:5px;
+}
+.hsc-ref{font-size:10px;color:var(--on-dark-low);letter-spacing:0.5px;margin-bottom:10px}
+.hsc-price{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;color:#FF8A7A;
+}
+.hsc-price s{
+  font-family:'DM Sans',sans-serif;font-size:11px;
+  color:var(--on-dark-low);display:block;font-weight:400;
+  text-decoration:line-through;margin-bottom:2px;
+}
+.hsc-info{flex:1}
+.hsc-cta{
+  font-size:11px;font-weight:600;color:var(--red);
+  letter-spacing:0.5px;text-transform:uppercase;
+  display:flex;align-items:center;gap:4px;margin-top:8px;
+}
+
+/* Buscador rápido por referencia dentro del hero */
+.hero-quickref{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:10px 14px;
+  width:100%;max-width:460px;
+  cursor:pointer;transition:background .2s;
+}
+.hero-quickref:hover{background:rgba(255,255,255,0.09)}
+.hqr-label{font-size:11px;color:var(--on-dark-low);letter-spacing:0.5px}
+.hqr-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:white;
+}
+.hqr-input::placeholder{color:var(--on-dark-low)}
+.hqr-btn{
+  background:var(--red);color:white;border:none;
+  border-radius:4px;padding:5px 10px;font-size:11px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:background .2s;
+}
+.hqr-btn:hover{background:var(--red-hover)}
+
+/* ══════════════════════════════════════════════════════════════
+   TRUST BAR
+   ══════════════════════════════════════════════════════════════ */
+.trust{
+  background:var(--dark-soft);
+  padding:0 60px;
+  display:flex;justify-content:center;
+  border-top:1px solid rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.trust-item{
+  display:flex;align-items:center;gap:10px;
+  color:var(--on-dark);
+  font-size:12.5px;font-weight:500;
+  padding:14px 32px;flex-shrink:0;
+}
+.trust-item+.trust-item{border-left:1px solid rgba(255,255,255,0.07)}
+.t-icon{font-size:17px}
+.t-txt strong{display:block;font-size:12.5px;color:white;font-weight:600}
+.t-txt span{font-size:11px;color:var(--on-dark-low)}
+
+/* ══════════════════════════════════════════════════════════════
+   UTIL — Cabeceras de sección
+   ══════════════════════════════════════════════════════════════ */
+.sec-head{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;margin-bottom:36px;
+}
+.sec-kicker{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--red);margin-bottom:8px;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:34px;font-weight:700;color:var(--dark-main);
+  line-height:1.12;
+}
+.sec-title em{font-style:italic;color:var(--gray-mid)}
+.sec-link{
+  font-size:13px;font-weight:600;color:var(--dark-main);
+  display:flex;align-items:center;gap:6px;
+  border-bottom:1.5px solid var(--dark-main);padding-bottom:2px;
+  transition:color .2s,border-color .2s;white-space:nowrap;
+}
+.sec-link:hover{color:var(--red);border-color:var(--red)}
+
+/* ══════════════════════════════════════════════════════════════
+   CATEGORÍAS — Bento grid asimétrico
+   ══════════════════════════════════════════════════════════════ */
+.sec-cats{padding:72px 60px;background:var(--white)}
+
+/* 4 columnas, 2 filas con spans */
+.bento{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:260px 220px;
+  gap:14px;
+}
+
+.cat{
+  border-radius:16px;overflow:hidden;
+  position:relative;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:26px;
+  transition:transform .3s cubic-bezier(.25,.46,.45,.94),
+             box-shadow .3s;
+  text-decoration:none;
+}
+.cat:hover{transform:translateY(-5px);box-shadow:0 22px 60px rgba(0,0,0,0.2)}
+.cat:hover .cat-bg{transform:scale(1.05)}
+.cat:hover .cat-arrow{background:var(--red);transform:translate(2px,-2px)}
+.cat:hover .cat-overlay{opacity:.75}
+
+/* Posicionamiento bento */
+.cat-1{grid-column:span 3}  /* Instrumental — fila 1 izq */
+.cat-2{grid-column:span 3}  /* Implantología */
+.cat-3{grid-column:span 3}  /* Endodoncia */
+.cat-4{grid-column:span 3}  /* Ortodoncia */
+.cat-5{grid-column:span 5;grid-row:2}  /* Esterilización — ancho */
+.cat-6{grid-column:span 3;grid-row:2}  /* Radiología */
+.cat-7{grid-column:span 4;grid-row:2}  /* Equipamiento */
+
+/* Fondo de tarjeta */
+.cat-bg{
+  position:absolute;inset:0;
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.cat-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,
+    rgba(18,16,16,0.88) 0%,
+    rgba(18,16,16,0.4) 50%,
+    rgba(18,16,16,0.08) 100%);
+  opacity:.65;transition:opacity .3s;
+}
+
+/* Ilustración central de la tarjeta */
+.cat-illo{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-60%);
+  opacity:.18;
+  transition:opacity .3s,transform .3s;
+}
+.cat:hover .cat-illo{opacity:.3;transform:translate(-50%,-55%)}
+
+/* Contenido */
+.cat-content{position:relative;z-index:2}
+.cat-icon{font-size:24px;margin-bottom:8px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5))}
+.cat-name{
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-weight:700;color:white;
+  line-height:1.2;margin-bottom:4px;
+}
+.cat-n{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.3px}
+.cat-arrow{
+  position:absolute;bottom:26px;right:26px;z-index:2;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:13px;
+  transition:all .25s;border:1px solid rgba(255,255,255,0.2);
+}
+
+/* Paletas de fondo por categoría */
+.cbg-1{background:linear-gradient(135deg,#1C1A1A 0%,#2A2020 60%,#331A1A 100%)}
+.cbg-2{background:linear-gradient(135deg,#161E18 0%,#1A2C1E 60%,#1E3020 100%)}
+.cbg-3{background:linear-gradient(135deg,#171622 0%,#1E1C35 60%,#221E40 100%)}
+.cbg-4{background:linear-gradient(135deg,#201818 0%,#301E1E 60%,#2A1A1A 100%)}
+.cbg-5{background:linear-gradient(135deg,#14181E 0%,#1A2030 60%,#1E2840 100%)}
+.cbg-6{background:linear-gradient(135deg,#181C18 0%,#1E261E 60%,#223022 100%)}
+.cbg-7{background:linear-gradient(135deg,#1E1818 0%,#2E1E1E 60%,#381C1C 100%)}
+
+/* ══════════════════════════════════════════════════════════════
+   MARCAS — Banda horizontal
+   ══════════════════════════════════════════════════════════════ */
+.sec-brands{
+  background:var(--gray-light);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:0 60px;
+}
+.brands-head{
+  padding:20px 0 16px;
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gray-logo);
+}
+.brands-row{
+  display:flex;border-top:1px solid var(--border);
+}
+.brand{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:18px 12px;
+  border-right:1px solid var(--border);
+  cursor:pointer;transition:background .2s;
+}
+.brand:last-child{border-right:none}
+.brand:hover{background:white}
+.brand:hover .brand-name{color:var(--dark-main)}
+.brand-name{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;
+  color:var(--gray-mid);letter-spacing:0.3px;
+  transition:color .2s;white-space:nowrap;
+}
+.brand-name small{
+  font-family:'DM Sans',sans-serif;
+  font-size:9.5px;font-weight:400;
+  color:var(--gray-logo);display:block;
+  letter-spacing:0.5px;text-align:center;
+  margin-top:2px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PRODUCTOS DESTACADOS
+   ══════════════════════════════════════════════════════════════ */
+.sec-featured{padding:72px 60px;background:var(--cream)}
+
+/* Pills de filtro */
+.filter-pills{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap}
+.pill{
+  padding:8px 18px;border-radius:20px;
+  font-size:12.5px;font-weight:500;cursor:pointer;
+  transition:all .18s;border:1.5px solid var(--border);
+  color:var(--gray-mid);background:var(--white);
+}
+.pill:hover{color:var(--dark-main);border-color:var(--dark-main)}
+.pill.on{background:var(--dark-main);color:white;border-color:var(--dark-main)}
+
+/* Grid productos */
+.pgrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.pcard{
+  background:var(--white);border-radius:12px;
+  border:1px solid var(--border);overflow:hidden;
+  transition:all .25s;cursor:pointer;
+}
+.pcard:hover{
+  box-shadow:0 12px 44px rgba(0,0,0,0.09);
+  transform:translateY(-3px);
+  border-color:var(--gray-logo);
+}
+
+/* Zona imagen */
+.pcard-img{
+  height:195px;background:var(--gray-light);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.pcard-img-inner{
+  width:100px;height:100px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.pi-red{background:rgba(192,57,43,0.07)}
+.pi-green{background:rgba(39,174,96,0.07)}
+.pi-blue{background:rgba(52,152,219,0.07)}
+.pi-amber{background:rgba(230,126,34,0.07)}
+
+/* SVG instrumental dentro de la tarjeta */
+.prod-svg{width:62px;height:62px}
+
+.pb{
+  position:absolute;top:12px;left:12px;
+  font-size:9.5px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;padding:4px 9px;border-radius:4px;
+}
+.pb-new{background:#27AE60;color:white}
+.pb-top{background:var(--dark-main);color:white}
+.pb-off{background:var(--red);color:white}
+.p-wish{
+  position:absolute;top:10px;right:10px;
+  width:30px;height:30px;background:white;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,0.1);
+  cursor:pointer;opacity:0;transition:opacity .2s;
+}
+.pcard:hover .p-wish{opacity:1}
+
+/* Cuerpo tarjeta */
+.pcard-body{padding:16px}
+.p-sku{font-size:9.5px;color:var(--gray-logo);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.p-name{
+  font-size:13.5px;font-weight:500;color:var(--dark-main);
+  line-height:1.35;margin-bottom:4px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.p-brand{font-size:11.5px;color:var(--gray-logo);margin-bottom:14px}
+
+.pcard-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border);
+}
+.p-price{
+  font-family:'Playfair Display',serif;
+  font-size:21px;font-weight:700;color:var(--dark-main);
+}
+.p-price s{
+  font-family:'DM Sans',sans-serif;font-size:11px;
+  color:var(--gray-logo);display:block;font-weight:400;
+  text-decoration:line-through;margin-bottom:1px;
+}
+.p-unit{font-family:'DM Sans',sans-serif;font-size:10.5px;color:var(--gray-logo);font-weight:400}
+.add-btn{
+  width:36px;height:36px;border-radius:7px;
+  background:var(--dark-main);color:white;
+  border:none;cursor:pointer;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;
+}
+.add-btn:hover{background:var(--red);transform:scale(1.08)}
+
+/* ══════════════════════════════════════════════════════════════
+   BANNER EDITORIAL OSCURO — Oferta del mes
+   ══════════════════════════════════════════════════════════════ */
+.banner{
+  background:var(--ink);
+  padding:60px;
+  display:grid;grid-template-columns:1fr auto;
+  gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.banner::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 500px 320px at 75% 50%, rgba(192,57,43,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 300px 200px at 10% 80%, rgba(192,57,43,0.06) 0%, transparent 60%);
+}
+/* Número decorativo de fondo */
+.banner::after{
+  content:'-22%';
+  position:absolute;right:320px;top:50%;transform:translateY(-50%);
+  font-family:'Playfair Display',serif;
+  font-size:180px;font-weight:700;
+  color:rgba(192,57,43,0.06);line-height:1;
+  pointer-events:none;letter-spacing:-5px;
+}
+.banner-left{position:relative;z-index:1}
+.banner-kicker{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--red);
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.banner-kicker::before{content:'';width:28px;height:2px;background:var(--red)}
+.banner-h{
+  font-family:'Playfair Display',serif;
+  font-size:40px;font-weight:700;color:white;
+  line-height:1.1;margin-bottom:14px;
+}
+.banner-h em{font-style:italic;color:var(--red)}
+.banner-desc{color:var(--on-dark-mid);font-size:15px;line-height:1.7;max-width:500px}
+.banner-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.banner-disc{text-align:right}
+.banner-disc-from{font-size:11px;color:var(--on-dark-low);letter-spacing:1px;text-transform:uppercase}
+.banner-disc-n{
+  font-family:'Playfair Display',serif;
+  font-size:56px;font-weight:700;color:white;line-height:1;
+}
+.banner-disc-n span{font-size:26px;color:var(--red)}
+.banner-disc-sub{font-size:11.5px;color:var(--on-dark-low);margin-top:4px}
+
+/* ══════════════════════════════════════════════════════════════
+   NOVEDADES
+   ══════════════════════════════════════════════════════════════ */
+.sec-new{padding:72px 60px;background:var(--white)}
+.pgrid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* ══════════════════════════════════════════════════════════════
+   COMPRA RÁPIDA por referencia
+   ══════════════════════════════════════════════════════════════ */
+.sec-qref{
+  background:var(--bg-soft);
+  padding:48px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:48px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.qref-left h3{
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;color:var(--dark-main);margin-bottom:6px;
+}
+.qref-left p{font-size:14px;color:var(--gray-mid);max-width:340px}
+.qref-form{
+  display:flex;align-items:center;gap:10px;flex:1;max-width:520px;
+}
+.qref-input{
+  flex:1;border:1.5px solid var(--border);
+  background:white;border-radius:7px;
+  padding:13px 18px;font-family:'DM Sans',sans-serif;
+  font-size:14px;outline:none;color:var(--dark-main);
+  transition:border-color .2s;height:48px;
+}
+.qref-input::placeholder{color:var(--gray-mid)}
+.qref-input:focus{border-color:var(--dark-main)}
+.qref-input-qty{
+  flex:0 0 76px;text-align:center;
+}
+.qref-btn{
+  background:var(--dark-main);color:white;border:none;
+  padding:0 24px;border-radius:7px;
+  font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:all .2s;
+  height:48px;display:flex;align-items:center;
+}
+.qref-btn:hover{background:var(--red)}
+
+/* ══════════════════════════════════════════════════════════════
+   POR QUÉ DENTIX
+   ══════════════════════════════════════════════════════════════ */
+.sec-why{
+  background:var(--dark-main);
+  padding:72px 60px;
+  position:relative;overflow:hidden;
+}
+.sec-why::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 600px 400px at 8% 60%, rgba(192,57,43,0.07), transparent 60%);
+}
+.sec-why .sec-title{color:white}
+.sec-why .sec-kicker{color:var(--red)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px}
+.why-card{
+  padding:36px 32px;
+  border-left:1px solid rgba(255,255,255,0.06);
+  position:relative;z-index:1;
+  transition:background .25s;
+}
+.why-card:first-child{border-left:none}
+.why-card:hover{background:rgba(255,255,255,0.03)}
+.why-icon-wrap{
+  width:50px;height:50px;border-radius:12px;
+  background:rgba(192,57,43,0.14);
+  border:1px solid rgba(192,57,43,0.28);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:22px;
+}
+.why-h{
+  font-family:'Playfair Display',serif;
+  font-size:19px;font-weight:700;color:white;margin-bottom:10px;
+}
+.why-p{font-size:13.5px;color:var(--on-dark-mid);line-height:1.75;font-weight:300}
+
+/* ══════════════════════════════════════════════════════════════
+   TESTIMONIOS
+   ══════════════════════════════════════════════════════════════ */
+.sec-testi{padding:72px 60px;background:var(--bg-soft)}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tcard{
+  background:white;border-radius:14px;
+  border:1px solid var(--border);padding:32px;
+  transition:all .25s;
+}
+.tcard:hover{box-shadow:0 10px 36px rgba(0,0,0,0.07);transform:translateY(-3px)}
+.tcard-stars{color:#F39C12;font-size:13px;letter-spacing:3px;margin-bottom:16px}
+.tcard-q{
+  font-family:'Playfair Display',serif;
+  font-size:15px;line-height:1.7;color:var(--dark-main);
+  font-style:italic;margin-bottom:22px;
+  position:relative;padding-left:20px;
+}
+.tcard-q::before{
+  content:'"';
+  position:absolute;left:-2px;top:-8px;
+  font-size:52px;color:var(--red);
+  line-height:1;font-style:normal;
+  font-family:'Playfair Display',serif;
+}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.tcard-av{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--dark-main);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:white;font-weight:700;
+  font-family:'DM Sans',sans-serif;flex-shrink:0;
+}
+.tcard-name{font-size:13px;font-weight:600;color:var(--dark-main)}
+.tcard-role{font-size:11.5px;color:var(--gray-logo)}
+.tcard-spec{
+  margin-left:auto;font-size:9.5px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  background:var(--gray-light);color:var(--gray-mid);
+  padding:3px 8px;border-radius:4px;white-space:nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CTA — ACCESO PROFESIONAL
+   ══════════════════════════════════════════════════════════════ */
+.sec-cta{
+  background:var(--red);padding:64px 60px;
+  display:grid;grid-template-columns:1fr auto;
+  gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.sec-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 500px 400px at 90% 50%, rgba(0,0,0,0.18), transparent 65%);
+}
+.cta-left{position:relative;z-index:1}
+.cta-kicker{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:14px;
+}
+.cta-h{
+  font-family:'Playfair Display',serif;
+  font-size:38px;font-weight:700;color:white;
+  line-height:1.15;margin-bottom:12px;
+}
+.cta-p{color:rgba(255,255,255,.75);font-size:15px;line-height:1.65;max-width:520px}
+
+/* Checkpoints debajo */
+.cta-checks{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
+.cta-check{
+  display:flex;align-items:center;gap:7px;
+  font-size:13px;color:rgba(255,255,255,.8);
+}
+.cta-check::before{content:'✓';color:rgba(255,255,255,.9);font-weight:700}
+
+.cta-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
+.btn-white{
+  background:white;color:var(--red);border:none;
+  padding:16px 40px;border-radius:7px;
+  font-family:'DM Sans',sans-serif;font-size:14.5px;font-weight:700;
+  cursor:pointer;transition:all .2s;white-space:nowrap;letter-spacing:0.3px;
+}
+.btn-white:hover{background:var(--cream);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-wghost{
+  background:transparent;color:white;
+  border:1.5px solid rgba(255,255,255,.35);
+  padding:14px 36px;border-radius:7px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:400;
+  cursor:pointer;transition:all .2s;text-align:center;
+}
+.btn-wghost:hover{border-color:rgba(255,255,255,.65)}
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════════════ */
+footer{
+  background:var(--dark-main);
+  color:var(--on-dark-mid);
+  padding:60px 60px 40px;
+  border-top:3px solid var(--red);
+}
+.fgrid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:56px;margin-bottom:48px;
+}
+.fbrand h3{
+  font-family:'Playfair Display',serif;
+  color:white;font-size:24px;margin-bottom:14px;
+}
+.fbrand p{font-size:13.5px;line-height:1.75;max-width:275px}
+.fcol h4{
+  color:white;font-size:10px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;margin-bottom:20px;
+}
+.fcol a{
+  display:block;color:var(--on-dark-low);font-size:13.5px;
+  margin-bottom:10px;cursor:pointer;transition:color .2s;
+}
+.fcol a:hover{color:white}
+.fbot{
+  padding-top:28px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--on-dark-low);
+}
+.fpay{display:flex;gap:8px}
+.fpay-card{
+  background:rgba(255,255,255,.08);border-radius:4px;
+  padding:4px 10px;font-size:10.5px;font-weight:700;
+  color:var(--on-dark);letter-spacing:0.5px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LABEL MOCKUP
+   ══════════════════════════════════════════════════════════════ */
+.mockup-tag{
+  position:fixed;bottom:20px;right:20px;
+  background:var(--red);color:white;
+  padding:9px 18px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;
+  box-shadow:0 4px 20px rgba(192,57,43,0.45);
+  z-index:999;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══════════════════════════════════════════════ -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:20px">
+    <span>📞 Atención profesional: <a href="#">900 123 456</a></span>
+    <span style="color:rgba(174,172,170,0.4)">|</span>
+    <span>Lunes–Viernes · 9h–18h</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-pill"><span class="dot"></span>Stock en tiempo real · SAGE 50</div>
+    <span>🚚 Envío gratuito +150€ · Entrega 24/48h</span>
+    <span>🔒 Acceso exclusivo B2B</span>
+  </div>
+</div>
+
+<!-- ═══ HEADER ════════════════════════════════════════════════ -->
+<header>
+  <!-- Logo -->
+  <div class="logo">
+    <svg class="logo-svg" width="56" height="56" viewBox="0 0 44 44" fill="none">
+      <circle cx="20" cy="22" r="18" fill="#1A1A1A"/>
+      <circle cx="26" cy="16" r="12" fill="#2D2D2D"/>
+      <circle cx="9"  cy="32" r="7"  fill="#C0392B"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">dentix</span>
+      <div class="logo-rule"></div>
+      <div class="logo-rule2"></div>
+      <span class="logo-sub">Productos dentales, S.L.</span>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-block">
+    <div class="search-outer">
+      <input type="text" placeholder="Buscar por nombre, referencia o SKU…">
+      <button class="search-btn">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Buscar
+      </button>
+    </div>
+    <div class="search-hint" id="searchHint">
+      <span class="search-hint-label">Búsquedas frecuentes</span>
+      <span class="search-tag">Lima Endodoncia</span>
+      <span class="search-tag">Implante Straumann</span>
+      <span class="search-tag">Turbina NSK</span>
+      <span class="search-tag">Composite 3M</span>
+      <span class="search-tag">Pinza Hu-Friedy</span>
+    </div>
+  </div>
+
+  <!-- Icons -->
+  <div class="hicons">
+    <div class="hicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Mi cuenta
+    </div>
+    <div class="hicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      Pedidos
+    </div>
+    <div class="hicon">
+      <div class="badge">3</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cesta
+    </div>
+    <div class="header-divider"></div>
+    <button class="btn-access">Área privada →</button>
+  </div>
+</header>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-item on">Instrumental</div>
+  <div class="nav-item">Endodoncia</div>
+  <div class="nav-item">Ortodoncia</div>
+  <div class="nav-item">Implantología</div>
+  <div class="nav-item">Material Clínico</div>
+  <div class="nav-sep"></div>
+  <div class="nav-item">Esterilización</div>
+  <div class="nav-item">Equipamiento</div>
+  <div class="nav-item">Radiología</div>
+  <div class="nav-item">Marcas</div>
+  <div class="nav-end">
+    <div class="nav-special">🔥 Ofertas del mes</div>
+  </div>
+</nav>
+
+<!-- ═══ HERO con carrusel ════════════════════════════════════ -->
+<section class="hero">
+
+  <!-- Carrusel de fondo — 5 escenas CSS del sector dental -->
+  <div class="hero-carousel">
+    <div class="hero-slide hs1 active"></div>
+    <div class="hero-slide hs2"></div>
+    <div class="hero-slide hs3"></div>
+    <div class="hero-slide hs4"></div>
+    <div class="hero-slide hs5"></div>
+    <div class="hero-carousel-overlay"></div>
+  </div>
+
+  <!-- Círculos decorativos del diseño validado index1 -->
+  <div class="hero-circle-red"></div>
+  <div class="hero-circle-white"></div>
+
+  <!-- Dots de navegación -->
+  <div class="carousel-dots" id="carouselDots">
+    <div class="cdot active" data-slide="0"></div>
+    <div class="cdot" data-slide="1"></div>
+    <div class="cdot" data-slide="2"></div>
+    <div class="cdot" data-slide="3"></div>
+    <div class="cdot" data-slide="4"></div>
+  </div>
+
+  <!-- Izquierda — titular dinámico por slide -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eline"></div>
+      <span class="hero-etag" id="slideTag">Distribuidor oficial · España</span>
+    </div>
+
+    <h1 class="hero-h1" id="slideTitle">El instrumental<br>que tu clínica<br><em>merece.</em></h1>
+    <p class="hero-h1-line2" id="slideSubtitle">Precisión. Calidad. Garantía.</p>
+
+    <p class="hero-desc" id="slideDesc">
+      Más de <strong>10.000 referencias</strong> de instrumental odontológico profesional.
+      Marcas líderes mundiales, precios B2B exclusivos y entrega garantizada
+      en <strong>24–48h</strong> para toda España.
+    </p>
+
+    <div class="hero-ctas">
+      <button class="btn-red" id="slideCta1">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        <span id="slideCta1Text">Explorar catálogo</span>
+      </button>
+      <button class="btn-outline-d">Ver novedades</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">10<sup>K+</sup></div>
+        <div class="stat-l">Referencias en catálogo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">48<sup>h</sup></div>
+        <div class="stat-l">Entrega máx. España</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">20<sup>+</sup></div>
+        <div class="stat-l">Años distribuyendo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Derecha — productos showcase -->
+  <div class="hero-right">
+    <div class="hero-showcase">
+
+      <!-- Card featured -->
+      <div class="hsc hsc-featured">
+        <div class="hsc-img" style="background:rgba(192,57,43,0.25)">
+          <!-- SVG implante dental -->
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="16" y="2" width="8" height="22" rx="4" fill="white" opacity=".8"/>
+            <rect x="12" y="22" width="16" height="4" rx="2" fill="white" opacity=".6"/>
+            <path d="M10 26 Q20 38 30 26" fill="white" opacity=".4"/>
+            <circle cx="20" cy="12" r="3" fill="#C0392B" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="hsc-info">
+          <span class="hsc-badge badge-best">★ Más vendido</span>
+          <div class="hsc-name">Kit Implantología Premium<br>Bone Level Straumann RC</div>
+          <div class="hsc-ref">REF. STR-BL-RC-335</div>
+          <div class="hsc-price">
+            <s>340,00 €</s>
+            265,00 €
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="hsc">
+        <div class="hsc-img" style="background:rgba(52,152,219,0.18);margin-bottom:14px">
+          <!-- SVG turbina -->
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+            <circle cx="19" cy="19" r="9" fill="none" stroke="white" stroke-width="2" opacity=".6"/>
+            <circle cx="19" cy="19" r="4" fill="white" opacity=".8"/>
+            <line x1="19" y1="4" x2="19" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+            <line x1="19" y1="28" x2="19" y2="34" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+            <line x1="4" y1="19" x2="10" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+            <line x1="28" y1="19" x2="34" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+          </svg>
+        </div>
+        <span class="hsc-badge badge-new">Novedad</span>
+        <div class="hsc-name">Turbina Alta Velocidad LED · NSK P900</div>
+        <div class="hsc-ref">REF. NSK-P900L</div>
+        <div class="hsc-price">189,00 €</div>
+        <div class="hsc-cta">Ver →</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="hsc">
+        <div class="hsc-img" style="background:rgba(76,175,80,0.18);margin-bottom:14px">
+          <!-- SVG pinza/instrumental -->
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+            <rect x="17" y="4" width="4" height="24" rx="2" fill="white" opacity=".8"/>
+            <ellipse cx="19" cy="6" rx="6" ry="4" fill="white" opacity=".5"/>
+            <rect x="14" y="22" width="10" height="3" rx="1.5" fill="white" opacity=".4"/>
+            <rect x="15" y="28" width="8" height="3" rx="1.5" fill="white" opacity=".3"/>
+            <rect x="16" y="33" width="6" height="2" rx="1" fill="white" opacity=".25"/>
+          </svg>
+        </div>
+        <span class="hsc-badge badge-sale">-15%</span>
+        <div class="hsc-name">Set Espejos Hu-Friedy Explorer 6 uds</div>
+        <div class="hsc-ref">REF. HF-EM2-S6</div>
+        <div class="hsc-price">
+          <s>29,90 €</s>
+          24,90 €
+        </div>
+        <div class="hsc-cta">Ver →</div>
+      </div>
+
+    </div>
+
+    <!-- Búsqueda rápida por referencia -->
+    <div class="hero-quickref">
+      <svg width="14" height="14" fill="none" stroke="#9A9898" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      <span class="hqr-label">Pedido por referencia:</span>
+      <input class="hqr-input" placeholder="Escribe el código SKU o referencia exacta…">
+      <button class="hqr-btn">Añadir</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST BAR ═════════════════════════════════════════════ -->
+<div class="trust">
+  <div class="trust-item">
+    <span class="t-icon">🔒</span>
+    <div class="t-txt">
+      <strong>Solo profesionales</strong>
+      <span>Acceso acreditado B2B</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="t-icon">🚚</span>
+    <div class="t-txt">
+      <strong>Envío gratis +150€</strong>
+      <span>Toda España</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="t-icon">⏱</span>
+    <div class="t-txt">
+      <strong>Entrega 24–48h</strong>
+      <span>95% mismo día</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="t-icon">🔄</span>
+    <div class="t-txt">
+      <strong>Stock en tiempo real</strong>
+      <span>Sincronizado con ERP</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="t-icon">↩️</span>
+    <div class="t-txt">
+      <strong>Devolución 30 días</strong>
+      <span>Sin preguntas</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CATEGORÍAS BENTO ══════════════════════════════════════ -->
+<section class="sec-cats">
+  <div class="sec-head">
+    <div>
+      <div class="sec-kicker">Catálogo completo</div>
+      <div class="sec-title">Navega por <em>especialidad</em></div>
+    </div>
+    <a class="sec-link" href="#">Ver todas las categorías →</a>
+  </div>
+
+  <div class="bento">
+
+    <!-- 1. Instrumental Quirúrgico -->
+    <div class="cat cat-1 cbg-1" href="#">
+      <div class="cat-bg cbg-1"></div>
+      <div class="cat-overlay"></div>
+      <!-- Ilustración SVG instrumental -->
+      <svg class="cat-illo" width="120" height="160" viewBox="0 0 120 160" fill="none">
+        <rect x="55" y="8" width="10" height="140" rx="5" fill="white"/>
+        <ellipse cx="60" cy="14" rx="14" ry="9" fill="white" opacity=".6"/>
+        <rect x="44" y="80" width="32" height="5" rx="2.5" fill="white" opacity=".4"/>
+        <rect x="48" y="100" width="24" height="4" rx="2" fill="white" opacity=".3"/>
+        <rect x="50" y="55" width="20" height="4" rx="2" fill="white" opacity=".3"/>
+        <rect x="52" y="125" width="16" height="3" rx="1.5" fill="white" opacity=".25"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">🔩</span>
+        <div class="cat-name">Instrumental Quirúrgico</div>
+        <div class="cat-n">3.420 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+    <!-- 2. Implantología -->
+    <div class="cat cat-2 cbg-2">
+      <div class="cat-bg cbg-2"></div>
+      <div class="cat-overlay"></div>
+      <svg class="cat-illo" width="100" height="130" viewBox="0 0 100 130" fill="none">
+        <rect x="42" y="4" width="16" height="70" rx="8" fill="white" opacity=".5"/>
+        <rect x="36" y="18" width="28" height="6" rx="3" fill="white" opacity=".3"/>
+        <rect x="36" y="30" width="28" height="6" rx="3" fill="white" opacity=".3"/>
+        <rect x="36" y="42" width="28" height="6" rx="3" fill="white" opacity=".3"/>
+        <path d="M30 74 Q50 110 70 74" fill="white" opacity=".2"/>
+        <circle cx="50" cy="30" r="7" fill="#C0392B" opacity=".7"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">🔬</span>
+        <div class="cat-name">Implantología</div>
+        <div class="cat-n">1.240 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+    <!-- 3. Endodoncia -->
+    <div class="cat cat-3 cbg-3">
+      <div class="cat-bg cbg-3"></div>
+      <div class="cat-overlay"></div>
+      <svg class="cat-illo" width="90" height="130" viewBox="0 0 90 130" fill="none">
+        <rect x="41" y="5" width="8" height="100" rx="4" fill="white" opacity=".6"/>
+        <path d="M25 60 Q45 120 65 60" fill="white" opacity=".2"/>
+        <circle cx="45" cy="30" r="5" fill="white" opacity=".5"/>
+        <circle cx="45" cy="50" r="3" fill="white" opacity=".3"/>
+        <ellipse cx="45" cy="10" rx="10" ry="6" fill="white" opacity=".4"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">🦷</span>
+        <div class="cat-name">Endodoncia</div>
+        <div class="cat-n">2.110 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+    <!-- 4. Ortodoncia -->
+    <div class="cat cat-4 cbg-4">
+      <div class="cat-bg cbg-4"></div>
+      <div class="cat-overlay"></div>
+      <svg class="cat-illo" width="100" height="100" viewBox="0 0 100 100" fill="none">
+        <rect x="10" y="40" width="80" height="20" rx="10" fill="white" opacity=".25"/>
+        <rect x="20" y="45" width="12" height="10" rx="3" fill="white" opacity=".4"/>
+        <rect x="38" y="45" width="12" height="10" rx="3" fill="white" opacity=".4"/>
+        <rect x="56" y="45" width="12" height="10" rx="3" fill="white" opacity=".4"/>
+        <path d="M10 50 Q50 20 90 50" fill="none" stroke="white" stroke-width="1.5" opacity=".3"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">📐</span>
+        <div class="cat-name">Ortodoncia</div>
+        <div class="cat-n">980 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+    <!-- 5. Esterilización — ancho 5col -->
+    <div class="cat cat-5 cbg-5">
+      <div class="cat-bg cbg-5"></div>
+      <div class="cat-overlay"></div>
+      <svg class="cat-illo" width="200" height="90" viewBox="0 0 200 90" fill="none">
+        <rect x="10" y="18" width="180" height="54" rx="12" fill="none" stroke="white" stroke-width="1" opacity=".2"/>
+        <rect x="20" y="28" width="70" height="34" rx="6" fill="white" opacity=".07"/>
+        <rect x="105" y="28" width="70" height="34" rx="6" fill="white" opacity=".07"/>
+        <circle cx="55" cy="45" r="10" fill="white" opacity=".15"/>
+        <circle cx="140" cy="45" r="10" fill="white" opacity=".15"/>
+        <circle cx="55" cy="45" r="4" fill="white" opacity=".3"/>
+        <circle cx="140" cy="45" r="4" fill="white" opacity=".3"/>
+        <line x1="90" y1="30" x2="90" y2="60" stroke="white" stroke-width="1" opacity=".15"/>
+        <line x1="100" y1="30" x2="100" y2="60" stroke="white" stroke-width="1" opacity=".15"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">💧</span>
+        <div class="cat-name">Esterilización y Desinfección</div>
+        <div class="cat-n">1.580 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+    <!-- 6. Radiología -->
+    <div class="cat cat-6 cbg-6">
+      <div class="cat-bg cbg-6"></div>
+      <div class="cat-overlay"></div>
+      <svg class="cat-illo" width="90" height="90" viewBox="0 0 90 90" fill="none">
+        <circle cx="45" cy="45" r="35" fill="none" stroke="white" stroke-width="1" opacity=".2"/>
+        <circle cx="45" cy="45" r="22" fill="none" stroke="white" stroke-width="1" opacity=".2"/>
+        <circle cx="45" cy="45" r="8" fill="white" opacity=".3"/>
+        <line x1="45" y1="10" x2="45" y2="20" stroke="white" stroke-width="2" opacity=".4"/>
+        <line x1="45" y1="70" x2="45" y2="80" stroke="white" stroke-width="2" opacity=".4"/>
+        <line x1="10" y1="45" x2="20" y2="45" stroke="white" stroke-width="2" opacity=".4"/>
+        <line x1="70" y1="45" x2="80" y2="45" stroke="white" stroke-width="2" opacity=".4"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">📡</span>
+        <div class="cat-name">Radiología Digital</div>
+        <div class="cat-n">420 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+    <!-- 7. Equipamiento -->
+    <div class="cat cat-7 cbg-7">
+      <div class="cat-bg cbg-7"></div>
+      <div class="cat-overlay"></div>
+      <svg class="cat-illo" width="120" height="90" viewBox="0 0 120 90" fill="none">
+        <rect x="15" y="20" width="90" height="50" rx="8" fill="none" stroke="white" stroke-width="1" opacity=".25"/>
+        <rect x="25" y="30" width="30" height="30" rx="4" fill="white" opacity=".08"/>
+        <rect x="65" y="30" width="30" height="12" rx="3" fill="white" opacity=".08"/>
+        <rect x="65" y="48" width="30" height="12" rx="3" fill="white" opacity=".08"/>
+        <circle cx="40" cy="45" r="8" fill="none" stroke="white" stroke-width="1.5" opacity=".3"/>
+        <circle cx="40" cy="45" r="3" fill="white" opacity=".4"/>
+      </svg>
+      <div class="cat-content">
+        <span class="cat-icon">⚙️</span>
+        <div class="cat-name">Equipamiento Clínico</div>
+        <div class="cat-n">760 referencias</div>
+      </div>
+      <div class="cat-arrow">→</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ MARCAS ═════════════════════════════════════════════════ -->
+<div class="sec-brands">
+  <div class="brands-head">Marcas oficiales disponibles en catálogo</div>
+  <div class="brands-row">
+    <div class="brand"><div class="brand-name">Hu-Friedy<small>Instrumental</small></div></div>
+    <div class="brand"><div class="brand-name">NSK<small>Equipamiento</small></div></div>
+    <div class="brand"><div class="brand-name">Straumann<small>Implantología</small></div></div>
+    <div class="brand"><div class="brand-name">Dentsply Sirona<small>Endodoncia</small></div></div>
+    <div class="brand"><div class="brand-name">KaVo<small>Equipamiento</small></div></div>
+    <div class="brand"><div class="brand-name">3M Oral Care<small>Restauración</small></div></div>
+    <div class="brand"><div class="brand-name">GC America<small>Materiales</small></div></div>
+    <div class="brand"><div class="brand-name">Ivoclar<small>Prótesis</small></div></div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCTOS DESTACADOS ═══════════════════════════════════ -->
+<section class="sec-featured">
+  <div class="sec-head">
+    <div>
+      <div class="sec-kicker">Selección del mes</div>
+      <div class="sec-title">Más <em>vendidos</em></div>
+    </div>
+    <a class="sec-link" href="#">Ver catálogo →</a>
+  </div>
+
+  <div class="filter-pills">
+    <div class="pill on">Más vendidos</div>
+    <div class="pill">Novedades</div>
+    <div class="pill">Ofertas activas</div>
+    <div class="pill">Instrumental</div>
+    <div class="pill">Implantología</div>
+    <div class="pill">Endodoncia</div>
+    <div class="pill">Equipamiento</div>
+  </div>
+
+  <div class="pgrid">
+
+    <!-- Producto 1 -->
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-red">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <rect x="28" y="6" width="6" height="46" rx="3" fill="#C0392B" opacity=".18"/>
+            <rect x="28" y="6" width="6" height="46" rx="3" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <ellipse cx="31" cy="9" rx="9" ry="5" fill="#2D2D2D" opacity=".15"/>
+            <ellipse cx="31" cy="9" rx="9" ry="5" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <rect x="22" y="30" width="18" height="3" rx="1.5" fill="#2D2D2D" opacity=".4"/>
+            <rect x="24" y="38" width="14" height="3" rx="1.5" fill="#2D2D2D" opacity=".3"/>
+            <rect x="26" y="46" width="10" height="2.5" rx="1.25" fill="#2D2D2D" opacity=".25"/>
+          </svg>
+        </div>
+        <span class="pb pb-top">Más vendido</span>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. HF-4240</div>
+        <div class="p-name">Pinza Hemostática Allis 18cm Acero Inoxidable</div>
+        <div class="p-brand">Hu-Friedy · Instrumental Quirúrgico</div>
+        <div class="pcard-foot">
+          <div class="p-price">
+            <s>38,50 €</s>
+            29,90 € <span class="p-unit">/ ud</span>
+          </div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-blue">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <circle cx="31" cy="31" r="14" fill="none" stroke="#1A1A2E" stroke-width="2" opacity=".15"/>
+            <circle cx="31" cy="31" r="7" fill="#1A1A2E" opacity=".12"/>
+            <circle cx="31" cy="31" r="3" fill="#2D2D2D" opacity=".5"/>
+            <line x1="31" y1="10" x2="31" y2="18" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" opacity=".4"/>
+            <line x1="31" y1="44" x2="31" y2="52" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" opacity=".4"/>
+            <line x1="10" y1="31" x2="18" y2="31" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" opacity=".4"/>
+            <line x1="44" y1="31" x2="52" y2="31" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" opacity=".4"/>
+          </svg>
+        </div>
+        <span class="pb pb-new">Nuevo</span>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. NSK-P900L</div>
+        <div class="p-name">Turbina Alta Velocidad con Luz LED P900L</div>
+        <div class="p-brand">NSK · Equipamiento Clínico</div>
+        <div class="pcard-foot">
+          <div class="p-price">189,00 € <span class="p-unit">/ ud</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-green">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <rect x="27" y="4" width="8" height="32" rx="4" fill="#1E3020" opacity=".15"/>
+            <rect x="27" y="4" width="8" height="32" rx="4" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <rect x="20" y="10" width="22" height="5" rx="2.5" fill="#2D2D2D" opacity=".2"/>
+            <rect x="20" y="20" width="22" height="5" rx="2.5" fill="#2D2D2D" opacity=".2"/>
+            <rect x="20" y="30" width="22" height="5" rx="2.5" fill="#2D2D2D" opacity=".2"/>
+            <path d="M18 36 Q31 58 44 36" fill="#27AE60" opacity=".15"/>
+            <path d="M18 36 Q31 58 44 36" fill="none" stroke="#2D2D2D" stroke-width="1.5" opacity=".4"/>
+          </svg>
+        </div>
+        <span class="pb pb-off">-22%</span>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. STR-BL-RC-335</div>
+        <div class="p-name">Implante Bone Level RC Ø3.3mm · Conexión Cónica</div>
+        <div class="p-brand">Straumann · Implantología</div>
+        <div class="pcard-foot">
+          <div class="p-price">
+            <s>340,00 €</s>
+            265,00 € <span class="p-unit">/ ud</span>
+          </div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Producto 4 -->
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-amber">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <rect x="29" y="5" width="4" height="48" rx="2" fill="#2A1A1A" opacity=".2"/>
+            <rect x="29" y="5" width="4" height="48" rx="2" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <path d="M24 12 L38 12" stroke="#2D2D2D" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+            <path d="M22 20 L40 20" stroke="#2D2D2D" stroke-width="1.5" stroke-linecap="round" opacity=".35"/>
+            <path d="M24 28 L38 28" stroke="#2D2D2D" stroke-width="1.5" stroke-linecap="round" opacity=".3"/>
+            <path d="M24 36 L38 36" stroke="#2D2D2D" stroke-width="1.5" stroke-linecap="round" opacity=".25"/>
+            <ellipse cx="31" cy="8" rx="7" ry="4" fill="#E67E22" opacity=".2"/>
+            <ellipse cx="31" cy="8" rx="7" ry="4" fill="none" stroke="#2D2D2D" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. DS-PROTAPER-G</div>
+        <div class="p-name">Limas ProTaper Gold Rotatorias F1-F3 Endodoncia</div>
+        <div class="p-brand">Dentsply Sirona · Endodoncia</div>
+        <div class="pcard-foot">
+          <div class="p-price">48,50 € <span class="p-unit">/ caja 6 ud</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ BANNER OFERTA ══════════════════════════════════════════ -->
+<div class="banner">
+  <div class="banner-left">
+    <div class="banner-kicker">Oferta especial de temporada</div>
+    <div class="banner-h">Kits de <em>implantología</em><br>Straumann con descuento</div>
+    <div class="banner-desc">
+      Tarifas negociadas directamente con fabricante.
+      Disponible para clínicas con acuerdo de volumen.
+      Stock limitado — aprovecha ahora.
+    </div>
+  </div>
+  <div class="banner-right">
+    <div class="banner-disc">
+      <div class="banner-disc-from">Hasta un</div>
+      <div class="banner-disc-n">-22<span>%</span></div>
+      <div class="banner-disc-sub">en kits seleccionados</div>
+    </div>
+    <button class="btn-red" style="justify-content:center">Ver oferta completa →</button>
+    <button class="btn-outline-d" style="text-align:center">Solicitar tarifa especial</button>
+  </div>
+</div>
+
+<!-- ═══ NOVEDADES ══════════════════════════════════════════════ -->
+<section class="sec-new">
+  <div class="sec-head">
+    <div>
+      <div class="sec-kicker">Recién llegados al catálogo</div>
+      <div class="sec-title">Últimas <em>incorporaciones</em></div>
+    </div>
+    <a class="sec-link" href="#">Ver novedades →</a>
+  </div>
+
+  <div class="pgrid-3">
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-blue">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <rect x="24" y="8" width="14" height="38" rx="4" fill="#1A1A2E" opacity=".1"/>
+            <rect x="24" y="8" width="14" height="38" rx="4" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <circle cx="31" cy="22" r="7" fill="none" stroke="#2D2D2D" stroke-width="1.2" opacity=".4"/>
+            <circle cx="31" cy="22" r="3" fill="#2D2D2D" opacity=".3"/>
+            <rect x="18" y="44" width="26" height="10" rx="3" fill="#2D2D2D" opacity=".1"/>
+            <rect x="18" y="44" width="26" height="10" rx="3" fill="none" stroke="#2D2D2D" stroke-width="1.2" opacity=".5"/>
+          </svg>
+        </div>
+        <span class="pb pb-new">Nuevo</span>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. KV-OPTN-20</div>
+        <div class="p-name">Microscopio Dental Operación 20x con Cámara 4K integrada</div>
+        <div class="p-brand">KaVo · Equipamiento</div>
+        <div class="pcard-foot">
+          <div class="p-price">4.200,00 € <span class="p-unit">/ ud</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-green">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <rect x="20" y="18" width="22" height="28" rx="6" fill="#1E3020" opacity=".1"/>
+            <rect x="20" y="18" width="22" height="28" rx="6" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <rect x="25" y="10" width="12" height="10" rx="3" fill="none" stroke="#2D2D2D" stroke-width="1.2" opacity=".5"/>
+            <circle cx="31" cy="32" r="5" fill="#27AE60" opacity=".25"/>
+            <circle cx="31" cy="32" r="5" fill="none" stroke="#2D2D2D" stroke-width="1.2" opacity=".5"/>
+          </svg>
+        </div>
+        <span class="pb pb-new">Nuevo</span>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. 3M-FIL-SUFLOW-A2</div>
+        <div class="p-name">Composite Filtek Supreme Ultra Flow Jeringa 3M</div>
+        <div class="p-brand">3M Oral Care · Restauración</div>
+        <div class="pcard-foot">
+          <div class="p-price">38,90 € <span class="p-unit">/ jeringa</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="pcard-img">
+        <div class="pcard-img-inner pi-red">
+          <svg class="prod-svg" viewBox="0 0 62 62" fill="none">
+            <rect x="22" y="12" width="18" height="28" rx="5" fill="#1C1A1A" opacity=".1"/>
+            <rect x="22" y="12" width="18" height="28" rx="5" fill="none" stroke="#2D2D2D" stroke-width="1.5"/>
+            <rect x="27" y="8" width="8" height="6" rx="2" fill="none" stroke="#2D2D2D" stroke-width="1.2" opacity=".5"/>
+            <rect x="26" y="40" width="10" height="10" rx="3" fill="#C0392B" opacity=".2"/>
+            <rect x="26" y="40" width="10" height="10" rx="3" fill="none" stroke="#2D2D2D" stroke-width="1.2" opacity=".5"/>
+            <line x1="22" y1="22" x2="40" y2="22" stroke="#2D2D2D" stroke-width="1" opacity=".25"/>
+            <line x1="22" y1="28" x2="40" y2="28" stroke="#2D2D2D" stroke-width="1" opacity=".2"/>
+            <line x1="22" y1="34" x2="40" y2="34" stroke="#2D2D2D" stroke-width="1" opacity=".15"/>
+          </svg>
+        </div>
+        <span class="pb pb-new">Nuevo</span>
+        <span class="p-wish">♡</span>
+      </div>
+      <div class="pcard-body">
+        <div class="p-sku">REF. IVL-E2-A1-14</div>
+        <div class="p-name">Cerámica IPS e.max CAD Bloque CAD/CAM Ivoclar A1</div>
+        <div class="p-brand">Ivoclar · Prótesis Digital</div>
+        <div class="pcard-foot">
+          <div class="p-price">29,50 € <span class="p-unit">/ bloque</span></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ COMPRA RÁPIDA POR REFERENCIA ══════════════════════════ -->
+<div class="sec-qref">
+  <div class="qref-left">
+    <h3>Pedido rápido por referencia</h3>
+    <p>¿Sabes el código SKU del producto? Añádelo directamente sin buscar por el catálogo.</p>
+  </div>
+  <div class="qref-form">
+    <input class="qref-input" placeholder="Escribe el código de referencia o SKU exacto…">
+    <input class="qref-input qref-input-qty" placeholder="Cant.">
+    <button class="qref-btn">Añadir al carrito →</button>
+  </div>
+</div>
+
+<!-- ═══ POR QUÉ DENTIX ════════════════════════════════════════ -->
+<section class="sec-why">
+  <div class="sec-head" style="margin-bottom:0;position:relative;z-index:1">
+    <div>
+      <div class="sec-kicker">Nuestra propuesta de valor</div>
+      <div class="sec-title">Por qué eligen <em style="color:var(--red)">Dentix</em></div>
+    </div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon-wrap">🏭</div>
+      <div class="why-h">Distribuidor oficial</div>
+      <div class="why-p">Producto 100% original con garantía de fabricante. Trabajamos directamente con los líderes mundiales del instrumental odontológico.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon-wrap">🚀</div>
+      <div class="why-h">Entrega 24–48h</div>
+      <div class="why-p">Almacén propio en España. Más del 95% de pedidos salen el mismo día antes de las 16h. Envío gratuito a partir de 150€.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon-wrap">🔄</div>
+      <div class="why-h">Stock en tiempo real</div>
+      <div class="why-p">Catálogo sincronizado con nuestro ERP SAGE 50 Cloud. Lo que ves disponible, está disponible de verdad.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon-wrap">🎯</div>
+      <div class="why-h">Soporte especializado</div>
+      <div class="why-p">Nuestro equipo conoce el sector. Asesoramiento técnico para clínicas, hospitales y profesionales autónomos del sector dental.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIOS ════════════════════════════════════════════ -->
+<section class="sec-testi">
+  <div class="sec-head">
+    <div>
+      <div class="sec-kicker">Opiniones verificadas</div>
+      <div class="sec-title">Profesionales que <em>confían en Dentix</em></div>
+    </div>
+  </div>
+
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-q">Llevamos 8 años comprando instrumental Hu-Friedy a Dentix. La calidad es impecable y el servicio de entrega nunca falla. Totalmente recomendable.</div>
+      <div class="tcard-author">
+        <div class="tcard-av">MR</div>
+        <div>
+          <div class="tcard-name">Dra. María Rodríguez</div>
+          <div class="tcard-role">Clínica Sonrisa · Madrid</div>
+        </div>
+        <div class="tcard-spec">Implantología</div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-q">Lo mejor es que el stock siempre es real. Con otros proveedores teníamos problemas de rotura. Desde que trabajamos con Dentix ese problema desapareció.</div>
+      <div class="tcard-author">
+        <div class="tcard-av">JL</div>
+        <div>
+          <div class="tcard-name">Dr. Javier López</div>
+          <div class="tcard-role">Dental Plus · Barcelona</div>
+        </div>
+        <div class="tcard-spec">Endodoncia</div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-q">El equipo me asesoró perfectamente para elegir el sistema de implantes adecuado para mi caso clínico. Un servicio que va mucho más allá de vender.</div>
+      <div class="tcard-author">
+        <div class="tcard-av">AC</div>
+        <div>
+          <div class="tcard-name">Dra. Ana Campos</div>
+          <div class="tcard-role">Oral Healthy · Sevilla</div>
+        </div>
+        <div class="tcard-spec">Cirugía oral</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ACCESO PROFESIONAL ════════════════════════════════ -->
+<div class="sec-cta">
+  <div class="cta-left">
+    <div class="cta-kicker">Acceso exclusivo B2B · Solo profesionales</div>
+    <div class="cta-h">¿Eres profesional<br>del sector dental?</div>
+    <div class="cta-p">Regístrate y accede a precios exclusivos para clínicas, tarifas por volumen, historial completo de pedidos y sincronización con tu sistema de gestión.</div>
+    <div class="cta-checks">
+      <span class="cta-check">Precios B2B exclusivos</span>
+      <span class="cta-check">Tarifas por volumen</span>
+      <span class="cta-check">Facturación automática</span>
+      <span class="cta-check">Historial de pedidos</span>
+    </div>
+  </div>
+  <div class="cta-right">
+    <button class="btn-white">Solicitar acceso profesional →</button>
+    <button class="btn-wghost">Ya tengo cuenta · Entrar</button>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════════ -->
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <h3>dentix</h3>
+      <p>Distribuidores de instrumental y material odontológico profesional. Más de 10.000 referencias para clínicas dentales y profesionales del sector.</p>
+    </div>
+    <div class="fcol">
+      <h4>Tienda</h4>
+      <a>Catálogo completo</a>
+      <a>Novedades</a>
+      <a>Ofertas</a>
+      <a>Marcas</a>
+      <a>Acceso profesional</a>
+    </div>
+    <div class="fcol">
+      <h4>Ayuda</h4>
+      <a>Cómo realizar un pedido</a>
+      <a>Envíos y plazos</a>
+      <a>Devoluciones</a>
+      <a>Garantías</a>
+      <a>Contacto</a>
+    </div>
+    <div class="fcol">
+      <h4>Empresa</h4>
+      <a>Quiénes somos</a>
+      <a>Aviso legal</a>
+      <a>Privacidad</a>
+      <a>Política de cookies</a>
+      <a>Condiciones generales</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Dentix Productos Dentales, S.L. · CIF B-85937787 · Madrid</span>
+    <div class="fpay">
+      <span class="fpay-card">VISA</span>
+      <span class="fpay-card">MASTERCARD</span>
+      <span class="fpay-card">GETNET</span>
+      <span class="fpay-card">STRIPE</span>
+      <span class="fpay-card">BIZUM</span>
+      <span class="fpay-card">KLARNA</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mockup-tag">🎨 Homepage · dentix.es</div>
+
+<script>
+// ── CARRUSEL HERO ─────────────────────────────────────────────
+(function(){
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.cdot');
+  let current  = 0;
+  let timer;
+
+  // Contenido dinámico por diapositiva
+  const slideData = [
+    {
+      tag:   'Instrumental Quirúrgico · Distribución oficial',
+      title: 'El instrumental<br>que tu clínica<br><em>merece.</em>',
+      sub:   'Precisión. Calidad. Garantía.',
+      desc:  'Más de <strong>10.000 referencias</strong> de instrumental odontológico profesional. Marcas líderes mundiales y entrega garantizada en <strong>24–48h</strong> para toda España.',
+      cta:   'Explorar catálogo'
+    },
+    {
+      tag:   'Equipamiento Clínico · NSK · KaVo · Dentsply',
+      title: 'Turbinas, piezas<br>de mano y<br><em>material fungible.</em>',
+      sub:   'Tecnología al servicio del profesional.',
+      desc:  'Toda la gama de <strong>equipamiento clínico</strong> de las marcas más exigentes. Stock permanente, recambios originales y soporte técnico especializado.',
+      cta:   'Ver equipamiento'
+    },
+    {
+      tag:   'Implantología · Straumann · Nobel Biocare',
+      title: 'Sistemas de<br>implantes para<br><em>cada caso clínico.</em>',
+      sub:   'Bone Level, Tissue Level, soluciones CAD/CAM.',
+      desc:  'Distribuidor oficial de los principales fabricantes de <strong>sistemas de implantes</strong>. Kits completos, componentes protésicos y material regenerativo.',
+      cta:   'Ver implantología'
+    },
+    {
+      tag:   'Radiología Digital · Diagnóstico · Tecnología',
+      title: 'Diagnóstico<br>digital de<br><em>última generación.</em>',
+      sub:   'Sensores, escáneres y software de imagen.',
+      desc:  'Equipos de <strong>radiología digital</strong> intraoral y panorámica, escáneres intraorales y soluciones CAD/CAM para el laboratorio moderno.',
+      cta:   'Ver radiología'
+    },
+    {
+      tag:   'Ortodoncia · Endodoncia · Material Clínico',
+      title: 'Todo lo que<br>necesita tu<br><em>clínica dental.</em>',
+      sub:   'Un solo proveedor. 10.000 referencias.',
+      desc:  'Desde <strong>brackets y arcos de ortodoncia</strong> hasta limas de endodoncia, composites y material de impresión. Todo sincronizado con tu pedido en tiempo real.',
+      cta:   'Ver catálogo completo'
+    }
+  ];
+
+  const elTag   = document.getElementById('slideTag');
+  const elTitle = document.getElementById('slideTitle');
+  const elSub   = document.getElementById('slideSubtitle');
+  const elDesc  = document.getElementById('slideDesc');
+  const elCta   = document.getElementById('slideCta1Text');
+  const heroLeft = document.querySelector('.hero-left');
+
+  function updateText(n){
+    const d = slideData[n];
+    // Fade out → update → fade in
+    heroLeft.style.transition = 'opacity 0.5s';
+    heroLeft.style.opacity    = '0';
+    setTimeout(() => {
+      if(elTag)   elTag.textContent  = d.tag;
+      if(elTitle) elTitle.innerHTML  = d.title;
+      if(elSub)   elSub.textContent  = d.sub;
+      if(elDesc)  elDesc.innerHTML   = d.desc;
+      if(elCta)   elCta.textContent  = d.cta;
+      heroLeft.style.opacity = '1';
+    }, 500);
+  }
+
+  function goTo(n){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    updateText(current);
+  }
+
+  function next(){ goTo(current + 1); }
+
+  function startAuto(){ timer = setInterval(next, 5500); }
+  function stopAuto(){ clearInterval(timer); }
+
+  startAuto();
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      stopAuto();
+      goTo(parseInt(dot.dataset.slide));
+      startAuto();
+    });
+  });
+
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('mouseenter', stopAuto);
+  hero.addEventListener('mouseleave', startAuto);
+})();
+
+// ── BUSCADOR DROPDOWN ─────────────────────────────────────────
+const searchInput = document.querySelector('.search-outer input');
+const searchHint  = document.getElementById('searchHint');
+if(searchInput && searchHint){
+  searchInput.addEventListener('focus', () => searchHint.classList.add('open'));
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.search-block')) searchHint.classList.remove('open');
+  });
+  // Click en un tag → rellena el input y cierra
+  searchHint.querySelectorAll('.search-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      searchInput.value = tag.textContent;
+      searchHint.classList.remove('open');
+      searchInput.focus();
+    });
+  });
+}
+
+// Pills de filtro de productos
+document.querySelectorAll('.pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.pill').forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+  });
+});
+
+// Botón wishlist toggle
+document.querySelectorAll('.p-wish').forEach(w => {
+  w.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isLiked = w.textContent === '♥';
+    w.textContent = isLiked ? '♡' : '♥';
+    w.style.color  = isLiked ? '' : '#C0392B';
+  });
+});
+</script>
+</body>
+</html>
