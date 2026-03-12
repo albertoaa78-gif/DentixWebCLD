@@ -201,10 +201,11 @@ nav{
 .hero{
   display:grid;
   grid-template-columns:1fr 1fr; /* izquierda=texto, derecha=showcase */
-  height:750px;                  /* fijo — evita reflow entre slides */
+  min-height:620px;                  /* fijo — evita reflow entre slides */
   position:relative;             /* contexto para absolute de hijos */
   overflow:hidden;               /* recorta las fotos al borde */
 }
+ 
 
 /* ── Carrusel de fondo: ocupa todo el hero por detrás del contenido ── */
 .hero-carousel{
