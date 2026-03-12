@@ -308,29 +308,33 @@ nav{
 
 /* Indicadores del carrusel */
 .carousel-dots{
-  position:absolute;bottom:24px;left:60px;
+  position:absolute;bottom:20px;left:60px;
   display:flex;gap:8px;z-index:10;
   align-items:center;
 }
+/* Wrapper clicable — área de 28px alto, barra visual de 6px via ::before */
 .cdot{
-  width:36px;height:8px;border-radius:4px;
+  width:36px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;
+  background:transparent;
+  padding:0;border:none;
+}
+/* Barra visual dentro del wrapper — nunca cambia de tamaño */
+.cdot::before{
+  content:'';
+  display:block;
+  width:36px;height:6px;
+  border-radius:3px;
   background:rgba(255,255,255,0.28);
-  cursor:pointer;
-  /* Animar solo color — width fijo en todos los estados → sin salto */
   transition:background-color .35s;
-  padding:10px 0;
-  background-clip:content-box;
-  box-sizing:content-box;
-  flex-shrink:0;
+  pointer-events:none;
 }
-.cdot.active{
+.cdot.active::before{
   background:var(--red);
-  background-clip:content-box;
-  /* width idéntico al resto — cero reflow */
 }
-.cdot:hover:not(.active){
-  background:rgba(255,255,255,0.58);
-  background-clip:content-box;
+.cdot:hover:not(.active)::before{
+  background:rgba(255,255,255,0.60);
 }
 
 /* Animación keyframes — crossfade automático */
@@ -435,13 +439,13 @@ nav{
 
 /* Tarjeta producto hero */
 .hsc{
-  background:rgba(20,18,16,0.62);
-  border:1px solid rgba(255,255,255,0.14);
+  background:rgba(12,10,9,0.82);
+  border:1px solid rgba(255,255,255,0.18);
   border-radius:14px;padding:20px;
   cursor:pointer;transition:all .28s;
   position:relative;overflow:hidden;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 .hsc::after{
   content:'';
@@ -450,7 +454,7 @@ nav{
   opacity:0;transition:opacity .3s;
 }
 .hsc:hover{
-  background:rgba(20,18,16,0.78);
+  background:rgba(12,10,9,0.92);
   transform:translateY(-4px);
   border-color:rgba(255,255,255,0.18);
   box-shadow:0 12px 40px rgba(0,0,0,0.25);
@@ -461,10 +465,10 @@ nav{
 .hsc-featured{
   grid-column:span 2;
   display:flex;align-items:center;gap:20px;
-  background:rgba(140,30,20,0.55);
-  border-color:rgba(192,57,43,0.5);
+  background:rgba(110,22,14,0.82);
+  border-color:rgba(192,57,43,0.65);
 }
-.hsc-featured:hover{background:rgba(140,30,20,0.72)}
+.hsc-featured:hover{background:rgba(110,22,14,0.94)}
 
 /* Imagen de producto SVG */
 .hsc-img{
@@ -508,21 +512,21 @@ nav{
 /* Buscador rápido por referencia dentro del hero */
 .hero-quickref{
   display:flex;align-items:center;gap:10px;
-  background:rgba(20,18,16,0.55);
-  border:1px solid rgba(255,255,255,0.15);
+  background:rgba(12,10,9,0.84);
+  border:1px solid rgba(255,255,255,0.20);
   border-radius:8px;padding:10px 14px;
   width:100%;max-width:460px;
   cursor:pointer;transition:background .2s;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
-.hero-quickref:hover{background:rgba(20,18,16,0.72)}
-.hqr-label{font-size:11px;color:var(--on-dark);letter-spacing:0.5px;font-weight:500}
+.hero-quickref:hover{background:rgba(12,10,9,0.95)}
+.hqr-label{font-size:11px;color:#E8E6E4;letter-spacing:0.5px;font-weight:600}
 .hqr-input{
   flex:1;background:transparent;border:none;outline:none;
-  font-family:'DM Sans',sans-serif;font-size:13px;color:white;
+  font-family:'DM Sans',sans-serif;font-size:13px;color:#FFFFFF;font-weight:400;
 }
-.hqr-input::placeholder{color:var(--on-dark-mid)}
+.hqr-input::placeholder{color:#9A9898}
 .hqr-btn{
   background:var(--red);color:white;border:none;
   border-radius:4px;padding:5px 10px;font-size:11px;font-weight:600;
@@ -1177,7 +1181,7 @@ footer{
 
   <!-- Carrusel de fondo — 5 escenas CSS del sector dental -->
   <div class="hero-carousel">
-    <div class="hero-slide hs1 active"></div>
+    <div class="hero-slide hs1"></div>
     <div class="hero-slide hs2"></div>
     <div class="hero-slide hs3"></div>
     <div class="hero-slide hs4"></div>
@@ -1952,12 +1956,12 @@ footer{
 <script>
 // ── CARRUSEL HERO ─────────────────────────────────────────────
 (function(){
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots   = document.querySelectorAll('.cdot');
-  let current  = 0;
-  let timer;
+  const slides   = document.querySelectorAll('.hero-slide');
+  const dots     = document.querySelectorAll('.cdot');
+  const heroLeft = document.querySelector('.hero-left');
+  let current    = 0;
+  let timer      = null;
 
-  // Contenido dinámico por diapositiva
   const slideData = [
     {
       tag:   'Instrumental Quirúrgico · Distribución oficial',
@@ -1996,73 +2000,71 @@ footer{
     }
   ];
 
+  // Obtener referencias de texto
   const elTag   = document.getElementById('slideTag');
   const elTitle = document.getElementById('slideTitle');
   const elSub   = document.getElementById('slideSubtitle');
   const elDesc  = document.getElementById('slideDesc');
   const elCta   = document.getElementById('slideCta1Text');
-  const heroLeft = document.querySelector('.hero-left');
 
+  // Cambiar texto con fade
   function updateText(n){
-    const d = slideData[n];
-    // Fade out → update → fade in
-    heroLeft.style.transition = 'opacity 0.5s';
-    heroLeft.style.opacity    = '0';
-    setTimeout(() => {
-      if(elTag)   elTag.textContent  = d.tag;
-      if(elTitle) elTitle.innerHTML  = d.title;
-      if(elSub)   elSub.textContent  = d.sub;
-      if(elDesc)  elDesc.innerHTML   = d.desc;
-      if(elCta)   elCta.textContent  = d.cta;
+    if(!heroLeft) return;
+    heroLeft.style.opacity = '0';
+    setTimeout(function(){
+      var d = slideData[n];
+      if(elTag)   elTag.textContent = d.tag;
+      if(elTitle) elTitle.innerHTML = d.title;
+      if(elSub)   elSub.textContent = d.sub;
+      if(elDesc)  elDesc.innerHTML  = d.desc;
+      if(elCta)   elCta.textContent = d.cta;
       heroLeft.style.opacity = '1';
-    }, 500);
+    }, 450);
   }
 
+  // Avanzar a slide n — NUNCA toca el slide que ya está activo si es el mismo
   function goTo(n){
+    var next = ((n % slides.length) + slides.length) % slides.length;
+    if(next === current) return;
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
+    current = next;
     slides[current].classList.add('active');
     dots[current].classList.add('active');
     updateText(current);
   }
 
-  function next(){ goTo(current + 1); }
-
+  // Arranque automático
   function startAuto(){
-    clearInterval(timer);
-    timer = setInterval(next, 5500);
+    if(timer) clearInterval(timer);
+    timer = setInterval(function(){
+      goTo(current + 1);
+    }, 5500);
   }
-  function stopAuto(){ clearInterval(timer); }
+  function stopAuto(){
+    if(timer){ clearInterval(timer); timer = null; }
+  }
 
-  // Dots: clic manual
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
+  // Clic en dots
+  dots.forEach(function(dot){
+    dot.addEventListener('click', function(){
       stopAuto();
-      goTo(parseInt(dot.dataset.slide));
+      goTo(parseInt(dot.dataset.slide, 10));
       startAuto();
     });
   });
 
-  // Hover pausa/reanuda — registrado inmediatamente
-  const heroEl = document.querySelector('.hero');
-  let isHovered = false;
+  // Hover pausa / reanuda
+  var heroEl = document.querySelector('.hero');
   if(heroEl){
-    heroEl.addEventListener('mouseenter', () => { isHovered = true;  stopAuto(); });
-    heroEl.addEventListener('mouseleave', () => { isHovered = false; startAuto(); });
+    heroEl.addEventListener('mouseenter', stopAuto);
+    heroEl.addEventListener('mouseleave', startAuto);
   }
 
-  // Arrancar en window.load para que DOM e imágenes estén listos
-  // y el ratón no interfiera (si ya está encima al cargar, arranca
-  // igual y mouseenter lo pausará solo cuando el usuario mueva el ratón)
-  window.addEventListener('load', () => {
-    startAuto();
-  });
+  // Arranque: NO tocar el slide 0 (ya tiene active en HTML).
+  // Simplemente lanzar el intervalo.
+  startAuto();
 
-  // Fallback por si load ya se disparó (SPA / navegación rápida)
-  if(document.readyState === 'complete'){
-    startAuto();
-  }
 })();
 
 // ── BUSCADOR DROPDOWN ─────────────────────────────────────────
