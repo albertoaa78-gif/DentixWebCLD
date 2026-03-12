@@ -205,7 +205,7 @@ nav{
 }
 
 /* ── Carrusel de fondo ─────────────────────────────────────── */
-/* ── Carrusel: cada slide es una fotografía real de Unsplash ── */
+/* ── Carrusel de fondo ─────────────────────────────────────── */
 .hero-carousel{
   position:absolute;inset:0;
   z-index:0;
@@ -219,49 +219,72 @@ nav{
 }
 .hero-slide.active{opacity:1}
 
-/* Slide 1 — Clínica dental moderna (luz blanca, sillón, equipo) */
+/* Cada slide: foto de fondo + color de respaldo claramente distinto
+   El ::after de cada slide añade overlay calibrado a la luminosidad
+   de esa foto concreta para no aplastar ni quemar */
+
+/* Slide 1 — Clínica dental moderna · carbón azulado */
 .hs1{
-  background-image:
-    url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80&fit=crop');
-  background-color:#1A2030;
+  background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&auto=format&fit=crop&q=80');
+  background-color:#1A2232;
+  background-position:center center;
 }
-/* Slide 2 — Instrumental quirúrgico sobre superficie de acero */
-.hs2{
-  background-image:
-    url('https://images.unsplash.com/photo-1588776814546-1ffbb072bcd3?w=1600&q=80&fit=crop');
-  background-color:#1A1612;
-  background-position:center 40%;
-}
-/* Slide 3 — Implantes dentales, primer plano macro */
-.hs3{
-  background-image:
-    url('https://images.unsplash.com/photo-1606811841689-23dfddce3e66?w=1600&q=80&fit=crop');
-  background-color:#0E1A12;
-  background-position:center 60%;
-}
-/* Slide 4 — Laboratorio dental, microscopio y equipamiento */
-.hs4{
-  background-image:
-    url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&fit=crop');
-  background-color:#12121A;
-  background-position:center top;
-}
-/* Slide 5 — Ortodoncia, brackets y alambres */
-.hs5{
-  background-image:
-    url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=1600&q=80&fit=crop');
-  background-color:#1A1208;
-  background-position:center 35%;
+.hs1::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(10,14,22,0.72) 0%,rgba(10,14,22,0.45) 55%,rgba(10,14,22,0.28) 100%);
 }
 
-/* Overlay: degradado lateral — más transparente para que se vean las fotos */
+/* Slide 2 — Instrumental quirúrgico · acero grafito */
+.hs2{
+  background-image:url('https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=1600&auto=format&fit=crop&q=80');
+  background-color:#1C1C1C;
+  background-position:center 35%;
+}
+.hs2::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(12,10,10,0.65) 0%,rgba(12,10,10,0.38) 55%,rgba(12,10,10,0.20) 100%);
+}
+
+/* Slide 3 — Implantología · verde quirúrgico */
+.hs3{
+  background-image:url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1600&auto=format&fit=crop&q=80');
+  background-color:#0D1F15;
+  background-position:40% center;
+}
+.hs3::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(8,18,12,0.70) 0%,rgba(8,18,12,0.42) 55%,rgba(8,18,12,0.22) 100%);
+}
+
+/* Slide 4 — Radiología · azul frío oscuro */
+.hs4{
+  background-image:url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&auto=format&fit=crop&q=80');
+  background-color:#10141E;
+  background-position:center 20%;
+}
+.hs4::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(8,10,18,0.68) 0%,rgba(8,10,18,0.40) 55%,rgba(8,10,18,0.22) 100%);
+}
+
+/* Slide 5 — Material clínico · burdeos oscuro */
+.hs5{
+  background-image:url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=1600&auto=format&fit=crop&q=80');
+  background-color:#201018;
+  background-position:center 45%;
+}
+.hs5::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(18,8,12,0.68) 0%,rgba(18,8,12,0.40) 55%,rgba(18,8,12,0.22) 100%);
+}
+
+/* Overlay global mínimo — solo para garantizar contraste del texto */
 .hero-carousel-overlay{
   position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(to right,
-      rgba(15,12,10,0.82) 0%,
-      rgba(15,12,10,0.60) 45%,
-      rgba(15,12,10,0.40) 100%);
+  background:linear-gradient(to right,
+    rgba(0,0,0,0.18) 0%,
+    rgba(0,0,0,0.05) 50%,
+    rgba(0,0,0,0.00) 100%);
 }
 
 /* Círculo rojo decorativo (fiel al index1) — encima del carrusel */
@@ -285,16 +308,25 @@ nav{
 
 /* Indicadores del carrusel */
 .carousel-dots{
-  position:absolute;bottom:28px;left:60px;
+  position:absolute;bottom:24px;left:60px;
   display:flex;gap:8px;z-index:10;
+  align-items:center;
 }
 .cdot{
-  width:28px;height:3px;border-radius:2px;
-  background:rgba(255,255,255,0.3);
+  width:30px;height:8px;border-radius:4px;
+  background:rgba(255,255,255,0.28);
   cursor:pointer;transition:all .3s;
+  /* padding aumenta el área clicable sin cambiar el aspecto visual */
+  padding:10px 0;
+  background-clip:content-box;
+  box-sizing:content-box;
 }
-.cdot.active{background:var(--red);width:44px;}
-.cdot:hover:not(.active){background:rgba(255,255,255,0.55)}
+.cdot.active{
+  background:var(--red);
+  background-clip:content-box;
+  width:48px;
+}
+.cdot:hover:not(.active){background:rgba(255,255,255,0.60);background-clip:content-box;}
 
 /* Animación keyframes — crossfade automático */
 @keyframes slideIn{from{opacity:0}to{opacity:1}}
@@ -1988,9 +2020,13 @@ footer{
 
   function next(){ goTo(current + 1); }
 
-  function startAuto(){ timer = setInterval(next, 5500); }
+  function startAuto(){
+    clearInterval(timer);
+    timer = setInterval(next, 5500);
+  }
   function stopAuto(){ clearInterval(timer); }
 
+  // Arrancar siempre, incluso si el ratón ya está sobre el hero al cargar
   startAuto();
 
   dots.forEach(dot => {
@@ -2001,9 +2037,15 @@ footer{
     });
   });
 
-  const hero = document.querySelector('.hero');
-  hero.addEventListener('mouseenter', stopAuto);
-  hero.addEventListener('mouseleave', startAuto);
+  // Pausa al hacer hover — se registra con delay para no
+  // interceptar el evento de carga inicial
+  setTimeout(() => {
+    const hero = document.querySelector('.hero');
+    if(hero){
+      hero.addEventListener('mouseenter', stopAuto);
+      hero.addEventListener('mouseleave', startAuto);
+    }
+  }, 800);
 })();
 
 // ── BUSCADOR DROPDOWN ─────────────────────────────────────────
