@@ -221,7 +221,7 @@ nav{
 
 /* Slide 1 — Clínica dental moderna · carbón azulado */
 .hs1{
-  background-image:url('/images/image1.jpeg');
+  background-image:url('../../images/image1.jpeg');
   background-color:#1A2030; /* respaldo: azul clínica */
   background-position:center center;
 }
