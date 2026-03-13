@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinza Mosquito Curva Hu-Friedy — Dentix</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/dentix.css">
+<style>
+.breadcrumb{padding:14px 60px;font-size:12px;color:var(--gray-mid);background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.breadcrumb a{color:var(--gray-mid)}.breadcrumb a:hover{color:var(--red)}
+.breadcrumb span{color:rgba(107,104,104,.4)}
+
+.pdp-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding:48px 60px 80px;max-width:1300px;margin:0 auto}
+.pdp-main-img{background:var(--gray-light);border:1px solid var(--border);border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative}
+.pdp-main-img svg{width:160px;height:160px;stroke:var(--gray-mid)}
+.pdp-badge-wrap{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:6px}
+.pdp-badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.pdp-badge.avail{background:var(--dark-main);color:white}
+.pdp-thumbs{display:flex;gap:10px}
+.pdp-thumb{width:72px;height:72px;border:2px solid var(--border);border-radius:10px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s}
+.pdp-thumb.on,.pdp-thumb:hover{border-color:var(--red)}
+.pdp-thumb svg{width:36px;height:36px;stroke:var(--gray-mid)}
+
+.pdp-brand{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.pdp-name{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;color:var(--dark-main);margin-bottom:12px}
+.pdp-refs{display:flex;gap:16px;margin-bottom:20px;font-size:12px;color:var(--gray-mid);flex-wrap:wrap}
+.pdp-refs strong{color:var(--dark-main)}
+.pdp-rating{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.stars{color:#F4A72A;font-size:14px;letter-spacing:1px}
+.rating-count{font-size:12px;color:var(--gray-mid)}
+
+.stock-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:20px}
+.stock-ok{background:#E8F5E9;color:#2E7D32}
+.stock-ok::before{content:'';width:7px;height:7px;background:#4CAF50;border-radius:50%}
+
+.pdp-price{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--dark-main);margin-bottom:6px}
+.pdp-price-note{font-size:12px;color:var(--gray-mid);margin-bottom:24px}
+
+.pdp-var-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray-mid);margin-bottom:10px}
+.pdp-vars{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.pdp-var{padding:7px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;transition:all .2s;background:var(--white)}
+.pdp-var:hover{border-color:var(--dark-main)}
+.pdp-var.on{border-color:var(--dark-main);background:var(--dark-main);color:white}
+.pdp-var.unavailable{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+
+.pdp-actions{display:flex;gap:12px;margin-bottom:16px;align-items:center}
+.qty-box{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.qty-btn{width:38px;height:48px;background:var(--gray-light);border:none;font-size:18px;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center}
+.qty-btn:hover{background:var(--border)}
+.qty-input{width:52px;height:48px;border:none;text-align:center;font-size:16px;font-weight:600;font-family:'DM Sans',sans-serif;color:var(--dark-main)}
+.btn-add-cart{flex:1;height:48px;background:var(--red);color:white;border:none;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-add-cart:hover{background:var(--red-hover)}
+.btn-wish-pdp{width:48px;height:48px;border:1.5px solid var(--border);border-radius:8px;background:var(--white);cursor:pointer;font-size:20px;transition:all .2s;display:flex;align-items:center;justify-content:center}
+.btn-wish-pdp:hover{border-color:var(--red);color:var(--red)}
+
+.pdp-sub-actions{display:flex;gap:16px;margin-bottom:28px}
+.pdp-sub-btn{font-size:12px;color:var(--gray-mid);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;transition:color .2s;font-family:'DM Sans',sans-serif}
+.pdp-sub-btn:hover{color:var(--red)}
+
+.pdp-delivery{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:28px}
+.pdp-delivery-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--dark-main);padding:4px 0}
+
+.tab-nav{display:flex;gap:0;border-bottom:1px solid var(--border);margin-top:8px}
+.tab-btn{padding:12px 20px;font-size:13px;font-weight:500;background:none;border:none;cursor:pointer;color:var(--gray-mid);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-family:'DM Sans',sans-serif}
+.tab-btn.on{color:var(--dark-main);border-bottom-color:var(--red);font-weight:600}
+.tab-content{padding:24px 0;font-size:13.5px;color:var(--gray-mid);line-height:1.8;display:none}
+.tab-content.on{display:block}
+.spec-table{width:100%;border-collapse:collapse}
+.spec-table tr:nth-child(even) td{background:var(--gray-light)}
+.spec-table td{padding:8px 14px;font-size:13px;border-bottom:1px solid var(--border)}
+.spec-table td:first-child{font-weight:600;color:var(--dark-main);width:40%}
+
+.pdp-related{padding:56px 60px;background:var(--white)}
+
+@media(max-width:1100px){.pdp-layout{padding:36px 24px 60px;gap:36px}.breadcrumb{padding:12px 24px}.pdp-related{padding:40px 24px}}
+@media(max-width:768px){.breadcrumb{padding:10px 16px}.pdp-layout{grid-template-columns:1fr;padding:20px 16px 48px;gap:28px}.pdp-name{font-size:22px}.pdp-price{font-size:30px}.pdp-related{padding:36px 16px}}
+@media(max-width:480px){.pdp-actions{flex-wrap:wrap}.btn-add-cart{min-width:100%;order:3}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:20px"><span>📞 <a href="tel:900123456">900 123 456</a></span><span style="color:rgba(174,172,170,0.4)">|</span><span>Lunes–Viernes · 9h–18h</span></div>
+  <div class="topbar-right"><div class="topbar-pill"><span class="dot"></span>Stock en tiempo real · SAGE 50</div><span>🚚 Envío gratuito +150€</span><span>🔒 Acceso B2B</span></div>
+</div>
+<header>
+  <a href="index.html" class="logo"><svg class="logo-svg" width="56" height="56" viewBox="0 0 44 44" fill="none"><circle cx="20" cy="22" r="18" fill="#1A1A1A"/><circle cx="26" cy="16" r="12" fill="#2D2D2D"/><circle cx="9" cy="32" r="7" fill="#C0392B"/></svg><div class="logo-text"><span class="logo-name">dentix</span><div class="logo-rule"></div><div class="logo-rule2"></div><span class="logo-sub">Productos dentales, S.L.</span></div></a>
+  <div class="search-block"><div class="search-outer"><input type="text" placeholder="Buscar por nombre, referencia o SKU…"><button class="search-btn"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Buscar</button></div><div class="search-hint" id="searchHint"><span class="search-hint-label">Búsquedas frecuentes</span><span class="search-tag">Lima Endodoncia</span><span class="search-tag">Implante Straumann</span><span class="search-tag">Turbina NSK</span></div></div>
+  <div class="hicons"><a href="mi-cuenta.html" class="hicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi cuenta</a><a href="carrito.html" class="hicon"><div class="badge">3</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Cesta</a><div class="header-divider"></div><a href="login.html" class="btn-access">Área privada →</a></div>
+</header>
+<nav>
+  <a href="tienda.html?cat=instrumental" class="nav-item on">Instrumental</a>
+  <a href="tienda.html?cat=endodoncia" class="nav-item">Endodoncia</a>
+  <a href="tienda.html?cat=ortodoncia" class="nav-item">Ortodoncia</a>
+  <a href="tienda.html?cat=implantologia" class="nav-item">Implantología</a>
+  <a href="tienda.html?cat=material" class="nav-item">Material Clínico</a>
+  <div class="nav-sep"></div>
+  <a href="tienda.html?cat=equipamiento" class="nav-item">Equipamiento</a>
+  <a href="tienda.html?cat=radiologia" class="nav-item">Radiología</a>
+  <div class="nav-end"><a href="tienda.html?cat=ofertas" class="nav-special">🔥 Ofertas del mes</a></div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a><span>›</span>
+  <a href="tienda.html">Instrumental quirúrgico</a><span>›</span>
+  <strong style="color:var(--dark-main)">Pinza Mosquito Curva Hu-Friedy</strong>
+</div>
+
+<div class="pdp-layout">
+  <!-- Galería -->
+  <div class="pdp-gallery">
+    <div class="pdp-main-img">
+      <div class="pdp-badge-wrap"><span class="pdp-badge avail">En stock</span></div>
+      <svg viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.2"><path d="M20 12 L44 12 L44 16 L40 20 L40 52 L24 52 L24 20 L20 16 Z"/><line x1="28" y1="26" x2="36" y2="26"/><line x1="28" y1="33" x2="36" y2="33"/><line x1="28" y1="40" x2="36" y2="40"/></svg>
+    </div>
+    <div class="pdp-thumbs">
+      <div class="pdp-thumb on"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><path d="M20 12 L44 12 L40 20 L40 48 L24 48 L24 20Z"/></svg></div>
+      <div class="pdp-thumb"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><circle cx="32" cy="32" r="16"/></svg></div>
+      <div class="pdp-thumb"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><rect x="16" y="20" width="32" height="24" rx="3"/></svg></div>
+      <div class="pdp-thumb"><svg viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><path d="M16 48 L32 16 L48 48"/><line x1="22" y1="36" x2="42" y2="36"/></svg></div>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <div class="pdp-info">
+    <div class="pdp-brand">Hu-Friedy</div>
+    <h1 class="pdp-name">Pinza Mosquito Curva 14cm<br>Acero inoxidable 316L</h1>
+    <div class="pdp-refs">
+      <div>Ref: <strong>HF-PM-C14</strong></div>
+      <div>SKU: <strong>00142381</strong></div>
+      <div>EAN: <strong>8480000142381</strong></div>
+    </div>
+    <div class="pdp-rating"><span class="stars">★★★★★</span><span style="font-size:13px;font-weight:600;color:var(--dark-main)">4.9</span><span class="rating-count">(38 valoraciones)</span></div>
+    <span class="stock-badge stock-ok">En stock · 84 unidades disponibles</span>
+    <div class="pdp-price">28,90 €</div>
+    <div class="pdp-price-note">Precio sin IVA · IVA aplicable según producto en el checkout</div>
+
+    <div class="pdp-var-label">Longitud</div>
+    <div class="pdp-vars"><div class="pdp-var">12 cm</div><div class="pdp-var on">14 cm</div><div class="pdp-var">16 cm</div><div class="pdp-var">18 cm</div></div>
+
+    <div class="pdp-var-label" style="margin-top:4px">Acabado</div>
+    <div class="pdp-vars" style="margin-bottom:28px"><div class="pdp-var on">Satinado</div><div class="pdp-var">Pulido espejo</div><div class="pdp-var unavailable">Titanio negro</div></div>
+
+    <div class="pdp-actions">
+      <div class="qty-box">
+        <button class="qty-btn" id="qMinus">−</button>
+        <input class="qty-input" id="qtyInput" type="number" value="1" min="1">
+        <button class="qty-btn" id="qPlus">+</button>
+      </div>
+      <button class="btn-add-cart"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Añadir a la cesta</button>
+      <button class="btn-wish-pdp">♡</button>
+    </div>
+    <div class="pdp-sub-actions">
+      <button class="pdp-sub-btn">📋 Añadir a pedido recurrente</button>
+      <button class="pdp-sub-btn">📄 Solicitar muestra</button>
+    </div>
+
+    <div class="pdp-delivery">
+      <div class="pdp-delivery-row"><span>🚚</span><span>Entrega <strong>mañana</strong> si realizas el pedido antes de las 14h</span></div>
+      <div class="pdp-delivery-row"><span>🆓</span><span>Envío gratuito en pedidos superiores a <strong>150 €</strong></span></div>
+      <div class="pdp-delivery-row"><span>↩️</span><span>Devolución gratuita en <strong>14 días</strong></span></div>
+    </div>
+
+    <div class="tab-nav">
+      <button class="tab-btn on" data-tab="desc">Descripción</button>
+      <button class="tab-btn" data-tab="spec">Especificaciones</button>
+      <button class="tab-btn" data-tab="docs">Documentos</button>
+      <button class="tab-btn" data-tab="reviews">Valoraciones (38)</button>
+    </div>
+    <div class="tab-content on" id="tab-desc">
+      <p>La pinza mosquito curva Hu-Friedy HF-PM-C14 está fabricada en acero inoxidable 316L de grado quirúrgico, resistente a la corrosión y apta para esterilización en autoclave a 134°C. Sus ramas cruzadas aseguran una sujeción segura durante los procedimientos quirúrgicos intraorales.</p>
+      <p style="margin-top:12px">La curvatura ergonómica de 45° facilita el acceso a zonas de difícil alcance. El mango cuenta con estriado antideslizante para mayor control del instrumento.</p>
+    </div>
+    <div class="tab-content" id="tab-spec">
+      <table class="spec-table">
+        <tr><td>Fabricante</td><td>Hu-Friedy Manufacturing Co.</td></tr>
+        <tr><td>Referencia</td><td>HF-PM-C14</td></tr>
+        <tr><td>Material</td><td>Acero inoxidable 316L</td></tr>
+        <tr><td>Longitud total</td><td>140 mm</td></tr>
+        <tr><td>Tipo de cierre</td><td>Cremadera · 3 posiciones</td></tr>
+        <tr><td>Esterilización</td><td>Autoclave 134°C · 18 min</td></tr>
+        <tr><td>Clasificación CE</td><td>Dispositivo médico Clase I · CE 0482</td></tr>
+        <tr><td>País de origen</td><td>Estados Unidos</td></tr>
+        <tr><td>Peso</td><td>48 g</td></tr>
+      </table>
+    </div>
+    <div class="tab-content" id="tab-docs">
+      <p style="margin-bottom:16px;font-size:13px">Documentación disponible para profesionales registrados:</p>
+      <a href="#" style="display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-size:13px;color:var(--dark-main)">📄 Ficha técnica HF-PM-C14 (PDF · 240 KB)</a>
+      <a href="#" style="display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--dark-main)">📄 Declaración de conformidad CE (PDF · 180 KB)</a>
+    </div>
+    <div class="tab-content" id="tab-reviews">
+      <div style="display:flex;align-items:center;gap:24px;margin-bottom:24px">
+        <div style="text-align:center"><div style="font-size:52px;font-weight:700;color:var(--dark-main);line-height:1">4.9</div><div class="stars" style="font-size:18px">★★★★★</div><div style="font-size:12px;color:var(--gray-mid);margin-top:4px">38 valoraciones</div></div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px"><span>5★</span><div style="flex:1;background:var(--gray-light);border-radius:3px;height:8px"><div style="width:85%;background:#F4A72A;height:8px;border-radius:3px"></div></div><span>85%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px"><span>4★</span><div style="flex:1;background:var(--gray-light);border-radius:3px;height:8px"><div style="width:10%;background:#F4A72A;height:8px;border-radius:3px"></div></div><span>10%</span></div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px"><span>3★</span><div style="flex:1;background:var(--gray-light);border-radius:3px;height:8px"><div style="width:5%;background:#F4A72A;height:8px;border-radius:3px"></div></div><span>5%</span></div>
+        </div>
+      </div>
+      <div style="padding:16px;border:1px solid var(--border);border-radius:10px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><strong style="font-size:13px">Clínica Odontológica Aranjuez</strong><span class="stars" style="font-size:12px">★★★★★</span></div>
+        <p style="font-size:13px;color:var(--gray-mid);line-height:1.7">Calidad Hu-Friedy de siempre. Llevamos más de 3 años comprando con Dentix y la experiencia es excelente. Entrega rápida y producto en perfecto estado.</p>
+        <div style="font-size:11px;color:var(--gray-mid);margin-top:8px">Compra verificada · Enero 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="pdp-related">
+  <div class="sec-header" style="margin-bottom:32px"><h2 class="sec-title">También te puede interesar</h2></div>
+  <div class="prod-grid">
+    <a href="producto.html" class="prod-card"><div class="prod-img"><div class="prod-circle"><svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><ellipse cx="32" cy="32" rx="14" ry="6"/><line x1="32" y1="14" x2="32" y2="26"/><line x1="32" y1="38" x2="32" y2="50"/></svg></div><button class="p-wish">♡</button></div><div class="prod-body"><div class="p-brand">Dentsply</div><div class="p-name">Espejo dental nº5 mango ergonómico</div><div class="p-footer"><div class="p-price"><span class="p-price-main">12,40 €</span></div><button class="p-add">+</button></div></div></a>
+    <a href="producto.html" class="prod-card"><div class="prod-img"><div class="prod-circle"><svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><path d="M32 10 C18 10 10 20 10 32 C10 44 18 54 32 54 C46 54 54 44 54 32Z"/></svg></div><button class="p-wish">♡</button></div><div class="prod-body"><div class="p-brand">Hu-Friedy</div><div class="p-name">Cureta Gracey 5/6 mango SG</div><div class="p-footer"><div class="p-price"><span class="p-price-main">34,50 €</span></div><button class="p-add">+</button></div></div></a>
+    <a href="producto.html" class="prod-card"><div class="prod-img"><div class="prod-circle"><svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><rect x="18" y="22" width="28" height="20" rx="3"/></svg></div><button class="p-wish">♡</button></div><div class="prod-body"><div class="p-brand">KaVo</div><div class="p-name">Portaagujas Mayo-Hegar 18cm</div><div class="p-footer"><div class="p-price"><span class="p-price-main">62,00 €</span></div><button class="p-add">+</button></div></div></a>
+    <a href="producto.html" class="prod-card"><div class="prod-img"><div class="prod-circle"><svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5"><path d="M16 48 L32 16 L48 48"/><line x1="22" y1="36" x2="42" y2="36"/></svg></div><button class="p-wish">♡</button></div><div class="prod-body"><div class="p-brand">3M</div><div class="p-name">Explorador doble extremo 23/6</div><div class="p-footer"><div class="p-price"><span class="p-price-main">9,80 €</span></div><button class="p-add">+</button></div></div></a>
+  </div>
+</section>
+
+<footer>
+  <div class="fgrid"><div class="fbrand"><h3>dentix</h3><p>Distribuidores de instrumental y material odontológico profesional. Más de 10.000 referencias.</p></div><div class="fcol"><h4>Tienda</h4><a href="tienda.html">Catálogo</a><a href="tienda.html?cat=ofertas">Ofertas</a></div><div class="fcol"><h4>Ayuda</h4><a href="contacto.html">Contacto</a><a href="politica-devoluciones.html">Devoluciones</a></div><div class="fcol"><h4>Legal</h4><a href="aviso-legal.html">Aviso legal</a><a href="politica-privacidad.html">Privacidad</a></div></div>
+  <div class="fbot"><span>© 2026 Dentix Productos Dentales, S.L. · CIF B-85937787</span><div class="fpay"><span class="fpay-card">GETNET</span><span class="fpay-card">VISA</span><span class="fpay-card">STRIPE</span><span class="fpay-card">BIZUM</span></div></div>
+</footer>
+<div class="mockup-tag">📦 Ficha de producto</div>
+<script src="assets/js/dentix.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('on'));
+    btn.classList.add('on');
+    const t = document.getElementById('tab-'+btn.dataset.tab);
+    if(t) t.classList.add('on');
+  });
+});
+const qInput = document.getElementById('qtyInput');
+document.getElementById('qMinus').addEventListener('click', () => { if(qInput.value > 1) qInput.value--; });
+document.getElementById('qPlus').addEventListener('click',  () => { qInput.value++; });
+document.querySelectorAll('.pdp-vars .pdp-var:not(.unavailable)').forEach(v => {
+  v.addEventListener('click', function(){
+    this.closest('.pdp-vars').querySelectorAll('.pdp-var').forEach(x => x.classList.remove('on'));
+    this.classList.add('on');
+  });
+});
+document.querySelectorAll('.pdp-thumb').forEach(t => {
+  t.addEventListener('click', () => { document.querySelectorAll('.pdp-thumb').forEach(x => x.classList.remove('on')); t.classList.add('on'); });
+});
+const w = document.querySelector('.btn-wish-pdp');
+if(w) w.addEventListener('click', () => { const l = w.textContent==='♥'; w.textContent=l?'♡':'♥'; w.style.color=l?'':'#C0392B'; w.style.borderColor=l?'':'#C0392B'; });
+</script>
+</body>
+</html>
