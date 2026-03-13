@@ -221,7 +221,7 @@ nav{
 
 /* Slide 1 — Clínica dental moderna · carbón azulado */
 .hs1{
-  background-image:url('/images/image1.jpeg');
+  background-image:url('../images/image1.jpeg');
   background-color:#1A2030; /* respaldo: azul clínica */
   background-position:center center;
 }
@@ -233,7 +233,7 @@ nav{
 
 /* Slide 2 — Instrumental quirúrgico · acero grafito */
 .hs2{
-  background-image:url('images/image2.jpeg');
+  background-image:url('../images/image2.jpeg');
   background-color:#8B5E00; /* respaldo: naranja/amarillo del fondo real */
   background-position:center center;
 }
