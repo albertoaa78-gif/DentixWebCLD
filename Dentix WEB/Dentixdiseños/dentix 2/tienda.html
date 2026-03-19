@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo — Dentix Productos Dentales</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/dentix.css">
+<style>
+/* ── Breadcrumb ──────────────────────────────────────────────── */
+.breadcrumb{
+  padding:14px 60px;
+  font-size:12px;color:var(--gray-mid);
+  background:var(--panel);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:6px;
+}
+.breadcrumb a{color:var(--gray-mid);transition:color .2s}
+.breadcrumb a:hover{color:var(--red)}
+.breadcrumb span{color:rgba(107,104,104,.4)}
+
+/* ── Layout tienda ───────────────────────────────────────────── */
+.shop-layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:32px;
+  padding:40px 60px 80px;
+  max-width:1440px;
+  margin:0 auto;
+}
+
+/* ── Sidebar de filtros ──────────────────────────────────────── */
+.sidebar{ position:sticky;top:116px;align-self:start; }
+.filter-box{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  margin-bottom:16px;
+}
+.filter-box h4{
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gray-mid);
+  margin-bottom:16px;
+}
+.filter-check{
+  display:flex;align-items:center;gap:10px;
+  padding:6px 0;cursor:pointer;font-size:13px;color:var(--dark-main);
+}
+.filter-check input{ accent-color:var(--red);width:14px;height:14px; }
+.filter-count{
+  margin-left:auto;font-size:11px;color:var(--gray-mid);
+  background:var(--gray-light);border-radius:10px;padding:1px 7px;
+}
+.price-range{ width:100%;accent-color:var(--red);margin:10px 0; }
+.price-vals{ display:flex;justify-content:space-between;font-size:12px;color:var(--gray-mid); }
+.btn-filter-apply{
+  width:100%;padding:10px;background:var(--red);color:white;
+  border:none;border-radius:8px;font-weight:600;font-size:13px;
+  cursor:pointer;margin-top:8px;transition:background .2s;
+}
+.btn-filter-apply:hover{background:var(--red-hover)}
+.btn-filter-clear{
+  width:100%;padding:8px;background:transparent;color:var(--gray-mid);
+  border:1px solid var(--border);border-radius:8px;font-size:12px;
+  cursor:pointer;margin-top:8px;transition:all .2s;
+}
+.btn-filter-clear:hover{border-color:var(--red);color:var(--red)}
+
+/* ── Main content ────────────────────────────────────────────── */
+.shop-main{}
+.shop-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;flex-wrap:wrap;gap:12px;
+}
+.shop-count{font-size:13px;color:var(--gray-mid)}
+.shop-count strong{color:var(--dark-main)}
+.shop-sort{
+  display:flex;align-items:center;gap:10px;
+}
+.sort-select{
+  border:1px solid var(--border);border-radius:8px;
+  padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;
+  color:var(--dark-main);background:var(--white);cursor:pointer;
+}
+.view-toggle{display:flex;gap:4px}
+.view-btn{
+  width:34px;height:34px;border:1px solid var(--border);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;background:var(--white);transition:all .2s;
+}
+.view-btn.on,.view-btn:hover{border-color:var(--red);background:var(--red);color:white}
+
+/* ── Producto card (reutiliza prod-card del dentix.css) ─────── */
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+/* ── Paginación ─────────────────────────────────────────────── */
+.pagination{
+  display:flex;align-items:center;justify-content:center;
+  gap:6px;margin-top:48px;
+}
+.pg-btn{
+  width:38px;height:38px;border:1px solid var(--border);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;cursor:pointer;background:var(--white);
+  transition:all .2s;color:var(--dark-main);
+}
+.pg-btn:hover,.pg-btn.on{
+  background:var(--red);color:white;border-color:var(--red);
+}
+.pg-sep{color:var(--gray-mid);padding:0 4px;}
+
+/* ── Active filters strip ───────────────────────────────────── */
+.active-filters{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;
+}
+.af-label{font-size:11px;color:var(--gray-mid);font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.af-tag{
+  display:flex;align-items:center;gap:6px;
+  background:var(--dark-main);color:white;
+  padding:4px 10px 4px 12px;border-radius:20px;font-size:12px;
+}
+.af-tag button{
+  background:none;border:none;color:rgba(255,255,255,.6);
+  cursor:pointer;font-size:14px;line-height:1;padding:0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media(max-width:1100px){
+  .shop-layout{padding:32px 24px 60px;gap:24px;}
+  .breadcrumb{padding:12px 24px;}
+  .shop-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .breadcrumb{padding:10px 16px;}
+  .shop-layout{grid-template-columns:1fr;padding:20px 16px 48px;}
+  .sidebar{position:static;display:none;}
+  .sidebar.open{display:block;}
+  .shop-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .btn-mobile-filters{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 18px;background:var(--dark-main);color:white;
+    border:none;border-radius:8px;font-weight:600;font-size:13px;
+    cursor:pointer;margin-bottom:16px;width:100%;justify-content:center;
+  }
+}
+@media(max-width:480px){
+  .shop-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOPBAR ══════════════════════════════════════════════════ -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:20px">
+    <span>📞 <a href="tel:900123456">900 123 456</a></span>
+    <span style="color:rgba(174,172,170,0.4)">|</span>
+    <span>Lunes–Viernes · 9h–18h</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-pill"><span class="dot"></span>Stock en tiempo real · SAGE 50</div>
+    <span>🚚 Envío gratuito +150€ · 24/48h</span>
+    <span>🔒 Acceso B2B</span>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════════ -->
+<header>
+  <a href="index.html" class="logo">
+    <svg class="logo-svg" width="56" height="56" viewBox="0 0 44 44" fill="none">
+      <circle cx="20" cy="22" r="18" fill="#1A1A1A"/>
+      <circle cx="26" cy="16" r="12" fill="#2D2D2D"/>
+      <circle cx="9"  cy="32" r="7"  fill="#C0392B"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">dentix</span>
+      <div class="logo-rule"></div><div class="logo-rule2"></div>
+      <span class="logo-sub">Productos dentales, S.L.</span>
+    </div>
+  </a>
+  <div class="search-block">
+    <div class="search-outer">
+      <input type="text" placeholder="Buscar por nombre, referencia o SKU…">
+      <button class="search-btn">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Buscar
+      </button>
+    </div>
+    <div class="search-hint" id="searchHint">
+      <span class="search-hint-label">Búsquedas frecuentes</span>
+      <span class="search-tag">Lima Endodoncia</span>
+      <span class="search-tag">Implante Straumann</span>
+      <span class="search-tag">Turbina NSK</span>
+      <span class="search-tag">Composite 3M</span>
+    </div>
+  </div>
+  <div class="hicons">
+    <a href="mi-cuenta.html" class="hicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Mi cuenta
+    </a>
+    <a href="carrito.html" class="hicon">
+      <div class="badge">3</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cesta
+    </a>
+    <div class="header-divider"></div>
+    <a href="login.html" class="btn-access">Área privada →</a>
+  </div>
+</header>
+
+<!-- ═══ NAV ══════════════════════════════════════════════════════ -->
+<nav>
+  <a href="tienda.html?cat=instrumental" class="nav-item on">Instrumental</a>
+  <a href="tienda.html?cat=endodoncia"   class="nav-item">Endodoncia</a>
+  <a href="tienda.html?cat=ortodoncia"   class="nav-item">Ortodoncia</a>
+  <a href="tienda.html?cat=implantologia" class="nav-item">Implantología</a>
+  <a href="tienda.html?cat=material"     class="nav-item">Material Clínico</a>
+  <div class="nav-sep"></div>
+  <a href="tienda.html?cat=esterilizacion" class="nav-item">Esterilización</a>
+  <a href="tienda.html?cat=equipamiento" class="nav-item">Equipamiento</a>
+  <a href="tienda.html?cat=radiologia"   class="nav-item">Radiología</a>
+  <a href="tienda.html?cat=marcas"       class="nav-item">Marcas</a>
+  <div class="nav-end">
+    <a href="tienda.html?cat=ofertas" class="nav-special">🔥 Ofertas del mes</a>
+  </div>
+</nav>
+
+<!-- ═══ BREADCRUMB ═══════════════════════════════════════════════ -->
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a>
+  <span>›</span>
+  <strong style="color:var(--dark-main)">Instrumental quirúrgico</strong>
+</div>
+
+<!-- ═══ LAYOUT TIENDA ════════════════════════════════════════════ -->
+<div class="shop-layout">
+
+  <!-- ── Sidebar filtros ─────────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <!-- Categorías -->
+    <div class="filter-box">
+      <h4>Categoría</h4>
+      <label class="filter-check"><input type="radio" name="cat" checked> Instrumental quirúrgico <span class="filter-count">1.240</span></label>
+      <label class="filter-check"><input type="radio" name="cat"> Fórceps y elevadores <span class="filter-count">312</span></label>
+      <label class="filter-check"><input type="radio" name="cat"> Espejos y exploradores <span class="filter-count">188</span></label>
+      <label class="filter-check"><input type="radio" name="cat"> Pinzas y portaagujas <span class="filter-count">254</span></label>
+      <label class="filter-check"><input type="radio" name="cat"> Curetas y raspadores <span class="filter-count">320</span></label>
+      <label class="filter-check"><input type="radio" name="cat"> Instrumental de cemento <span class="filter-count">166</span></label>
+    </div>
+
+    <!-- Marcas -->
+    <div class="filter-box">
+      <h4>Marca</h4>
+      <label class="filter-check"><input type="checkbox" checked> Hu-Friedy <span class="filter-count">480</span></label>
+      <label class="filter-check"><input type="checkbox"> Dentsply Sirona <span class="filter-count">210</span></label>
+      <label class="filter-check"><input type="checkbox"> KaVo <span class="filter-count">140</span></label>
+      <label class="filter-check"><input type="checkbox"> NSK <span class="filter-count">95</span></label>
+      <label class="filter-check"><input type="checkbox"> 3M <span class="filter-count">160</span></label>
+      <label class="filter-check"><input type="checkbox"> GC <span class="filter-count">88</span></label>
+      <label class="filter-check"><input type="checkbox"> Ivoclar <span class="filter-count">72</span></label>
+    </div>
+
+    <!-- Precio -->
+    <div class="filter-box">
+      <h4>Precio (€)</h4>
+      <input type="range" class="price-range" min="0" max="500" value="250" id="priceRange">
+      <div class="price-vals"><span>0 €</span><span id="priceVal">250 €</span></div>
+      <button class="btn-filter-apply">Aplicar filtros</button>
+      <button class="btn-filter-clear">Limpiar filtros</button>
+    </div>
+
+    <!-- Disponibilidad -->
+    <div class="filter-box">
+      <h4>Disponibilidad</h4>
+      <label class="filter-check"><input type="checkbox" checked> En stock <span class="filter-count">980</span></label>
+      <label class="filter-check"><input type="checkbox"> Pedido especial <span class="filter-count">260</span></label>
+      <label class="filter-check"><input type="checkbox"> Novedad <span class="filter-count">44</span></label>
+    </div>
+
+  </aside>
+
+  <!-- ── Main ─────────────────────────────────────────────────── -->
+  <main class="shop-main">
+
+    <!-- Botón filtros móvil -->
+    <button class="btn-mobile-filters" id="btnMobileFilters">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+      Filtrar resultados
+    </button>
+
+    <!-- Filtros activos -->
+    <div class="active-filters">
+      <span class="af-label">Filtros:</span>
+      <span class="af-tag">Hu-Friedy <button>×</button></span>
+      <span class="af-tag">En stock <button>×</button></span>
+    </div>
+
+    <!-- Top bar resultados -->
+    <div class="shop-topbar">
+      <span class="shop-count"><strong>1.240</strong> referencias encontradas</span>
+      <div class="shop-sort">
+        <select class="sort-select">
+          <option>Relevancia</option>
+          <option>Precio: menor a mayor</option>
+          <option>Precio: mayor a menor</option>
+          <option>Novedades</option>
+          <option>Más vendidos</option>
+          <option>Referencia A-Z</option>
+        </select>
+        <div class="view-toggle">
+          <div class="view-btn on" title="Grid">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+          </div>
+          <div class="view-btn" title="Lista">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de productos -->
+    <div class="shop-grid">
+
+      <!-- Producto 1 -->
+      <a href="producto.html" class="prod-card">
+        <div class="prod-img">
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <path d="M20 12 L44 12 L44 16 L40 20 L40 48 L24 48 L24 20 L20 16 Z"/>
+              <line x1="28" y1="24" x2="36" y2="24"/><line x1="28" y1="30" x2="36" y2="30"/>
+            </svg>
+          </div>
+          <button class="p-wish">♡</button>
+          <span class="p-badge new">Nuevo</span>
+        </div>
+        <div class="prod-body">
+          <div class="p-brand">Hu-Friedy</div>
+          <div class="p-name">Pinza mosquito curva 14cm · Acero inox 316L</div>
+          <div class="p-ref">REF: HF-PM-C14 · SKU: 00142381</div>
+          <div class="p-footer">
+            <div class="p-price"><span class="p-price-main">28,90 €</span><span class="p-price-sub">IVA excl.</span></div>
+            <button class="p-add">+</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Producto 2 -->
+      <a href="producto.html" class="prod-card">
+        <div class="prod-img">
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <ellipse cx="32" cy="32" rx="14" ry="6"/>
+              <line x1="32" y1="14" x2="32" y2="26"/>
+              <line x1="32" y1="38" x2="32" y2="50"/>
+            </svg>
+          </div>
+          <button class="p-wish">♡</button>
+          <span class="p-badge sale">−15%</span>
+        </div>
+        <div class="prod-body">
+          <div class="p-brand">Dentsply Sirona</div>
+          <div class="p-name">Espejo dental nº5 con mango ergonómico</div>
+          <div class="p-ref">REF: DS-ESP5 · SKU: 00098742</div>
+          <div class="p-footer">
+            <div class="p-price"><span class="p-price-main">12,40 €</span><span class="p-price-old">14,60 €</span></div>
+            <button class="p-add">+</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Producto 3 -->
+      <a href="producto.html" class="prod-card">
+        <div class="prod-img">
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <path d="M32 10 C18 10 10 20 10 32 C10 44 18 54 32 54 C46 54 54 44 54 32 C54 20 46 10 32 10Z"/>
+              <line x1="32" y1="18" x2="32" y2="46"/>
+              <line x1="20" y1="32" x2="44" y2="32"/>
+            </svg>
+          </div>
+          <button class="p-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="p-brand">Hu-Friedy</div>
+          <div class="p-name">Cureta Gracey 5/6 mango SG · Serie estándar</div>
+          <div class="p-ref">REF: HF-G56-STD · SKU: 00076234</div>
+          <div class="p-footer">
+            <div class="p-price"><span class="p-price-main">34,50 €</span><span class="p-price-sub">IVA excl.</span></div>
+            <button class="p-add">+</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Producto 4 -->
+      <a href="producto.html" class="prod-card">
+        <div class="prod-img">
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <rect x="18" y="22" width="28" height="20" rx="3"/>
+              <line x1="32" y1="14" x2="32" y2="22"/>
+              <line x1="32" y1="42" x2="32" y2="50"/>
+            </svg>
+          </div>
+          <button class="p-wish">♡</button>
+          <span class="p-badge new">Stock bajo</span>
+        </div>
+        <div class="prod-body">
+          <div class="p-brand">KaVo</div>
+          <div class="p-name">Portaagujas Mayo-Hegar 18cm tungsteno</div>
+          <div class="p-ref">REF: KV-MH18T · SKU: 00054891</div>
+          <div class="p-footer">
+            <div class="p-price"><span class="p-price-main">62,00 €</span><span class="p-price-sub">IVA excl.</span></div>
+            <button class="p-add">+</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Producto 5 -->
+      <a href="producto.html" class="prod-card">
+        <div class="prod-img">
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <path d="M16 48 L32 16 L48 48"/>
+              <line x1="22" y1="36" x2="42" y2="36"/>
+            </svg>
+          </div>
+          <button class="p-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="p-brand">3M</div>
+          <div class="p-name">Explorador doble extremo 23/6 inox</div>
+          <div class="p-ref">REF: 3M-EXP236 · SKU: 00031456</div>
+          <div class="p-footer">
+            <div class="p-price"><span class="p-price-main">9,80 €</span><span class="p-price-sub">IVA excl.</span></div>
+            <button class="p-add">+</button>
+          </div>
+        </div>
+      </a>
+
+      <!-- Producto 6 -->
+      <a href="producto.html" class="prod-card">
+        <div class="prod-img">
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <path d="M24 12 L40 12 L40 52 L24 52 Z"/>
+              <line x1="28" y1="20" x2="36" y2="20"/>
+              <line x1="28" y1="28" x2="36" y2="28"/>
+              <line x1="28" y1="36" x2="36" y2="36"/>
+            </svg>
+          </div>
+          <button class="p-wish">♡</button>
+          <span class="p-badge sale">−22%</span>
+        </div>
+        <div class="prod-body">
+          <div class="p-brand">NSK</div>
+          <div class="p-name">Tijeras Goldman-Fox 13cm · Borde recto</div>
+          <div class="p-ref">REF: NSK-TGF13 · SKU: 00028774</div>
+          <div class="p-footer">
+            <div class="p-price"><span class="p-price-main">41,20 €</span><span class="p-price-old">52,80 €</span></div>
+            <button class="p-add">+</button>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /shop-grid -->
+
+    <!-- Paginación -->
+    <div class="pagination">
+      <div class="pg-btn">‹</div>
+      <div class="pg-btn on">1</div>
+      <div class="pg-btn">2</div>
+      <div class="pg-btn">3</div>
+      <span class="pg-sep">…</span>
+      <div class="pg-btn">41</div>
+      <div class="pg-btn">›</div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════ -->
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <h3>dentix</h3>
+      <p>Distribuidores de instrumental y material odontológico profesional. Más de 10.000 referencias para clínicas dentales.</p>
+    </div>
+    <div class="fcol"><h4>Tienda</h4><a href="tienda.html">Catálogo</a><a href="tienda.html?cat=novedades">Novedades</a><a href="tienda.html?cat=ofertas">Ofertas</a></div>
+    <div class="fcol"><h4>Ayuda</h4><a href="contacto.html">Contacto</a><a href="politica-devoluciones.html">Devoluciones</a><a href="condiciones-venta.html">Garantías</a></div>
+    <div class="fcol"><h4>Legal</h4><a href="aviso-legal.html">Aviso legal</a><a href="politica-privacidad.html">Privacidad</a><a href="politica-cookies.html">Cookies</a></div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Dentix Productos Dentales, S.L. · CIF B-85937787 · Madrid</span>
+    <div class="fpay">
+      <span class="fpay-card">GETNET</span><span class="fpay-card">VISA</span>
+      <span class="fpay-card">STRIPE</span><span class="fpay-card">BIZUM</span>
+      <span class="fpay-card">KLARNA</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mockup-tag">🛍️ Catálogo</div>
+
+<script src="assets/js/dentix.js"></script>
+<script>
+// Precio range
+const priceRange = document.getElementById('priceRange');
+const priceVal   = document.getElementById('priceVal');
+if(priceRange) priceRange.addEventListener('input', () => priceVal.textContent = priceRange.value + ' €');
+
+// Filtros mobile toggle
+const btnF = document.getElementById('btnMobileFilters');
+const sidebarEl = document.querySelector('.sidebar');
+if(btnF && sidebarEl) btnF.addEventListener('click', () => sidebarEl.classList.toggle('open'));
+
+// View toggle
+document.querySelectorAll('.view-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.view-btn').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>

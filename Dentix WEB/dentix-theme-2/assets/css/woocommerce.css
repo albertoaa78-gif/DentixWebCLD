@@ -1,0 +1,287 @@
+/* ══════════════════════════════════════════════════════════════
+   woocommerce.css — Integración WooCommerce ↔ Diseño Dentix
+   Complementa a dentix.css. Se carga solo en páginas WC.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Reset WooCommerce ──────────────────────────────────────── */
+.woocommerce-page .woocommerce,
+.dentix-wc-wrap { width: 100%; }
+
+/* ── Notices ────────────────────────────────────────────────── */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.woocommerce-message { background: #E8F5E9; color: #2E7D32; border: 1px solid #A5D6A7; }
+.woocommerce-info    { background: #E3F2FD; color: #1565C0; border: 1px solid #90CAF9; }
+.woocommerce-error   { background: #FFEBEE; color: #C62828; border: 1px solid #EF9A9A; }
+.woocommerce-message .button,
+.woocommerce-info .button { background: transparent; border: none; font-weight: 600; cursor: pointer; margin-left: auto; }
+
+/* ── Formularios WooCommerce ─────────────────────────────────── */
+.woocommerce form .form-row { margin-bottom: 16px; }
+.woocommerce form .form-row label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: var(--dark-main);
+  margin-bottom: 6px;
+}
+.woocommerce form .form-row .required { color: var(--red); }
+.woocommerce form .form-row input[type="text"],
+.woocommerce form .form-row input[type="email"],
+.woocommerce form .form-row input[type="tel"],
+.woocommerce form .form-row input[type="password"],
+.woocommerce form .form-row input[type="number"],
+.woocommerce form .form-row select,
+.woocommerce form .form-row textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark-main);
+  background: white;
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.woocommerce form .form-row input:focus,
+.woocommerce form .form-row select:focus,
+.woocommerce form .form-row textarea:focus {
+  outline: none;
+  border-color: var(--dark-main);
+}
+.woocommerce form .form-row.woocommerce-invalid input { border-color: var(--red); }
+.woocommerce form .form-row .woocommerce-error { font-size: 12px; margin-top: 4px; padding: 6px 10px; }
+
+/* ── Botones WooCommerce ─────────────────────────────────────── */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: var(--dark-main);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+  text-decoration: none;
+}
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce button.button.alt { background: var(--red); color: white; }
+.woocommerce button.button.alt:hover { background: var(--red-hover); }
+#place_order {
+  width: 100%;
+  background: var(--red) !important;
+  font-size: 15px !important;
+  padding: 16px !important;
+  border-radius: 10px !important;
+  margin-top: 16px;
+}
+#place_order:hover { background: var(--red-hover) !important; }
+
+/* ── Tablas de pedido ────────────────────────────────────────── */
+.woocommerce table.shop_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.woocommerce table.shop_table th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+}
+.woocommerce table.shop_table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--dark-main);
+  vertical-align: middle;
+}
+.woocommerce table.shop_table tfoot tr:first-child th,
+.woocommerce table.shop_table tfoot tr:first-child td {
+  border-top: 2px solid var(--border);
+}
+.order-total th, .order-total td {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--dark-main) !important;
+}
+
+/* ── Totales carrito ─────────────────────────────────────────── */
+.cart_totals h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark-main);
+  margin-bottom: 16px;
+}
+
+/* ── Métodos de envío ────────────────────────────────────────── */
+.woocommerce-shipping-methods { list-style: none; padding: 0; }
+.woocommerce-shipping-methods li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+}
+.woocommerce-shipping-methods li:last-child { border-bottom: none; }
+.woocommerce-shipping-methods input[type="radio"] { accent-color: var(--red); }
+
+/* ── Métodos de pago ─────────────────────────────────────────── */
+#payment { margin-top: 0; }
+#payment .payment_methods { list-style: none; padding: 0; }
+#payment .payment_methods li {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+#payment .payment_methods li.wc_payment_method > label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-main);
+}
+#payment .payment_methods li.wc_payment_method input[type="radio"] {
+  accent-color: var(--red);
+  width: 16px;
+  height: 16px;
+}
+#payment .payment_methods li.wc_payment_method .payment_box {
+  padding: 16px;
+  background: var(--gray-light);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--gray-mid);
+}
+#payment .payment_methods li.wc_payment_method img {
+  height: 22px;
+  width: auto;
+  margin-left: auto;
+}
+
+/* ── Cantidad de producto ────────────────────────────────────── */
+.woocommerce .quantity .qty {
+  width: 64px;
+  height: 44px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark-main);
+  padding: 0;
+}
+.woocommerce div.product form.cart .button {
+  height: 44px;
+  margin-left: 10px;
+}
+
+/* ── Estrellas de valoración ─────────────────────────────────── */
+.woocommerce .star-rating { color: #F4A72A; }
+.woocommerce .star-rating span::before { color: #F4A72A; }
+.woocommerce #reviews #comments ol.commentlist li .comment_container { display: flex; gap: 16px; }
+.woocommerce #reviews #comments ol.commentlist li img.avatar { width: 48px; height: 48px; border-radius: 50%; }
+
+/* ── Mi cuenta — pedidos ─────────────────────────────────────── */
+.woocommerce-account .orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.woocommerce-account .orders-table th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+}
+.woocommerce-account .orders-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+.woocommerce-orders-table__cell-order-status .woocommerce-order-status {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.order-status-processing { background: #E3F2FD; color: #1565C0; }
+.order-status-completed  { background: #E8F5E9; color: #2E7D32; }
+.order-status-cancelled  { background: #FFEBEE; color: #C62828; }
+.order-status-on-hold    { background: #FFF3E0; color: #E65100; }
+.order-status-refunded   { background: #F3E5F5; color: #6A1B9A; }
+
+/* ── Campos de dirección ─────────────────────────────────────── */
+.woocommerce-address-fields h3,
+.woocommerce-billing-fields h3,
+.woocommerce-shipping-fields h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark-main);
+  margin-bottom: 20px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .woocommerce form .form-row-first,
+  .woocommerce form .form-row-last { width: 100%; float: none; }
+}
+@media (max-width: 768px) {
+  .woocommerce-page .col2-set { grid-template-columns: 1fr; }
+  #payment .payment_methods li.wc_payment_method img { display: none; }
+}
+
+/* ── Override explícito del CSS nativo de WooCommerce ──────────
+   WooCommerce aplica float:left y width:48% a li.product.
+   Estos overrides garantizan que nuestro grid CSS funciona. */
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+ul.products li.product{
+  float:none !important;
+  width:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  clear:none !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+/* WooCommerce también añade clearfix con ::after en ul.products */
+.woocommerce ul.products::after,
+.woocommerce-page ul.products::after{
+  display:none !important;
+}
