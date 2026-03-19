@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dentix — Mockup v2 Negro/Rojo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --black-2: #1C1C1C;
+    --black-3: #242424;
+    --red: #C0392B;
+    --red-light: #E74C3C;
+    --red-dark: #922B21;
+    --white: #FFFFFF;
+    --off-white: #F9F9F9;
+    --gray-light: #F2F2F2;
+    --gray-mid: #DDDDDD;
+    --gray-dark: #888888;
+    --gray-text: #555555;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--black); }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--red);
+    color: rgba(255,255,255,0.92);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 60px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.3px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--black);
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-area { display: flex; align-items: center; gap: 14px; }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: var(--black-3);
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon::before {
+    content: '';
+    width: 20px; height: 20px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px; right: 4px;
+  }
+  .logo-icon::after {
+    content: '';
+    width: 13px; height: 13px;
+    background: var(--red);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5px; left: 5px;
+  }
+  .logo-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .logo-text span {
+    font-size: 10px;
+    color: var(--gray-dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: -3px;
+  }
+
+  .search-bar {
+    flex: 1;
+    max-width: 480px;
+    margin: 0 40px;
+    display: flex;
+    background: var(--black-3);
+    border-radius: 6px;
+    border: 1.5px solid #333;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .search-bar:focus-within { border-color: var(--red); }
+  .search-bar input {
+    flex: 1; border: none; background: transparent;
+    padding: 12px 16px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; outline: none; color: var(--white);
+  }
+  .search-bar input::placeholder { color: #666; }
+  .search-bar button {
+    background: var(--red); border: none; padding: 0 20px;
+    color: white; cursor: pointer; font-size: 16px;
+    transition: background 0.2s;
+  }
+  .search-bar button:hover { background: var(--red-light); }
+
+  .header-actions { display: flex; align-items: center; gap: 30px; }
+  .header-icon {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 4px; cursor: pointer; color: #AAA; text-decoration: none;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .header-icon:hover { color: var(--white); }
+  .header-icon svg { width: 22px; height: 22px; }
+  .cart-badge { position: relative; }
+  .cart-badge::after {
+    content: '2';
+    position: absolute; top: -6px; right: -8px;
+    background: var(--red); color: white;
+    font-size: 10px; width: 18px; height: 18px;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-weight: 700;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--black-2);
+    border-bottom: 1px solid #2A2A2A;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-item {
+    color: #888;
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .nav-item:hover { color: var(--white); }
+  .nav-item.active { color: var(--white); border-bottom-color: var(--red); }
+  .nav-promo {
+    margin-left: auto;
+    background: var(--red);
+    color: white;
+    padding: 16px 22px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .nav-promo:hover { background: var(--red-light); }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(192,57,43,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .eyebrow-line {
+    width: 30px; height: 2px;
+    background: var(--red);
+  }
+  .eyebrow-text {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    color: var(--white);
+    line-height: 1.12;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .hero-title em {
+    color: var(--red);
+    font-style: normal;
+    position: relative;
+  }
+  .hero-sub {
+    color: #888;
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 38px;
+    max-width: 440px;
+  }
+  .hero-ctas { display: flex; gap: 14px; }
+  .btn-primary {
+    background: var(--red);
+    color: white; border: none;
+    padding: 14px 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; border-radius: 4px;
+    transition: all 0.2s; letter-spacing: 0.3px;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid #333;
+    padding: 14px 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: #666; }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 44px;
+    padding-top: 36px;
+    border-top: 1px solid #222;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--red); }
+  .stat-label { font-size: 11px; color: #666; margin-top: 3px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* HERO CARDS */
+  .hero-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .hcard {
+    background: var(--black-3);
+    border: 1px solid #2A2A2A;
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .hcard:hover { border-color: var(--red); transform: translateY(-2px); }
+  .hcard.tall { grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; }
+  .hcard-img {
+    background: #1A1A1A;
+    border-radius: 6px;
+    height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin-bottom: 14px;
+    border: 1px solid #222;
+  }
+  .hcard.tall .hcard-img { height: 150px; }
+  .hcard-tag {
+    background: var(--red);
+    color: white; font-size: 9px;
+    font-weight: 700; padding: 3px 8px;
+    border-radius: 3px; text-transform: uppercase;
+    letter-spacing: 1px; display: inline-block;
+    margin-bottom: 10px;
+  }
+  .hcard-tag.green { background: #1E8449; }
+  .hcard-name { color: var(--white); font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
+  .hcard-ref { color: #555; font-size: 11px; letter-spacing: 1px; }
+  .hcard-price { color: var(--red); font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-top: 10px; }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--black-2);
+    border-top: 1px solid #2A2A2A;
+    border-bottom: 1px solid #2A2A2A;
+    padding: 16px 60px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 10px;
+    color: #777; font-size: 12.5px; font-weight: 500;
+  }
+  .trust-icon {
+    width: 32px; height: 32px;
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* CATEGORIES */
+  .cat-strip {
+    background: var(--white);
+    padding: 32px 60px;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+  .cat-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gray-dark);
+    margin-bottom: 18px;
+  }
+  .cat-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cat-pill {
+    padding: 9px 18px;
+    border: 1.5px solid var(--gray-mid);
+    border-radius: 3px;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    color: var(--black); display: flex; align-items: center; gap: 7px;
+  }
+  .cat-pill:hover { border-color: var(--black); background: var(--black); color: white; }
+  .cat-pill.active { border-color: var(--red); background: var(--red); color: white; }
+
+  /* SHOP */
+  .shop-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--white);
+    border-right: 1px solid var(--gray-mid);
+    padding: 28px 22px;
+    min-height: 900px;
+  }
+  .sidebar-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gray-dark);
+    margin-bottom: 12px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+  .sidebar-section { margin-bottom: 28px; }
+  .filter-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 0; cursor: pointer; font-size: 13.5px; color: var(--black);
+    transition: color 0.2s;
+  }
+  .filter-item:hover { color: var(--red); }
+  .filter-item input[type="checkbox"] { accent-color: var(--red); width: 15px; height: 15px; }
+  .filter-count {
+    font-size: 11px; color: var(--gray-dark);
+    background: var(--gray-light); padding: 2px 7px; border-radius: 10px;
+  }
+  .price-range { display: flex; gap: 8px; margin-top: 10px; }
+  .price-range input {
+    flex: 1; padding: 8px 10px; border: 1.5px solid var(--gray-mid);
+    border-radius: 4px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--black); outline: none;
+  }
+  .price-range input:focus { border-color: var(--red); }
+
+  /* PRODUCTS */
+  .products-area { padding: 26px 36px; background: var(--off-white); }
+  .products-toolbar {
+    display: flex; align-items: center;
+    justify-content: space-between; margin-bottom: 22px;
+  }
+  .results-info { font-size: 13px; color: var(--gray-dark); }
+  .results-info strong { color: var(--black); }
+  .toolbar-right { display: flex; gap: 10px; align-items: center; }
+  .sort-select {
+    padding: 9px 14px; border: 1.5px solid var(--gray-mid);
+    border-radius: 4px; background: white;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--black); cursor: pointer; outline: none;
+  }
+  .view-toggle { display: flex; gap: 4px; }
+  .view-btn {
+    width: 36px; height: 36px; border: 1.5px solid var(--gray-mid);
+    background: white; border-radius: 4px; display: flex;
+    align-items: center; justify-content: center; cursor: pointer;
+    font-size: 14px; transition: all 0.2s;
+  }
+  .view-btn.active { background: var(--black); border-color: var(--black); color: white; }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: 6px;
+    border: 1px solid var(--gray-mid);
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+  }
+  .product-card:hover {
+    box-shadow: 0 6px 30px rgba(0,0,0,0.10);
+    transform: translateY(-3px);
+    border-color: #CCC;
+  }
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; padding: 4px 10px;
+    border-radius: 3px; z-index: 2;
+  }
+  .badge-new { background: var(--black); color: white; }
+  .badge-offer { background: var(--red); color: white; }
+  .badge-top { background: var(--gray-light); color: var(--black); border: 1px solid var(--gray-mid); }
+  .product-fav {
+    position: absolute; top: 10px; right: 10px;
+    width: 30px; height: 30px; background: white;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 2;
+    cursor: pointer; opacity: 0; transition: opacity 0.2s;
+  }
+  .product-card:hover .product-fav { opacity: 1; }
+  .product-img {
+    background: var(--gray-light);
+    height: 180px; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 52px; border-bottom: 1px solid var(--gray-mid);
+  }
+  .product-info { padding: 16px; }
+  .product-ref { font-size: 10px; color: var(--gray-dark); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .product-name {
+    font-size: 14px; font-weight: 500; color: var(--black);
+    margin-bottom: 5px; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .product-brand { font-size: 12px; color: var(--gray-dark); margin-bottom: 12px; }
+  .product-footer {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding-top: 12px; border-top: 1px solid var(--gray-mid);
+  }
+  .product-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--black); }
+  .price-old { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--gray-dark); text-decoration: line-through; display: block; font-weight: 400; }
+  .price-red { color: var(--red); }
+  .price-unit { font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--gray-dark); font-weight: 400; }
+  .add-to-cart {
+    background: var(--black); color: white; border: none;
+    width: 36px; height: 36px; border-radius: 4px;
+    cursor: pointer; font-size: 18px; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0; font-weight: 300;
+  }
+  .add-to-cart:hover { background: var(--red); }
+
+  /* PAGINATION */
+  .pagination {
+    display: flex; justify-content: center;
+    gap: 6px; padding: 36px 36px;
+  }
+  .page-btn {
+    width: 38px; height: 38px; border: 1.5px solid var(--gray-mid);
+    background: white; border-radius: 4px; display: flex;
+    align-items: center; justify-content: center;
+    cursor: pointer; font-size: 13px; font-weight: 500;
+    color: var(--black); transition: all 0.2s;
+  }
+  .page-btn:hover, .page-btn.active { background: var(--black); color: white; border-color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: #666;
+    padding: 60px;
+    border-top: 3px solid var(--red);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+  .footer-brand-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; color: white; font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .footer-brand-sub { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+  .footer-brand p { font-size: 13.5px; line-height: 1.7; max-width: 280px; }
+  .footer-col h4 {
+    color: white; font-size: 10px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 20px;
+    position: relative; padding-bottom: 12px;
+  }
+  .footer-col h4::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 24px; height: 2px; background: var(--red);
+  }
+  .footer-col a {
+    display: block; color: #555; font-size: 13.5px;
+    margin-bottom: 10px; text-decoration: none; transition: color 0.2s; cursor: pointer;
+  }
+  .footer-col a:hover { color: white; }
+  .footer-bottom {
+    padding-top: 28px;
+    border-top: 1px solid #1E1E1E;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12.5px;
+  }
+  .footer-cards { display: flex; gap: 8px; }
+  .payment-card {
+    background: #1C1C1C; border: 1px solid #2A2A2A;
+    border-radius: 4px; padding: 4px 10px;
+    font-size: 11px; font-weight: 700; color: #AAA; letter-spacing: 0.5px;
+  }
+
+  /* MOCKUP BADGE */
+  .mockup-label {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--red); color: white;
+    padding: 10px 18px; border-radius: 20px;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.5);
+    z-index: 1000;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>📞 Atención exclusiva a profesionales: 900 123 456 · Lun–Vie 9:00–18:00</span>
+  <span>🚚 Envío gratuito +150€ · 📦 Entrega 24/48h en península</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-area">
+    <div class="logo-icon"></div>
+    <div class="logo-text">
+      <h1>dentix</h1>
+      <span>Productos Dentales, S.L.</span>
+    </div>
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Busca por nombre, referencia o marca...">
+    <button>🔍</button>
+  </div>
+  <div class="header-actions">
+    <a class="header-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Mi cuenta
+    </a>
+    <a class="header-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      Pedidos
+    </a>
+    <a class="header-icon cart-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cesta
+    </a>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-item active">Instrumental Quirúrgico</div>
+  <div class="nav-item">Endodoncia</div>
+  <div class="nav-item">Implantología</div>
+  <div class="nav-item">Ortodoncia</div>
+  <div class="nav-item">Material Clínico</div>
+  <div class="nav-item">Esterilización</div>
+  <div class="nav-item">Equipamiento</div>
+  <div class="nav-item">Radiología</div>
+  <div class="nav-promo">🔥 Ofertas</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">Distribución Profesional · +25.000 referencias</div>
+    </div>
+    <h1 class="hero-title">Instrumental<br>dental de <em>alta<br>precisión</em></h1>
+    <p class="hero-sub">Catálogo completo de instrumental odontológico para clínicas y profesionales del sector. Stock sincronizado en tiempo real, entrega garantizada en 24/48h.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary">Explorar catálogo</button>
+      <button class="btn-outline">Ver novedades →</button>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">25<span>K+</span></div>
+        <div class="stat-label">Referencias</div>
+      </div>
+      <div>
+        <div class="stat-num">48<span>h</span></div>
+        <div class="stat-label">Entrega máx.</div>
+      </div>
+      <div>
+        <div class="stat-num">20<span>+</span></div>
+        <div class="stat-label">Años sector</div>
+      </div>
+      <div>
+        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-label">Satisfacción</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cards">
+    <div class="hcard tall">
+      <div>
+        <div class="hcard-tag green">Nuevo</div>
+        <div class="hcard-img">🔬</div>
+        <div class="hcard-name">Kit Implantología Premium Pro Titanio</div>
+        <div class="hcard-ref">REF. DX-IMP-2400</div>
+      </div>
+      <div class="hcard-price">284,50€</div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-tag">-22%</div>
+      <div class="hcard-img">⚙️</div>
+      <div class="hcard-name">Turbina Alta Velocidad LED</div>
+      <div class="hcard-price">189,00€</div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-img">🦷</div>
+      <div class="hcard-name">Set Espejos Diagnóstico</div>
+      <div class="hcard-price">24,90€</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-icon">🔒</div> Solo para profesionales</div>
+  <div class="trust-item"><div class="trust-icon">🚚</div> Envío gratis +150€</div>
+  <div class="trust-item"><div class="trust-icon">↩️</div> Devolución 30 días</div>
+  <div class="trust-item"><div class="trust-icon">📞</div> Soporte especializado</div>
+  <div class="trust-item"><div class="trust-icon">🔄</div> Stock en tiempo real</div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="cat-strip">
+  <div class="cat-label">Navegar por categoría</div>
+  <div class="cat-grid">
+    <div class="cat-pill active">⚡ Todo el catálogo</div>
+    <div class="cat-pill">🔬 Implantología</div>
+    <div class="cat-pill">🦷 Endodoncia</div>
+    <div class="cat-pill">📐 Ortodoncia</div>
+    <div class="cat-pill">✂️ Cirugía oral</div>
+    <div class="cat-pill">💧 Esterilización</div>
+    <div class="cat-pill">📡 Radiología digital</div>
+    <div class="cat-pill">🧰 Equipamiento clínica</div>
+  </div>
+</div>
+
+<!-- SHOP LAYOUT -->
+<div class="shop-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Subcategoría</div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" checked> Pinzas y fórceps</label><span class="filter-count">3.420</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Espejos diagnóstico</label><span class="filter-count">1.840</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Curetas y raspadores</label><span class="filter-count">2.110</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Instrumental endodoncia</label><span class="filter-count">4.230</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Kits implantología</label><span class="filter-count">980</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Precio (€)</div>
+      <div class="price-range">
+        <input type="number" placeholder="Mín." value="0">
+        <input type="number" placeholder="Máx." value="500">
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Marca</div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" checked> Hu-Friedy</label><span class="filter-count">2.140</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> NSK</label><span class="filter-count">1.280</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Straumann</label><span class="filter-count">760</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Dentsply Sirona</label><span class="filter-count">2.840</span></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> KaVo</label><span class="filter-count">940</span></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Disponibilidad</div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox" checked> En stock</label></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> Bajo pedido</label></div>
+      <div class="filter-item"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input type="checkbox"> En oferta</label></div>
+    </div>
+  </aside>
+
+  <!-- PRODUCTS AREA -->
+  <div>
+    <div class="products-area">
+      <div class="products-toolbar">
+        <div class="results-info">Mostrando <strong>1–12</strong> de <strong>24.842 referencias</strong></div>
+        <div class="toolbar-right">
+          <select class="sort-select">
+            <option>Relevancia</option>
+            <option>Precio: menor a mayor</option>
+            <option>Precio: mayor a menor</option>
+            <option>Novedades</option>
+            <option>Más vendidos</option>
+          </select>
+          <div class="view-toggle">
+            <div class="view-btn active">⊞</div>
+            <div class="view-btn">☰</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-grid">
+
+        <div class="product-card">
+          <span class="product-badge badge-top">Más vendido</span>
+          <span class="product-fav">♡</span>
+          <div class="product-img">🔩</div>
+          <div class="product-info">
+            <div class="product-ref">REF. HF-4240</div>
+            <div class="product-name">Pinza Allis Hemostática 18cm Acero Inoxidable</div>
+            <div class="product-brand">Hu-Friedy · Instrumental Quirúrgico</div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">38,50€</span>
+                <span class="price-red">29,90€</span> <span class="price-unit">/ ud</span>
+              </div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-badge badge-new">Nuevo</span>
+          <span class="product-fav">♡</span>
+          <div class="product-img">⚙️</div>
+          <div class="product-info">
+            <div class="product-ref">REF. NSK-P900</div>
+            <div class="product-name">Turbina Air Rotor Alta Velocidad con Luz LED</div>
+            <div class="product-brand">NSK · Equipamiento Clínico</div>
+            <div class="product-footer">
+              <div class="product-price">189,00€ <span class="price-unit">/ ud</span></div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-badge badge-offer">-22%</span>
+          <span class="product-fav">♡</span>
+          <div class="product-img">🔬</div>
+          <div class="product-info">
+            <div class="product-ref">REF. STR-BL-01</div>
+            <div class="product-name">Sistema de Implantes Bone Level RC Ø3.3mm</div>
+            <div class="product-brand">Straumann · Implantología</div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="price-old">340,00€</span>
+                <span class="price-red">265,00€</span> <span class="price-unit">/ ud</span>
+              </div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-fav">♡</span>
+          <div class="product-img">🦷</div>
+          <div class="product-info">
+            <div class="product-ref">REF. DS-PROTAPER</div>
+            <div class="product-name">Limas ProTaper Gold Rotatorias Endodoncia F1-F3</div>
+            <div class="product-brand">Dentsply Sirona · Endodoncia</div>
+            <div class="product-footer">
+              <div class="product-price">48,50€ <span class="price-unit">/ caja 6ud</span></div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-badge badge-new">Destacado</span>
+          <span class="product-fav">♡</span>
+          <div class="product-img">🔭</div>
+          <div class="product-info">
+            <div class="product-ref">REF. KV-OPTN</div>
+            <div class="product-name">Microscopio Dental de Operación Óptico 20x</div>
+            <div class="product-brand">KaVo · Equipamiento</div>
+            <div class="product-footer">
+              <div class="product-price">4.200,00€ <span class="price-unit">/ ud</span></div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-fav">♡</span>
+          <div class="product-img">✨</div>
+          <div class="product-info">
+            <div class="product-ref">REF. HF-EM2</div>
+            <div class="product-name">Espejo de Exploración Plano N.5 Mango Octogrip</div>
+            <div class="product-brand">Hu-Friedy · Diagnóstico</div>
+            <div class="product-footer">
+              <div class="product-price">14,20€ <span class="price-unit">/ ud</span></div>
+              <button class="add-to-cart">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pagination">
+      <div class="page-btn">‹</div>
+      <div class="page-btn active">1</div>
+      <div class="page-btn">2</div>
+      <div class="page-btn">3</div>
+      <div class="page-btn">···</div>
+      <div class="page-btn">2.071</div>
+      <div class="page-btn">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">dentix</div>
+      <div class="footer-brand-sub">Productos Dentales, S.L.</div>
+      <p>Distribuidores especializados en instrumental y material odontológico profesional. Más de 25.000 referencias para clínicas, hospitales y profesionales del sector dental en España.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <a>Catálogo completo</a>
+      <a>Novedades</a>
+      <a>Ofertas</a>
+      <a>Marcas</a>
+      <a>Acceso profesional</a>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <a>Cómo pedir</a>
+      <a>Envíos y devoluciones</a>
+      <a>Garantías</a>
+      <a>Contacto</a>
+      <a>FAQs</a>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a>Quiénes somos</a>
+      <a>Acceso distribuidores</a>
+      <a>Aviso legal</a>
+      <a>Privacidad y cookies</a>
+      <a>Condiciones de venta</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Dentix Productos Dentales, S.L. — Todos los derechos reservados</span>
+    <div class="footer-cards">
+      <span class="payment-card">VISA</span>
+      <span class="payment-card">MC</span>
+      <span class="payment-card">GETNET</span>
+      <span class="payment-card">PAYPAL</span>
+      <span class="payment-card">BIZUM</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mockup-label">🎨 Mockup Dentix v2.0</div>
+
+</body>
+</html>

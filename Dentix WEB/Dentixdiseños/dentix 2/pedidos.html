@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis pedidos — Dentix Productos Dentales</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/dentix.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:20px">
+    <span>📞 Atención profesional: <a href="contacto.html">900 123 456</a></span>
+    <span style="color:rgba(174,172,170,0.4)">|</span>
+    <span>Lunes–Viernes · 9h–18h</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-pill"><span class="dot"></span>Stock en tiempo real · SAGE 50</div>
+    <span>🚚 Envío gratuito +150€ · 24/48h</span>
+    <span>🔒 Acceso exclusivo B2B</span>
+  </div>
+</div>
+
+<header>
+  <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">
+    <svg class="logo-svg" width="56" height="56" viewBox="0 0 44 44" fill="none">
+      <circle cx="20" cy="22" r="18" fill="#1A1A1A"/>
+      <circle cx="26" cy="16" r="12" fill="#2D2D2D"/>
+      <circle cx="9"  cy="32" r="7"  fill="#C0392B"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">dentix</span>
+      <div class="logo-rule"></div>
+      <div class="logo-rule2"></div>
+      <span class="logo-sub">Productos dentales, S.L.</span>
+    </div>
+  </div>
+  <div class="search-block">
+    <div class="search-outer">
+      <input type="text" placeholder="Buscar por nombre, referencia o SKU…">
+      <button class="search-btn">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Buscar
+      </button>
+    </div>
+    <div class="search-hint" id="searchHint">
+      <span class="search-hint-label">Búsquedas frecuentes</span>
+      <span class="search-tag">Lima Endodoncia</span>
+      <span class="search-tag">Implante Straumann</span>
+      <span class="search-tag">Turbina NSK</span>
+      <span class="search-tag">Composite 3M</span>
+      <span class="search-tag">Pinza Hu-Friedy</span>
+    </div>
+  </div>
+  <div class="hicons">
+    <a class="hicon" href="mi-cuenta.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Mi cuenta
+    </a>
+    <a class="hicon" href="pedidos.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      Pedidos
+    </a>
+    <a class="hicon" href="carrito.html">
+      <div class="badge">3</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cesta
+    </a>
+    <div class="header-divider"></div>
+    <a class="btn-access" href="login.html">Área privada →</a>
+  </div>
+</header>
+<nav>
+  <a class="nav-item" href="catalogo.html">Instrumental</a>
+  <a class="nav-item" href="catalogo.html">Endodoncia</a>
+  <a class="nav-item" href="catalogo.html">Ortodoncia</a>
+  <a class="nav-item" href="catalogo.html">Implantología</a>
+  <a class="nav-item" href="catalogo.html">Material Clínico</a>
+  <a class="nav-item" href="catalogo.html">Esterilización</a>
+  <a class="nav-item" href="catalogo.html">Equipamiento</a>
+  <a class="nav-item" href="catalogo.html">Radiología</a>
+  <a class="nav-item" href="marcas.html">Marcas</a>
+  <div class="nav-sep"></div>
+  <div class="nav-end">
+    <a class="nav-special" href="ofertas.html">🔥 Ofertas del mes</a>
+  </div>
+</nav>
+
+
+<div class="page-hero">
+  <div class="page-hero-tag">Mis pedidos</div>
+  <h1>Historial completo de pedidos B2B</h1>
+  
+</div>
+
+<div style="padding:32px 60px;background:var(--cream)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap">
+    <input type="text" placeholder="Buscar pedido, referencia o producto…" style="flex:1;max-width:380px;height:40px;padding:0 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;outline:none">
+    <select style="height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:white">
+      <option>Todos los estados</option>
+      <option>Enviado</option>
+      <option>Entregado</option>
+      <option>Pendiente</option>
+    </select>
+    <select style="height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:white">
+      <option>Último año</option>
+      <option>Últimos 6 meses</option>
+      <option>Este mes</option>
+    </select>
+  </div>
+  <div class="recent-orders">
+    <div class="recent-orders-head">
+      <div style="font-size:15px;font-weight:700">7 pedidos</div>
+      <button style="font-size:12px;padding:7px 14px;border:1px solid var(--border);border-radius:6px;background:white;cursor:pointer">📥 Exportar CSV</button>
+    </div>
+    
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2026-004821</div>
+  <div style="font-size:12px;color:var(--gray-mid)">12/03/2026 · 3 productos</div>
+  <span class="order-status status-enviado">Enviado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">SEUR 1Z999...</div>
+  <div style="font-size:14px;font-weight:700">637,31 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2026-004790</div>
+  <div style="font-size:12px;color:var(--gray-mid)">08/03/2026 · 1 producto</div>
+  <span class="order-status status-entregado">Entregado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">Entregado 10/03</div>
+  <div style="font-size:14px;font-weight:700">1.240,00 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2026-004755</div>
+  <div style="font-size:12px;color:var(--gray-mid)">28/02/2026 · 2 productos</div>
+  <span class="order-status status-entregado">Entregado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">Entregado 02/03</div>
+  <div style="font-size:14px;font-weight:700">89,50 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2026-004712</div>
+  <div style="font-size:12px;color:var(--gray-mid)">18/02/2026 · 5 productos</div>
+  <span class="order-status status-entregado">Entregado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">Entregado 21/02</div>
+  <div style="font-size:14px;font-weight:700">2.480,00 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2026-004680</div>
+  <div style="font-size:12px;color:var(--gray-mid)">05/02/2026 · 4 productos</div>
+  <span class="order-status status-entregado">Entregado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">Entregado 08/02</div>
+  <div style="font-size:14px;font-weight:700">312,60 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2026-004612</div>
+  <div style="font-size:12px;color:var(--gray-mid)">22/01/2026 · 2 productos</div>
+  <span class="order-status status-entregado">Entregado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">Entregado 25/01</div>
+  <div style="font-size:14px;font-weight:700">98,40 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+<div class="order-row" onclick="location.href='pedido-detalle.html'" style="grid-template-columns:auto 1fr auto auto auto auto">
+  <div style="font-size:14px;font-weight:700;color:var(--ink)">#DX-2025-004598</div>
+  <div style="font-size:12px;color:var(--gray-mid)">15/01/2026 · 3 productos</div>
+  <span class="order-status status-entregado">Entregado</span>
+  <div style="font-size:12px;color:var(--gray-mid)">Entregado 18/01</div>
+  <div style="font-size:14px;font-weight:700">540,00 €</div>
+  <div style="display:flex;gap:6px">
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Factura</button>
+    <button style="font-size:11px;padding:5px 10px;border:1px solid var(--border);border-radius:5px;background:white;cursor:pointer">Repetir</button>
+  </div>
+</div>
+  </div>
+  <a href="mi-cuenta.html" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--gray-mid)">← Volver a Mi cuenta</a>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <h3>dentix</h3>
+      <p>Distribuidores de instrumental y material odontológico profesional. Más de 10.000 referencias para clínicas dentales y profesionales del sector en España.</p>
+    </div>
+    <div class="fcol">
+      <h4>Tienda</h4>
+      <a href="catalogo.html">Catálogo completo</a>
+      <a href="catalogo.html">Novedades</a>
+      <a href="ofertas.html">Ofertas del mes</a>
+      <a href="marcas.html">Marcas</a>
+      <a href="login.html">Acceso profesional</a>
+    </div>
+    <div class="fcol">
+      <h4>Ayuda</h4>
+      <a href="contacto.html">Cómo realizar un pedido</a>
+      <a href="condiciones.html">Envíos y plazos</a>
+      <a href="devoluciones.html">Devoluciones</a>
+      <a href="condiciones.html">Garantías</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="fcol">
+      <h4>Empresa</h4>
+      <a href="contacto.html">Quiénes somos</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="cookies.html">Política de cookies</a>
+      <a href="condiciones.html">Condiciones generales</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Dentix Productos Dentales, S.L. · CIF B-85937787 · Madrid</span>
+    <div class="fpay">
+      <span class="fpay-card">VISA</span>
+      <span class="fpay-card">MASTERCARD</span>
+      <span class="fpay-card">GETNET</span>
+      <span class="fpay-card">STRIPE</span>
+      <span class="fpay-card">BIZUM</span>
+      <span class="fpay-card">KLARNA</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:var(--ink);color:var(--on-dark-mid);padding:16px 60px;
+  align-items:center;justify-content:space-between;gap:20px;font-size:13px;">
+  <span>🍪 Usamos cookies propias y de terceros para mejorar tu experiencia y análisis estadístico.
+  <a href="cookies.html" style="color:var(--on-dark);text-decoration:underline">Más información</a></span>
+  <div style="display:flex;gap:10px;flex-shrink:0">
+    <a href="cookies.html" style="padding:8px 16px;border:1px solid rgba(255,255,255,0.25);border-radius:6px;font-size:12px;color:var(--on-dark-mid)">Gestionar</a>
+    <button id="cookieAccept" style="padding:8px 20px;background:var(--red);color:white;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">Aceptar todas</button>
+  </div>
+</div>
+<script src="assets/dentix.js"></script>
+
+</body>
+</html>

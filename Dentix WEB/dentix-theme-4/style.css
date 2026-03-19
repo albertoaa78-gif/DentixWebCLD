@@ -1,0 +1,19 @@
+/*
+Theme Name:  Dentix
+Theme URI:   https://www.dentix.es
+Author:      Dentix Productos Dentales, S.L.
+Author URI:  https://www.dentix.es
+Description: Tema personalizado para la tienda B2B de instrumental odontológico Dentix. Diseñado para WooCommerce con integración SAGE 50 Cloud vía Conecta HUB.
+Version:     1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.1
+WC requires at least: 8.0
+WC tested up to: 9.0
+License:     Propietario — Dentix Productos Dentales, S.L.
+Text Domain: dentix
+*/
+
+/* Este archivo solo contiene la cabecera del tema WordPress.
+   Todos los estilos están en assets/css/dentix.css
+   y se cargan mediante functions.php */

@@ -1,0 +1,22 @@
+═══════════════════════════════════════════════════════
+ IMÁGENES DEL CARRUSEL — Dentix Theme
+═══════════════════════════════════════════════════════
+
+Sube aquí las 5 fotos del carrusel de la homepage.
+
+NOMBRES EXACTOS requeridos:
+  image1.jpeg  →  Slide 1 (clínica / general)
+  image2.jpeg  →  Slide 2 (instrumental quirúrgico)
+  image3.jpeg  →  Slide 3 (implantología)
+  image4.jpeg  →  Slide 4 (radiología / equipamiento)
+  image5.jpeg  →  Slide 5 (material clínico)
+
+TAMAÑO recomendado: 1400 × 900 px mínimo
+FORMATO: JPEG (también acepta .jpg, .png si cambias el nombre)
+
+RUTA en el servidor:
+  /wp-content/themes/dentix-theme/assets/images/
+
+Acceso por FTP o desde wp-admin → Apariencia → Editor de archivos
+(si está habilitado en tu hosting)
+═══════════════════════════════════════════════════════

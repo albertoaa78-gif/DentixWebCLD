@@ -1,96 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instrumental Odontológico Profesional B2B — Dentix Productos Dentales</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/dentix.css">
-
-</head>
-<body>
-
-<!-- ═══ TOPBAR ══════════════════════════════════════════════════ -->
-<div class="topbar">
-  <div style="display:flex;align-items:center;gap:20px">
-    <span>📞 Atención profesional: <a href="tel:900123456">900 123 456</a></span>
-    <span style="color:rgba(174,172,170,0.4)">|</span>
-    <span>Lunes–Viernes · 9h–18h</span>
-  </div>
-  <div class="topbar-right">
-    <div class="topbar-pill"><span class="dot"></span>Stock en tiempo real · SAGE 50</div>
-    <span>🚚 Envío gratuito +150€ · Entrega 24/48h</span>
-    <span>🔒 Acceso exclusivo B2B</span>
-  </div>
-</div>
-
-<!-- ═══ HEADER ═══════════════════════════════════════════════════ -->
-<header>
-  <a href="index.html" class="logo">
-    <svg class="logo-svg" width="56" height="56" viewBox="0 0 44 44" fill="none">
-      <circle cx="20" cy="22" r="18" fill="#1A1A1A"/>
-      <circle cx="26" cy="16" r="12" fill="#2D2D2D"/>
-      <circle cx="9"  cy="32" r="7"  fill="#C0392B"/>
-    </svg>
-    <div class="logo-text">
-      <span class="logo-name">dentix</span>
-      <div class="logo-rule"></div>
-      <div class="logo-rule2"></div>
-      <span class="logo-sub">Productos dentales, S.L.</span>
-    </div>
-  </a>
-  <div class="search-block">
-    <div class="search-outer">
-      <input type="text" placeholder="Buscar por nombre, referencia o SKU…">
-      <button class="search-btn">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        Buscar
-      </button>
-    </div>
-    <div class="search-hint" id="searchHint">
-      <span class="search-hint-label">Búsquedas frecuentes</span>
-      <span class="search-tag">Lima Endodoncia</span>
-      <span class="search-tag">Implante Straumann</span>
-      <span class="search-tag">Turbina NSK</span>
-      <span class="search-tag">Composite 3M</span>
-      <span class="search-tag">Pinza Hu-Friedy</span>
-    </div>
-  </div>
-  <div class="hicons">
-    <a href="mi-cuenta.html" class="hicon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Mi cuenta
-    </a>
-    <a href="mi-cuenta.html#pedidos" class="hicon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
-      Pedidos
-    </a>
-    <a href="carrito.html" class="hicon">
-      <div class="badge" id="cartBadge">3</div>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-      Cesta
-    </a>
-    <div class="header-divider"></div>
-    <a href="login.html" class="btn-access">Área privada →</a>
-  </div>
-</header>
-
-<!-- ═══ NAV ══════════════════════════════════════════════════════ -->
-<nav>
-  <a href="tienda.html?cat=instrumental" class="nav-item" data-page="instrumental">Instrumental</a>
-  <a href="tienda.html?cat=endodoncia"   class="nav-item" data-page="endodoncia">Endodoncia</a>
-  <a href="tienda.html?cat=ortodoncia"   class="nav-item" data-page="ortodoncia">Ortodoncia</a>
-  <a href="tienda.html?cat=implantologia" class="nav-item" data-page="implantologia">Implantología</a>
-  <a href="tienda.html?cat=material"     class="nav-item" data-page="material">Material Clínico</a>
-  <div class="nav-sep"></div>
-  <a href="tienda.html?cat=esterilizacion" class="nav-item" data-page="esterilizacion">Esterilización</a>
-  <a href="tienda.html?cat=equipamiento" class="nav-item" data-page="equipamiento">Equipamiento</a>
-  <a href="tienda.html?cat=radiologia"   class="nav-item" data-page="radiologia">Radiología</a>
-  <a href="tienda.html?cat=marcas"       class="nav-item" data-page="marcas">Marcas</a>
-  <div class="nav-end">
-    <a href="tienda.html?cat=ofertas" class="nav-special">🔥 Ofertas del mes</a>
-  </div>
-</nav>
+<?php
+/**
+ * front-page.php — Homepage de Dentix
+ * Se muestra cuando "Página de inicio" está configurada en
+ * Ajustes → Lectura → Tu página de inicio muestra → Una página estática
+ */
+get_header();
+?>
 
 <!-- ═══ HERO con carrusel ════════════════════════════════════ -->
 <section class="hero">
@@ -823,220 +738,73 @@
 </div>
 
 <!-- ═══ FOOTER ═════════════════════════════════════════════════ -->
-<footer>
-  <div class="fgrid">
-    <div class="fbrand">
-      <h3>dentix</h3>
-      <p>Distribuidores de instrumental y material odontológico profesional. Más de 10.000 referencias para clínicas dentales y profesionales del sector.</p>
-    </div>
-    <div class="fcol">
-      <h4>Tienda</h4>
-      <a>Catálogo completo</a>
-      <a>Novedades</a>
-      <a>Ofertas</a>
-      <a>Marcas</a>
-      <a>Acceso profesional</a>
-    </div>
-    <div class="fcol">
-      <h4>Ayuda</h4>
-      <a>Cómo realizar un pedido</a>
-      <a>Envíos y plazos</a>
-      <a>Devoluciones</a>
-      <a>Garantías</a>
-      <a>Contacto</a>
-    </div>
-    <div class="fcol">
-      <h4>Empresa</h4>
-      <a>Quiénes somos</a>
-      <a>Aviso legal</a>
-      <a>Privacidad</a>
-      <a>Política de cookies</a>
-      <a>Condiciones generales</a>
-    </div>
-  </div>
-  <div class="fbot">
-    <span>© 2026 Dentix Productos Dentales, S.L. · CIF B-85937787 · Madrid</span>
-    <div class="fpay">
-      <span class="fpay-card">VISA</span>
-      <span class="fpay-card">MASTERCARD</span>
-      <span class="fpay-card">GETNET</span>
-      <span class="fpay-card">STRIPE</span>
-      <span class="fpay-card">BIZUM</span>
-      <span class="fpay-card">KLARNA</span>
-    </div>
-  </div>
-</footer>
-<div class="mockup-tag">🏠 Homepage</div>
 
-<script src="assets/js/dentix.js"></script>
-<script>
-// ══════════════════════════════════════════════════════════════════
-// CARRUSEL HERO
-// ──────────────────────────────────────────────────────────────────
-// Lógica de crossfade entre 5 slides con texto dinámico por slide.
-//
-// Flujo:
-//  1. startAuto() lanza setInterval cada 5.5s llamando a goTo(current+1)
-//  2. goTo(n) cambia classes .active en slides[] y dots[]
-//  3. updateText(n) hace fade del heroLeft y actualiza los textos
-//  4. mouseenter/mouseleave pausan/reanudan — solo tras el primer
-//     mousemove real (evita que el evento fantasma al cargar pare el auto)
-//  5. Clic en dot → stopAuto → goTo → startAuto
-// ══════════════════════════════════════════════════════════════════
-(function(){
-  const slides   = document.querySelectorAll('.hero-slide');
-  const dots     = document.querySelectorAll('.cdot');
-  const heroLeft = document.querySelector('.hero-left');
-  let current    = 0;
-  let timer      = null;
-
-  const slideData = [
-    {
-      tag:   'Instrumental Quirúrgico · Distribución oficial',
-      title: 'El instrumental<br>que tu clínica<br><em>merece.</em>',
-      sub:   'Precisión. Calidad. Garantía Profesional.',
-      desc:  'Más de <strong>10.000 referencias</strong> de instrumental odontológico profesional. Marcas líderes mundiales y entrega garantizada en <strong>24–48h</strong> para toda España.',
-      cta:   'Explorar catálogo'
-    },
-    {
-      tag:   'Equipamiento Clínico · NSK · KaVo · Dentsply',
-      title: 'Turbinas, piezas<br>de mano y<br><em>material fungible.</em>',
-      sub:   'Tecnología al servicio del profesional.',
-      desc:  'Toda la gama de <strong>equipamiento clínico</strong> de las marcas más exigentes. Stock permanente, recambios originales y soporte técnico especializado.',
-      cta:   'Ver equipamiento'
-    },
-    {
-      tag:   'Implantología · Straumann · Nobel Biocare',
-      title: 'Sistemas de<br>implantes para<br><em>cada caso clínico.</em>',
-      sub:   'Bone Level, Tissue Level, soluciones CAD/CAM.',
-      desc:  'Distribuidor oficial de los principales fabricantes de <strong>sistemas de implantes</strong>. Kits completos, componentes protésicos y material regenerativo.',
-      cta:   'Ver implantología'
-    },
-    {
-      tag:   'Radiología Digital · Diagnóstico · Tecnología',
-      title: 'Diagnóstico<br>digital de<br><em>última generación.</em>',
-      sub:   'Sensores, escáneres y software de imagen.',
-      desc:  'Equipos de <strong>radiología digital</strong> intraoral y panorámica, escáneres intraorales y soluciones CAD/CAM para el laboratorio moderno.',
-      cta:   'Ver radiología'
-    },
-    {
-      tag:   'Ortodoncia · Endodoncia · Material Clínico',
-      title: 'Todo lo que<br>necesita tu<br><em>clínica dental.</em>',
-      sub:   'Un solo proveedor. 10.000 referencias.',
-      desc:  'Desde <strong>brackets y arcos de ortodoncia</strong> hasta limas de endodoncia, composites y material de impresión. Todo sincronizado con tu pedido en tiempo real.',
-      cta:   'Ver catálogo completo'
+<!-- ═══ PRODUCTOS DESTACADOS (WooCommerce dinámico) ══════════ -->
+<?php
+$featured_products = wc_get_products([
+    'limit'    => 8,
+    'featured' => true,
+    'status'   => 'publish',
+    'orderby'  => 'date',
+    'order'    => 'DESC',
+]);
+if (!empty($featured_products)) :
+?>
+<section class="sec-featured">
+  <div class="sec-header">
+    <div class="sec-pre">Selección Dentix</div>
+    <h2 class="sec-title">Productos destacados</h2>
+  </div>
+  <div class="filter-pills">
+    <div class="pill on">Todos</div>
+    <?php
+    $shop_cats = get_terms(['taxonomy' => 'product_cat', 'number' => 6, 'hide_empty' => true]);
+    foreach ($shop_cats as $cat) {
+        printf('<div class="pill" data-cat="%s">%s</div>', esc_attr($cat->slug), esc_html($cat->name));
     }
-  ];
+    ?>
+  </div>
+  <div class="prod-grid">
+    <?php foreach ($featured_products as $product) :
+      $price = $product->get_price_html();
+      $sku   = $product->get_sku();
+      $brand_terms = wp_get_post_terms($product->get_id(), 'pa_marca');
+      $brand = !empty($brand_terms) && !is_wp_error($brand_terms) ? $brand_terms[0]->name : get_bloginfo('name');
+      $img   = get_the_post_thumbnail_url($product->get_id(), 'dentix-product-thumb');
+    ?>
+    <a href="<?php echo get_permalink($product->get_id()); ?>" class="prod-card">
+      <div class="prod-img">
+        <?php if ($img) : ?>
+          <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="lazy">
+        <?php else : ?>
+          <div class="prod-circle">
+            <svg class="prod-svg" viewBox="0 0 64 64" fill="none" stroke="var(--gray-mid)" stroke-width="1.5">
+              <rect x="16" y="20" width="32" height="24" rx="3"/>
+              <line x1="24" y1="28" x2="40" y2="28"/><line x1="24" y1="34" x2="32" y2="34"/>
+            </svg>
+          </div>
+        <?php endif; ?>
+        <button class="p-wish" aria-label="Favorito">♡</button>
+        <?php if ($product->is_on_sale()) echo '<span class="p-badge sale">Oferta</span>'; ?>
+        <?php if ($product->is_featured())  echo '<span class="p-badge new">Destacado</span>'; ?>
+      </div>
+      <div class="prod-body">
+        <div class="p-brand"><?php echo esc_html($brand); ?></div>
+        <div class="p-name"><?php echo esc_html($product->get_name()); ?></div>
+        <?php if ($sku) echo '<div class="p-ref">REF: ' . esc_html($sku) . '</div>'; ?>
+        <div class="p-footer">
+          <div class="p-price">
+            <span class="p-price-main"><?php echo $price; ?></span>
+          </div>
+          <button class="p-add"
+            data-product-id="<?php echo $product->get_id(); ?>"
+            aria-label="Añadir al carrito">+</button>
+        </div>
+      </div>
+    </a>
+    <?php endforeach; ?>
+  </div>
+</section>
+<?php endif; ?>
 
-  // Obtener referencias de texto
-  const elTag   = document.getElementById('slideTag');
-  const elTitle = document.getElementById('slideTitle');
-  const elSub   = document.getElementById('slideSubtitle');
-  const elDesc  = document.getElementById('slideDesc');
-  const elCta   = document.getElementById('slideCta1Text');
-
-  // updateText: hace fade del bloque de texto izquierdo y actualiza
-  // tag, título, subtítulo, descripción y CTA con el contenido del slide n
-  function updateText(n){
-    if(!heroLeft) return;
-    heroLeft.style.opacity = '0';
-    setTimeout(function(){
-      var d = slideData[n];
-      if(elTag)   elTag.textContent = d.tag;
-      if(elTitle) elTitle.innerHTML = d.title;
-      if(elSub)   elSub.textContent = d.sub;
-      if(elDesc)  elDesc.innerHTML  = d.desc;
-      if(elCta)   elCta.textContent = d.cta;
-      heroLeft.style.opacity = '1';
-    }, 450);
-  }
-
-  // goTo(n): activa el slide n desactivando el actual.
-  // Guard: si n === current no hace nada (evita flash innecesario)
-  function goTo(n){
-    var next = ((n % slides.length) + slides.length) % slides.length;
-    if(next === current) return;
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = next;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-    updateText(current);
-  }
-
-  // startAuto: limpia cualquier intervalo previo y lanza uno nuevo.
-  // Se llama también al salir del hover y al soltar un dot.
-  function startAuto(){
-    if(timer) clearInterval(timer);
-    timer = setInterval(function(){
-      goTo(current + 1);
-    }, 5500);
-  }
-  function stopAuto(){
-    if(timer){ clearInterval(timer); timer = null; }
-  }
-
-  // Clic en dots — para el auto, cambia slide, reanuda
-  dots.forEach(function(dot){
-    dot.addEventListener('click', function(){
-      stopAuto();
-      goTo(parseInt(dot.dataset.slide, 10));
-      startAuto();
-    });
-  });
-
-  // El carrusel corre siempre. Solo se interrumpe mientras el usuario
-  // mantiene pulsado el botón del ratón dentro del hero (mousedown),
-  // y reanuda en cuanto lo suelta (mouseup) o el cursor sale (mouseleave
-  // como seguridad por si suelta el botón fuera del hero).
-  var heroEl = document.querySelector('.hero');
-  if(heroEl){
-    heroEl.addEventListener('mousedown',  stopAuto);
-    heroEl.addEventListener('mouseup',    startAuto);
-    heroEl.addEventListener('mouseleave', startAuto); // seguridad: suelta fuera
-  }
-
-  // Arrancar directamente.
-  // El slide 0 ya tiene class "active" en el HTML, no lo tocamos.
-  startAuto();
-
-})();
-
-// ── BUSCADOR DROPDOWN ─────────────────────────────────────────
-const searchInput = document.querySelector('.search-outer input');
-const searchHint  = document.getElementById('searchHint');
-if(searchInput && searchHint){
-  searchInput.addEventListener('focus', () => searchHint.classList.add('open'));
-  document.addEventListener('click', (e) => {
-    if(!e.target.closest('.search-block')) searchHint.classList.remove('open');
-  });
-  // Click en un tag → rellena el input y cierra
-  searchHint.querySelectorAll('.search-tag').forEach(tag => {
-    tag.addEventListener('click', () => {
-      searchInput.value = tag.textContent;
-      searchHint.classList.remove('open');
-      searchInput.focus();
-    });
-  });
-}
-
-// Pills de filtro de productos
-document.querySelectorAll('.pill').forEach(p => {
-  p.addEventListener('click', () => {
-    document.querySelectorAll('.pill').forEach(x => x.classList.remove('on'));
-    p.classList.add('on');
-  });
-});
-
-// Botón wishlist toggle
-document.querySelectorAll('.p-wish').forEach(w => {
-  w.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isLiked = w.textContent === '♥';
-    w.textContent = isLiked ? '♡' : '♥';
-    w.style.color  = isLiked ? '' : '#C0392B';
-  });
-});
-</script>
-</body>
-</html>
+<?php get_footer(); ?>

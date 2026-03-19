@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ofertas del mes — Dentix Productos Dentales</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/dentix.css">
+
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:20px">
+    <span>📞 Atención profesional: <a href="contacto.html">900 123 456</a></span>
+    <span style="color:rgba(174,172,170,0.4)">|</span>
+    <span>Lunes–Viernes · 9h–18h</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-pill"><span class="dot"></span>Stock en tiempo real · SAGE 50</div>
+    <span>🚚 Envío gratuito +150€ · 24/48h</span>
+    <span>🔒 Acceso exclusivo B2B</span>
+  </div>
+</div>
+
+<header>
+  <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">
+    <svg class="logo-svg" width="56" height="56" viewBox="0 0 44 44" fill="none">
+      <circle cx="20" cy="22" r="18" fill="#1A1A1A"/>
+      <circle cx="26" cy="16" r="12" fill="#2D2D2D"/>
+      <circle cx="9"  cy="32" r="7"  fill="#C0392B"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">dentix</span>
+      <div class="logo-rule"></div>
+      <div class="logo-rule2"></div>
+      <span class="logo-sub">Productos dentales, S.L.</span>
+    </div>
+  </div>
+  <div class="search-block">
+    <div class="search-outer">
+      <input type="text" placeholder="Buscar por nombre, referencia o SKU…">
+      <button class="search-btn">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Buscar
+      </button>
+    </div>
+    <div class="search-hint" id="searchHint">
+      <span class="search-hint-label">Búsquedas frecuentes</span>
+      <span class="search-tag">Lima Endodoncia</span>
+      <span class="search-tag">Implante Straumann</span>
+      <span class="search-tag">Turbina NSK</span>
+      <span class="search-tag">Composite 3M</span>
+      <span class="search-tag">Pinza Hu-Friedy</span>
+    </div>
+  </div>
+  <div class="hicons">
+    <a class="hicon" href="mi-cuenta.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Mi cuenta
+    </a>
+    <a class="hicon" href="pedidos.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      Pedidos
+    </a>
+    <a class="hicon" href="carrito.html">
+      <div class="badge">3</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Cesta
+    </a>
+    <div class="header-divider"></div>
+    <a class="btn-access" href="login.html">Área privada →</a>
+  </div>
+</header>
+<nav>
+  <a class="nav-item" href="catalogo.html">Instrumental</a>
+  <a class="nav-item" href="catalogo.html">Endodoncia</a>
+  <a class="nav-item" href="catalogo.html">Ortodoncia</a>
+  <a class="nav-item" href="catalogo.html">Implantología</a>
+  <a class="nav-item" href="catalogo.html">Material Clínico</a>
+  <a class="nav-item" href="catalogo.html">Esterilización</a>
+  <a class="nav-item" href="catalogo.html">Equipamiento</a>
+  <a class="nav-item" href="catalogo.html">Radiología</a>
+  <a class="nav-item" href="marcas.html">Marcas</a>
+  <div class="nav-sep"></div>
+  <div class="nav-end">
+    <a class="nav-special" href="ofertas.html">🔥 Ofertas del mes</a>
+  </div>
+</nav>
+
+
+<div class="page-hero">
+  <div class="page-hero-tag">🔥 Ofertas del mes</div>
+  <h1>Promociones exclusivas para profesionales B2B · Marzo 2026</h1>
+  <p>Descuentos de hasta el 20% en marcas seleccionadas. Válido hasta el 31/03/2026.</p>
+</div>
+
+<div style="padding:40px 60px;background:var(--cream)">
+  <!-- Contador regresivo ficticio -->
+  <div style="background:var(--ink);border-radius:12px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--on-dark-low)">Tiempo restante de la promoción</div>
+      <div style="font-size:13px;color:var(--on-dark-mid);margin-top:4px">Las ofertas terminan el 31 de marzo de 2026</div>
+    </div>
+    <div style="display:flex;gap:16px">
+      <div style="text-align:center"><div style="font-size:28px;font-weight:700;color:white">18</div><div style="font-size:10px;color:var(--on-dark-low);letter-spacing:1px">DÍAS</div></div><div style="text-align:center"><div style="font-size:28px;font-weight:700;color:white">14</div><div style="font-size:10px;color:var(--on-dark-low);letter-spacing:1px">HORAS</div></div><div style="text-align:center"><div style="font-size:28px;font-weight:700;color:white">32</div><div style="font-size:10px;color:var(--on-dark-low);letter-spacing:1px">MIN</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+    <div style="font-size:16px;font-weight:700">8 productos en oferta</div>
+    <select style="height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:white">
+      <option>Mayor descuento primero</option>
+      <option>Precio: menor a mayor</option>
+      <option>Más vendidos</option>
+    </select>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+    
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−15%</div>
+    <div style="position:absolute;top:12px;right:12px;background:var(--ink);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px">Más vendido</div>
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">NSK</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Turbina Pana-Air Torque Plus</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. NSK-TU42</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">327,25 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">385,00 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−10%</div>
+    
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">KaVo</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Pieza de Mano Multiflex 500</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. KV-M500</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">801,00 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">890,00 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−20%</div>
+    <div style="position:absolute;top:12px;right:12px;background:var(--ink);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px">Nuevo</div>
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">Straumann</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Implante BL Roxolid 3.3mm</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. ST-BL-32</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">172,00 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">215,00 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−20%</div>
+    
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">Dentsply</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Lima ProTaper Wave 25mm</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. DS-PTW</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">30,90 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">38,60 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−15%</div>
+    <div style="position:absolute;top:12px;right:12px;background:var(--ink);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px">Stock</div>
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">Hu-Friedy</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Pinza Cotton Portapiezas 284</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. HF-2842</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">18,90 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">22,30 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−15%</div>
+    
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">3M ESPE</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Impregum Penta Doble Mezcla</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. 3M-Imp</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">76,40 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">89,90 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−16%</div>
+    
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">GC</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">Fuji II LC Cápsula Unidosis</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. GC-FU</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">4,90 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">5,80 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+<div style="background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s;cursor:pointer" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+  <div style="height:180px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;position:relative">
+    <svg width="72" height="72" viewBox="0 0 62 62" fill="none">
+  <rect width="62" height="62" rx="8" fill="#9A9898" fill-opacity="0.12"/>
+  <path d="M31 16v8M31 38v8M16 31h8M38 31h8" stroke="#9A9898" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="31" r="8" stroke="#9A9898" stroke-width="1.5"/>
+</svg>
+    <div style="position:absolute;top:12px;left:12px;background:var(--red);color:white;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px">−20%</div>
+    <div style="position:absolute;top:12px;right:12px;background:var(--ink);color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px">Kit</div>
+  </div>
+  <div style="padding:16px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:4px">Ivoclar</div>
+    <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.3">TetraCam Sistema Completo</div>
+    <div style="font-size:11px;color:var(--gray-mid);margin-bottom:12px">REF. IV-TE</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+      <span style="font-size:20px;font-weight:700;color:var(--ink)">992,00 €</span>
+      <span style="font-size:13px;color:var(--gray-mid);text-decoration:line-through">1.240,00 €</span>
+    </div>
+    <button style="width:100%;padding:9px;background:var(--ink);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--ink)'">Añadir a la cesta</button>
+  </div>
+</div>
+  </div>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <h3>dentix</h3>
+      <p>Distribuidores de instrumental y material odontológico profesional. Más de 10.000 referencias para clínicas dentales y profesionales del sector en España.</p>
+    </div>
+    <div class="fcol">
+      <h4>Tienda</h4>
+      <a href="catalogo.html">Catálogo completo</a>
+      <a href="catalogo.html">Novedades</a>
+      <a href="ofertas.html">Ofertas del mes</a>
+      <a href="marcas.html">Marcas</a>
+      <a href="login.html">Acceso profesional</a>
+    </div>
+    <div class="fcol">
+      <h4>Ayuda</h4>
+      <a href="contacto.html">Cómo realizar un pedido</a>
+      <a href="condiciones.html">Envíos y plazos</a>
+      <a href="devoluciones.html">Devoluciones</a>
+      <a href="condiciones.html">Garantías</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <div class="fcol">
+      <h4>Empresa</h4>
+      <a href="contacto.html">Quiénes somos</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="cookies.html">Política de cookies</a>
+      <a href="condiciones.html">Condiciones generales</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Dentix Productos Dentales, S.L. · CIF B-85937787 · Madrid</span>
+    <div class="fpay">
+      <span class="fpay-card">VISA</span>
+      <span class="fpay-card">MASTERCARD</span>
+      <span class="fpay-card">GETNET</span>
+      <span class="fpay-card">STRIPE</span>
+      <span class="fpay-card">BIZUM</span>
+      <span class="fpay-card">KLARNA</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Banner cookies -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:var(--ink);color:var(--on-dark-mid);padding:16px 60px;
+  align-items:center;justify-content:space-between;gap:20px;font-size:13px;">
+  <span>🍪 Usamos cookies propias y de terceros para mejorar tu experiencia y análisis estadístico.
+  <a href="cookies.html" style="color:var(--on-dark);text-decoration:underline">Más información</a></span>
+  <div style="display:flex;gap:10px;flex-shrink:0">
+    <a href="cookies.html" style="padding:8px 16px;border:1px solid rgba(255,255,255,0.25);border-radius:6px;font-size:12px;color:var(--on-dark-mid)">Gestionar</a>
+    <button id="cookieAccept" style="padding:8px 20px;background:var(--red);color:white;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer">Aceptar todas</button>
+  </div>
+</div>
+<script src="assets/dentix.js"></script>
+
+</body>
+</html>

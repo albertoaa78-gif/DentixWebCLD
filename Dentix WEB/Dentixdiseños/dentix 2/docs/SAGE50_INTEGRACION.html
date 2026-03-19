@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Integración SAGE 50 Cloud — Dentix</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/dentix.css">
+</head>
+<body>
+
+<!-- Header simplificado para docs -->
+<div style="background:var(--ink);padding:16px 60px;display:flex;align-items:center;gap:16px">
+  <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
+    <circle cx="20" cy="22" r="18" fill="#1A1A1A"/>
+    <circle cx="26" cy="16" r="12" fill="#2D2D2D"/>
+    <circle cx="9"  cy="32" r="7"  fill="#C0392B"/>
+  </svg>
+  <span style="font-size:22px;font-weight:300;letter-spacing:3px;color:white">dentix</span>
+  <span style="color:rgba(255,255,255,0.3)">/</span>
+  <span style="font-size:13px;color:var(--on-dark-mid)">Documentación técnica</span>
+  <a href="../index.html" style="margin-left:auto;font-size:12px;color:var(--on-dark-low)">← Volver a la web</a>
+</div>
+
+<!-- Hero SAGE -->
+<div class="sage-hero">
+  <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);padding:6px 14px;border-radius:20px;margin-bottom:20px">
+    <span style="width:8px;height:8px;border-radius:50%;background:#4CAF50;display:inline-block"></span>
+    <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4CAF50">Sistema activo · Sincronización en tiempo real</span>
+  </div>
+  <h1 style="font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:white;line-height:1.12;margin-bottom:16px">
+    Integración SAGE 50 Cloud<br><em style="font-weight:400;color:#A8C8E8">con WooCommerce vía Conecta HUB</em>
+  </h1>
+  <p style="font-size:15px;color:#8AA0BC;max-width:640px;line-height:1.75">
+    Guía técnica completa para configurar, mapear y mantener la sincronización bidireccional entre SAGE 50 Cloud (ERP maestro) y la tienda WooCommerce de Dentix.
+  </p>
+  <div style="display:flex;gap:16px;margin-top:24px;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 20px;text-align:center">
+      <div style="font-size:20px;font-weight:700;color:white">SAGE 50 Cloud</div>
+      <div style="font-size:11px;color:#8AA0BC;margin-top:2px">ERP maestro · Fuente de verdad</div>
+    </div>
+    <div style="padding:12px 20px;display:flex;align-items:center;color:#4CAF50;font-size:22px">→</div>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 20px;text-align:center">
+      <div style="font-size:20px;font-weight:700;color:white">Conecta HUB</div>
+      <div style="font-size:11px;color:#8AA0BC;margin-top:2px">Middleware · Conector certificado</div>
+    </div>
+    <div style="padding:12px 20px;display:flex;align-items:center;color:#4CAF50;font-size:22px">⇄</div>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 20px;text-align:center">
+      <div style="font-size:20px;font-weight:700;color:white">WooCommerce</div>
+      <div style="font-size:11px;color:#8AA0BC;margin-top:2px">Tienda online · dentix.es</div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:48px 60px;background:var(--cream)">
+
+  <!-- Tabla flujo de datos -->
+  <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:20px">Flujo de datos confirmado</h2>
+  <table class="field-map" style="margin-bottom:40px">
+    <thead>
+      <tr><th>Dirección</th><th>Datos sincronizados</th><th>Frecuencia</th><th>Estado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>SAGE 50 → WooCommerce</strong></td><td>SKU, precios, stock, imágenes, descripciones, categorías</td><td>Cada 15 min / webhook</td><td><span class="badge-ok">✓ Activo</span></td></tr>
+      <tr><td><strong>WooCommerce → SAGE 50</strong></td><td>Pedidos, albaranes, clientes, datos fiscales</td><td>Tiempo real (webhook)</td><td><span class="badge-ok">✓ Activo</span></td></tr>
+      <tr><td><strong>Pagos → SAGE 50</strong></td><td>Cobros, facturas, movimientos contables</td><td>Tiempo real</td><td><span class="badge-ok">✓ Activo</span></td></tr>
+      <tr><td><strong>SAGE 50 ← WooCommerce</strong> (bidireccional catálogo)</td><td>Descripciones enriquecidas, imágenes web</td><td>Manual / programado</td><td><span class="badge-warn">⚠ En estudio</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Pasos de configuración -->
+  <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:8px">Configuración paso a paso</h2>
+  <p style="color:var(--gray-mid);font-size:14px;margin-bottom:32px">Sigue estos pasos en orden. No empieces el siguiente hasta completar el anterior.</p>
+
+  <div class="sage-steps">
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Contratar y activar Conecta HUB</h3>
+        <p>Conecta HUB es el middleware certificado para SAGE 50 Cloud. Debes contratar el plan adecuado al volumen de Dentix (~10.000 SKUs).</p>
+        <div class="code-block">
+<span class="comment"># URLs del servicio</span>
+Panel de cliente:  https://app.conectahub.com
+Documentación:     https://docs.conectahub.com
+Soporte técnico:   soporte@conectahub.com
+
+<span class="comment"># Plan recomendado para Dentix</span>
+<span class="key">Plan</span>: <span class="val">Business (hasta 15.000 SKUs)</span>
+<span class="key">Precio</span>: <span class="val">~75€/mes</span>
+<span class="key">Sincronizaciones</span>: <span class="val">ilimitadas</span>
+        </div>
+        <p>Una vez contratado, accede al panel y crea un nuevo canal de integración: <strong>SAGE 50 Cloud ↔ WooCommerce</strong>.</p>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Instalar el plugin Conecta HUB en WooCommerce</h3>
+        <p>Desde el panel de WordPress:</p>
+        <div class="code-block">
+<span class="comment"># Ruta en WordPress</span>
+wp-admin → Plugins → Añadir nuevo → Buscar "Conecta HUB"
+
+<span class="comment"># O instalar manualmente</span>
+1. Descargar .zip desde app.conectahub.com/downloads
+2. wp-admin → Plugins → Subir plugin → Seleccionar .zip
+3. Activar plugin
+
+<span class="comment"># Versión mínima requerida</span>
+<span class="key">WooCommerce</span>: <span class="val">≥ 8.0</span>
+<span class="key">WordPress</span>:   <span class="val">≥ 6.4</span>
+<span class="key">PHP</span>:          <span class="val">≥ 8.1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Conectar SAGE 50 Cloud con Conecta HUB</h3>
+        <p>En SAGE 50 Cloud debes autorizar el acceso a la API. Ve a <strong>Herramientas → Integraciones → API REST</strong>.</p>
+        <div class="code-block">
+<span class="comment"># Credenciales necesarias de SAGE 50 Cloud</span>
+<span class="key">client_id</span>:      <span class="val">SAGE50_CLIENT_ID (desde panel SAGE)</span>
+<span class="key">client_secret</span>:  <span class="val">SAGE50_CLIENT_SECRET</span>
+<span class="key">empresa_id</span>:     <span class="val">ID de la empresa Dentix en SAGE</span>
+<span class="key">entorno</span>:        <span class="val">produccion | sandbox</span>
+
+<span class="comment"># Introducir en Conecta HUB</span>
+app.conectahub.com → Mi canal → Configurar SAGE 50
+→ Pegar client_id y client_secret
+→ Seleccionar empresa: "Dentix Productos Dentales S.L."
+→ Autorizar y verificar conexión
+        </div>
+        <p>Si la conexión es correcta, verás un indicador verde <strong>"SAGE 50 conectado"</strong> en el panel de Conecta HUB.</p>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Conectar WooCommerce con Conecta HUB</h3>
+        <div class="code-block">
+<span class="comment"># Generar clave API en WooCommerce</span>
+wp-admin → WooCommerce → Ajustes → Avanzado → API REST
+→ Añadir clave → Descripción: "Conecta HUB"
+→ Permisos: Lectura/Escritura
+→ Generar clave
+
+<span class="comment"># Copiar en Conecta HUB</span>
+<span class="key">consumer_key</span>:    <span class="val">ck_xxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+<span class="key">consumer_secret</span>: <span class="val">cs_xxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+<span class="key">url_tienda</span>:      <span class="val">https://www.dentix.es</span>
+
+<span class="comment"># Webhook URL (copiar en WooCommerce)</span>
+<span class="key">webhook</span>: <span class="val">https://app.conectahub.com/webhook/TU_CANAL_ID</span>
+        </div>
+        <p>Registrar el webhook en: wp-admin → WooCommerce → Ajustes → Avanzado → Webhooks → Añadir webhook para los eventos: <strong>order.created, order.updated, customer.created</strong>.</p>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Mapeo de campos SAGE 50 → WooCommerce</h3>
+        <p>Define qué campo de SAGE corresponde a qué campo de WooCommerce. En Conecta HUB: <strong>Mi canal → Mapeo de campos</strong>.</p>
+        <table class="field-map">
+          <thead><tr><th>Campo SAGE 50</th><th>Campo WooCommerce</th><th>Tipo</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Referencia artículo</td><td>SKU</td><td>Texto</td><td>Clave única — no modificar en WooCommerce</td></tr>
+            <tr><td>Descripción corta</td><td>Nombre del producto</td><td>Texto</td><td>Máx. 120 caracteres</td></tr>
+            <tr><td>Descripción larga</td><td>Descripción del producto</td><td>HTML</td><td>Permite HTML básico</td></tr>
+            <tr><td>PVP tarifa general</td><td>Precio regular</td><td>Decimal</td><td>IVA incluido en WooCommerce</td></tr>
+            <tr><td>Tarifa especial B2B</td><td>Precio de venta</td><td>Decimal</td><td>Solo clientes con rol "Professional"</td></tr>
+            <tr><td>Stock actual</td><td>Cantidad en stock</td><td>Entero</td><td>Actualización cada 15 min</td></tr>
+            <tr><td>Familia / Subfamilia</td><td>Categoría / Subcategoría</td><td>Texto</td><td>Mapeo manual una vez</td></tr>
+            <tr><td>Imagen principal</td><td>Imagen destacada</td><td>URL / Base64</td><td>ShortPixel convierte a WebP automáticamente</td></tr>
+            <tr><td>EAN / Código barras</td><td>Meta _ean</td><td>Texto</td><td>Campo personalizado WooCommerce</td></tr>
+            <tr><td>Proveedor</td><td>Atributo "Marca"</td><td>Texto</td><td>Mapeo manual desde panel Conecta HUB</td></tr>
+            <tr><td>Peso / Dimensiones</td><td>Datos de envío</td><td>Decimal</td><td>Para cálculo automático de portes</td></tr>
+            <tr><td>Activo/Inactivo</td><td>Estado publicado/borrador</td><td>Bool</td><td>Inactivo en SAGE → borrador en WooCommerce</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Mapeo de pedidos WooCommerce → SAGE 50</h3>
+        <p>Cada pedido confirmado en WooCommerce genera automáticamente un <strong>albarán o factura</strong> en SAGE 50.</p>
+        <table class="field-map">
+          <thead><tr><th>Campo WooCommerce</th><th>Campo SAGE 50</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Order ID</td><td>Número de albarán</td><td>Prefijo configurable: DX-{año}-{id}</td></tr>
+            <tr><td>Billing → Company</td><td>Razón social cliente</td><td>Crea cliente nuevo si no existe por CIF</td></tr>
+            <tr><td>Billing → NIF (meta _vat)</td><td>CIF/NIF cliente</td><td>Campo obligatorio en checkout</td></tr>
+            <tr><td>Billing → Address</td><td>Dirección fiscal</td><td>Actualiza si ya existe el cliente</td></tr>
+            <tr><td>Line items (SKU × qty)</td><td>Líneas de albarán</td><td>Descuenta stock automáticamente en SAGE</td></tr>
+            <tr><td>Subtotal + Tax</td><td>Base imponible + IVA</td><td>IVA tipo A (21%) por defecto</td></tr>
+            <tr><td>Shipping total</td><td>Gastos de envío</td><td>Artículo de servicio en SAGE</td></tr>
+            <tr><td>Payment method</td><td>Forma de pago</td><td>Mapear: stripe→tarjeta, bizum→bizum, bank→transferencia</td></tr>
+            <tr><td>Order status: completed</td><td>Albarán → Factura</td><td>Solo cuando estado sea "completado"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Configurar sincronización automática y webhooks</h3>
+        <div class="code-block">
+<span class="comment"># Frecuencias recomendadas en Conecta HUB</span>
+<span class="key">Sincronización de stock</span>:     <span class="val">cada 15 minutos (cron)</span>
+<span class="key">Sincronización de precios</span>:   <span class="val">cada 2 horas</span>
+<span class="key">Sincronización de catálogo</span>:  <span class="val">cada noche a las 02:00h</span>
+<span class="key">Pedidos a SAGE</span>:              <span class="val">webhook tiempo real (inmediato)</span>
+<span class="key">Clientes nuevos</span>:             <span class="val">webhook tiempo real</span>
+
+<span class="comment"># Configurar cron en WordPress (wp-config.php)</span>
+define('DISABLE_WP_CRON', true);
+
+<span class="comment"># Añadir en servidor (cPanel o crontab)</span>
+*/15 * * * * curl https://www.dentix.es/wp-cron.php?doing_wp_cron
+        </div>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Sincronización inicial: importar el catálogo completo</h3>
+        <p>La primera vez, debes importar los ~10.000 SKUs de SAGE a WooCommerce. Esto puede tardar entre 2 y 6 horas según la conexión.</p>
+        <div class="code-block">
+<span class="comment"># En Conecta HUB → Mi canal → Sincronización manual</span>
+1. Seleccionar: "Importación inicial completa"
+2. Elegir empresa: Dentix Productos Dentales S.L.
+3. Marcar: SKU, precios, stock, imágenes, categorías
+4. Ejecutar en horario de baja carga (noche)
+5. Revisar log de errores tras finalizar
+
+<span class="comment"># Comandos WP-CLI útiles para verificar</span>
+wp wc product list --fields=id,sku,stock_quantity --format=csv
+wp wc product list --status=publish | wc -l   <span class="comment"># contar publicados</span>
+wp cache flush                                  <span class="comment"># limpiar caché</span>
+        </div>
+        <p><strong>Verificación:</strong> Comprueba que el número de productos publicados en WooCommerce coincide con los artículos activos en SAGE 50.</p>
+      </div>
+    </div>
+
+    <div class="sage-step">
+      <div class="sage-step-num"></div>
+      <div class="sage-step-content">
+        <h3>Monitorización y gestión de errores</h3>
+        <p>Conecta HUB tiene un panel de logs en tiempo real. Además, configura alertas por email.</p>
+        <div class="code-block">
+<span class="comment"># Panel de logs Conecta HUB</span>
+app.conectahub.com → Mi canal → Logs
+
+<span class="comment"># Errores más comunes y solución</span>
+<span class="key">Error 401</span>: <span class="val">Token SAGE expirado → Reconectar en panel Conecta HUB</span>
+<span class="key">Error 404</span>: <span class="val">SKU no encontrado en WooCommerce → Importar artículo manualmente</span>
+<span class="key">Error 422</span>: <span class="val">Datos inválidos (precio vacío, EAN duplicado) → Revisar artículo en SAGE</span>
+<span class="key">Stock 0</span>:   <span class="val">Artículo sin stock → WooCommerce lo marca "agotado" automáticamente</span>
+<span class="key">Timeout</span>:   <span class="val">Servidor lento → Verificar VPS y aumentar max_execution_time a 120s</span>
+
+<span class="comment"># Alertas por email (configurar en Conecta HUB)</span>
+Notificar cuando: error de sincronización, pedido no enviado a SAGE,
+                  cliente nuevo sin CIF, más de 10 errores en 1h
+        </div>
+        <p>También activa las notificaciones nativas de WooCommerce para bajo stock en wp-admin → WooCommerce → Ajustes → Productos → Inventario.</p>
+      </div>
+    </div>
+
+  </div><!-- .sage-steps -->
+
+  <!-- Preguntas frecuentes -->
+  <div style="margin-top:48px">
+    <h2 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:24px">Preguntas frecuentes técnicas</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px">¿Qué pasa si modifico un producto en WooCommerce?</div>
+        <div style="font-size:13.5px;color:var(--gray-mid);line-height:1.7">La próxima sincronización lo sobreescribirá con los datos de SAGE 50. Nunca modifiques catálogo en WooCommerce directamente. Hazlo siempre en SAGE.</div>
+      </div><div style="background:white;border:1px solid var(--border);border-radius:10px;padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px">¿Puedo tener productos solo en WooCommerce?</div>
+        <div style="font-size:13.5px;color:var(--gray-mid);line-height:1.7">Sí. Los productos creados directamente en WooCommerce (sin SKU de SAGE) no son afectados por la sincronización. Útil para productos digitales o servicios.</div>
+      </div><div style="background:white;border:1px solid var(--border);border-radius:10px;padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px">¿Cómo activar la sincronización bidireccional?</div>
+        <div style="font-size:13.5px;color:var(--gray-mid);line-height:1.7">Cuando Dentix esté lista, en Conecta HUB → Mi canal → Configuración avanzada → activar "Sincronización bidireccional". No requiere cambios de código.</div>
+      </div><div style="background:white;border:1px solid var(--border);border-radius:10px;padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px">¿Qué ocurre con los pedidos durante una caída de SAGE?</div>
+        <div style="font-size:13.5px;color:var(--gray-mid);line-height:1.7">Los pedidos siguen procesándose en WooCommerce. Conecta HUB los encola y los reenvía a SAGE cuando la conexión se restaure.</div>
+      </div><div style="background:white;border:1px solid var(--border);border-radius:10px;padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px">¿Cómo se gestionan las tarifas especiales B2B?</div>
+        <div style="font-size:13.5px;color:var(--gray-mid);line-height:1.7">Define tarifas por cliente en SAGE 50. Conecta HUB sincroniza los precios de cada tarifa con el rol de cliente correspondiente en WooCommerce.</div>
+      </div><div style="background:white;border:1px solid var(--border);border-radius:10px;padding:20px">
+        <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px">¿Hay forma de probar la integración sin afectar producción?</div>
+        <div style="font-size:13.5px;color:var(--gray-mid);line-height:1.7">Sí. Usa el entorno sandbox de Conecta HUB junto con la instancia InstaWP (rama pruebas de GitHub) para pruebas completas sin tocar el VPS de producción.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- padding -->
+
+<div style="background:var(--ink);padding:24px 60px;color:var(--on-dark-mid);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+  <span>Dentix Productos Dentales, S.L. · Documentación técnica interna · v1.0 · Febrero 2026</span>
+  <a href="../index.html" style="color:var(--on-dark-low)">dentix.es</a>
+</div>
+
+</body>
+</html>
